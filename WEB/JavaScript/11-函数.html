@@ -7,7 +7,130 @@
     <script>
         //函数  
 
+        //求累加和的算数问题经常被用到的，但凡是不可能重复构造。
+        //所以可已将重复的部分封装到函数当中  
+
+        //函数--就是封装了一段可以重复执行调用的代码块，目的：就是让大量代码重复使用  
+        //num1 = 计数器初始化值; num2 = 范围; sum = 累加值；
+        function getSum(num1,num2){
+            var sum = 0;
+            for (var i = num1; i <= num2; i++){
+                sum += i;
+            }
+            console.log(sum);
+        }
+        getSum(1,100);  
+        getSum(10,50); 
+        getSum(1,1000);
+
+        function sayHi(){
+            console.log('Hi!~'); 
+        }
+
+        // 函数的使用分为两步：  声明函数  & 调用函数  
+        // 1、声明函数--语法结构    
+        /*
+        function 函数名 () {
+            //函数体  
+        }  
+        */
+        //*     1.function 声明函数的关键字  
+        //*     2.函数是做某件事情，函数名一般用【动词】 sayHi  也是一种行为动词   
+        //*     3. 函数不调用自己不执行  
+
+
+        // 2、调用函数  
+        /*
+        函数名 ();   //通过调用函数名来执行函数体代码  
+        */
+        sayHi();  
+        //调用函数的时候千万不要忘记加小括号   
+
+        //3、函数可以重复相同的代码  
+        function cook() {
+            console.log('青椒炒鸡蛋');
+        } 
+        cook();
+
+        //4、可以利用函数的参数实现重复不同的代码  
+        function cook1(i) {
+            //形参是接受实参的  
+            console.log(i);
+        } 
+        cook1('鱼香肉丝');  //实参是调用函数的  
+        cook1('鱼');
+        //函数的参数可以有，也可以没有，个数不限   
         
+
+        //5、利用函数求任意两个数的和  
+        function getSum1(num1,num2) {
+            console.log(num1 + num2);
+        }
+        getSum1(5,10);  
+
+        //6、利用函数求任意两个数之间的和  
+        /*
+        function getSum2(num1,num2) {
+            var sum = 0;
+            if(num1 <= num2){
+                for(var i = num1; i <= num2; i++){
+                        sum += i;
+                } 
+                console.log(sum);
+            } else {
+                for(var i = num2; i <= num1; i++){
+                    sum += i;
+                } 
+                console.log(sum);
+            }
+        }
+        getSum2(1000,1);   
+        getSum2(100,1);   //成功案例  
+        */
+
+        function getSum2(num1,num2) {
+            var sum = 0;
+            // 利用三元表达式来比较大小
+            for(var i = (num1 < num2 ? num1 : num2); i <= (num2 > num1 ? num2 : num1); i++){
+                        sum += i;
+                } 
+                console.log(sum);
+        }
+        getSum2(1000,1);   
+        getSum2(100,1); 
+        getSum2(500,1); 
+        console.log('--------------');
+        getSum2(100,60); 
+        getSum2(100,60,1); 
+
+        getSum2(10,1); 
+        getSum2(10,1,5); 
+        getSum2(10,5); 
+        getSum2(10,5,1); 
+        
+        //函数形参个数匹配  
+        function getSum3(a,b){
+            console.log(a + b);
+        }
+        //      1、如果实参的个数和形参的个数一致   则正常输出  
+        getSum3(1,2);   
+        //      2、如果实参的个数和形参不一致， 会按照形参的个数计算   
+        getSum3(1,2,3);    
+        //      3、如果实参的个数小于实参的个数， NaN ，   
+        //      形参可以看作是不用生命的变量  num2 是一个变量但是没有接受值， 结果就是Undefined      
+        getSum3(10);  //NaN   
+
+
+
+
+
+
+
+
+
+
+
+
     </script>
 </head>
 <body>
