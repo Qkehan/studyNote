@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浮动-图文混排</title>
+    <style type="text/css">
+        body,div,ul,li,ol,dl,dt,dd,p,img,input,a,span,h1,h2,h3,h4{
+            padding: 0px;
+            margin: 0px;
+            border: 0px;
+            list-style: none;
+        }
+        body{
+            background: #ccc;
+            font-size: 12px;
+            color: #3e3e3e;
+        }
+        dl{
+            width: 530px;
+            height: 210px;
+            border:5px solid #f9c;
+            border-radius: 10px;
+            background: #fff;
+            margin: 50px auto;
+            overflow: hidden;
+        }
+        dt{
+            float: right;
+        }
+        dd{
+            width: 200px;
+            float: left;
+            margin:25px;   /*文本外边距*/
+            line-height: 26px;  /*字体行高*/
+        }
+        a{
+            color: orange;
+            text-decoration: none;   /*text-decoration文本装饰，选择没有，去除下划线*/
+        }
+        h3{
+            text-align:center;
+        }
+        a:hover{
+            text-decoration: underline;   /*冒号语法增加鼠标动作，添加underline的下划线效果*/
+        }
+    </style>
+</head>
+<body>
+    <dl>
+        <dt><a href="https://www.w3school.com.cn/html5/index.asp"><img src="img/tubk.webp" height="210px" alt="图标"></a></dt>
+        <dd>
+            <h3><a href="https://so.gushiwen.cn/shiwenv_b0d3f72465ef.aspx">黄鹤楼</a></h3>
+            <p>
+                <cite>崔颢 〔唐代〕</cite><br>
+                昔人已乘黄鹤去，此地空余黄鹤楼。<br>
+                黄鹤一去不复返，白云千载空悠悠。<br>
+                晴川历历汉阳树，芳草萋萋鹦鹉洲。<br>
+                日暮乡关何处是？烟波江上使人愁。<br>
+            </p>
+        </dd>
+    </dl>
+</body>
+</html>

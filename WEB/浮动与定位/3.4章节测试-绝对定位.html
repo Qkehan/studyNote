@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绝对定位</title>
+    <style type="text/css">
+        .box1{
+            width: 502px;
+            height: 401px;
+            margin: 10px auto;
+            background: rgb(151, 201, 235);
+            position: relative;
+            border: 1px solid rgb(0, 204, 255);
+            border-radius: 5px;
+        }
+        .off{
+            display: block;
+            width: 16px;
+            height: 16px;
+            top: 7px;
+            right: 8px;
+            position: absolute;
+            cursor: pointer;  /*鼠标手型动作*/
+        }
+        .yes{
+            display: block;
+            width: 60px;
+            bottom: 0px;
+            right: 8px;
+            position:absolute;
+            border: 0px solid black;
+            cursor: pointer;  /*鼠标手型动作*/
+        }
+        .bg{
+            display: block;
+            width: 480px;
+            height: 330px;
+            position:absolute;
+            top: 33px;
+            left: 10px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="box1">
+        <span class="off"><img src="img/off.webp" width="16px" alt="off"></span>
+        <span class="bg"><img src="img/658.jpeg" width="480px" height="330px" alt="bg"></span>
+        <span class="yes"><img src="img/yes1.jpeg" width="60px" alt="yes"></span>
+        
+    </div>
+</body>
+</html>

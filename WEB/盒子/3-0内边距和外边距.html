@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内边距与外边距</title>
+    <style type="text/css">
+
+        @font-face {
+            font-family: "yan";
+            src: url("/font/颜真卿颜体.ttf");
+        }
+        body{
+            font-family: "yan";
+            margin: 0px;
+            padding: 0px;
+        }
+
+        div{
+            width: 300px;
+            height: 300px;
+            border: 5px dashed black;
+            padding: 0px;
+            /*margin: 0px;*/
+            margin:20px auto;
+            background-image: url(/WEB/盒子/img/bj-2.jpeg);                                                                                                                              img/bj-2.jpeg);  
+            /*background-color: rgba(255, 139, 139, 0);*/
+            
+            /*background-position: center center;*/
+            background-size:100% 100%;   /*调整背景图片的大小*/
+
+            text-align: center;
+
+
+
+        
+        }
+        
+        .p1{
+            
+            margin: 0px;
+            padding: 0px;
+
+            color: rgb(0, 0, 0);
+            text-indent: 2em;
+            
+            
+            width: 200px;
+            height: 200px;
+            /*之所以p没有居中，是因为p添加了高和宽，去掉就可以了*/
+
+            border:1px solid #000000cb;
+
+            /*overflow:scroll;*/ /*滚动条*/
+
+            background-color: #a0a0a09d;
+
+            
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            /*margin-top: 50%;
+            margin-left: 50%;*/
+            /*margin-right: 50%;
+            margin-bottom: 50%;*/
+            margin: 50%;
+            transform:translate(-50%,-50%);
+
+        }  
+        
+    </style>
+</head>
+
+<body>
+    <div>
+        <p class="p1">明月几时有？把酒问青天。不知天上宫阙，今夕是何年。我欲乘风归去，又恐琼楼玉宇，高处不胜寒。起舞弄清影，何似在人间。(何似 一作：何时；又恐 一作：惟 / 唯恐) 转朱阁，低绮户，照无眠。不应有恨，何事长向别时圆？人有悲欢离合，月有阴晴圆缺，此事古难全。但愿人长久，千里共婵娟。</p>
+    </div>
+</body>
+</html>

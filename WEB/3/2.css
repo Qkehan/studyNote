@@ -1,0 +1,63 @@
+@charset "utf-8";
+/* css Document */
+.edge{
+    font-family: "宋体";
+    /*background-image:url(img/bj.jpg) ;*/
+    width: 75%;
+    /*border: solid 2px black;*/
+    /*line-height: 25px;*/
+}
+h1{
+    color: dimgray;
+    font-size: 22px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.q{
+    font-size: 50px;
+    color: purple;
+}
+.k{
+    font-size: 50px;
+    color: seagreen;
+}
+.e{
+    font-size: 50px;
+    color: cadetblue;
+}
+.h{
+    font-size: 50px;
+    color: #d85fba;
+}
+
+
+.p1{
+    color: red;
+    text-indent: 2em;
+    letter-spacing: 16px;
+    white-space: nowrap;  /*强制不换行*/
+    overflow: hidden;       /*超出文本隐藏*/
+    text-overflow: ellipsis;   /*超出文版用省略显示*/
+
+}
+.p2{
+    color: blue;
+    text-align: center;
+    font-weight: bolder;
+}
+.p3{
+    color: green;
+    font-style: italic;
+
+}
+.p4{
+    color: mediumpurple;
+    font-weight: bolder;
+
+}
+
+
+
+
+

@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+*{
+    padding: 0;
+    margin: 0;}
+body{
+    font:16px "宋体";
+    /*color: #975252;*/
+    color: #000000;
+    line-height: 2em;}
+
+h1{
+    font: boid 36px “黑体”;
+    text-align: center;
+    color: #360707;
+    text-shadow: #ff6161 10px 10px 3px;
+    letter-spacing:20px;
+    line-height: 3em;}
+h2{
+    font: 22px “微软雅黑”;
+    text-align: center;
+    color: #0000ff;
+    text-decoration: underline;}
+.one{
+    font:12px "黑体";
+    text-align: center;
+    line-height: 2em;}
+p{
+    text-indent: 1em;}
+
+
+time{
+    color: #3d6cb0;
+    font-style: italic}
+name{
+    color: #0044a3;
+    font-weight: bolder;}
+
+num{
+    color: brown;}
+
+.color{
+    color: #3d6cb0;
+    font-style: normal;
+    font-weight: bold;}
+

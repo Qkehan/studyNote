@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css兼容性</title>
+    <style type="text/css">
+
+    /*查询网站
+    caniuse.com
+    MDN CSS Reference
+    Codrops CSS Reference
+    QuirkMode.org CSS
+    */
+
+    /*根据用户群体兼容浏览器：
+    如果低版本浏览器没有这个特性是否可以接受？
+        优化显示效果的属性(牺牲少部分用户体验){  
+            border-radius
+            box-shadow
+            animation
+            transition
+        }
+        布局相关属性（替代属性）{  
+            FlexBox
+            Grid
+            opacity  ==  (替代) filter
+            （替代）
+            float
+            inline-block
+            display:table
+        }
+    */
+
+    /*不同浏览器使用不同的样式*/
+    /*
+    1、层叠Cascading  
+        p{  同一个属性，后面的覆盖前面的
+            line-height:2;
+            line-height:3;
+        }
+        p{  度浏览器无效的属性就被忽略了
+            display:table;
+            display:flex;
+        }
+    2、浏览器 hack 原理-条件注释 
+        <!--[if IE 7]> <p>只能在IE7看到</p> <![endif]-->
+
+        <!--[if lt IE 8]> <p>只能小于IE8看到我</p> <![endif]-->
+        
+        <!--[if lt IE 7]> <html class="ie6"> <![endif]-->
+        <!--[if IE 7]> <html class="ie7"> <![endif]-->
+        <!--[if IE 8]> <html class="ie8"> <![endif]-->
+        <!--[if IE 9]> <html class="ie9"> <![endif]-->
+        <!--[if (gt IE 9) | !(IE)]><!-->
+            <html class="w3c">
+        <![endif]-->
+
+        另外
+
+        
+
+    3、浏览器 hack 原理-浏览器怪癖
+        .container{
+            height:100px;  
+            height:200px\9;  IE 6-9会忽略属性后面的\9。
+            *height: 300px;  IE 6\7会忽略属性前面的*号。
+            _height:400px;  IE 6会忽略属性前面的_下划线。
+        }
+
+        浏览器前缀
+        Chrome/Safari： -webkit-  
+        Microsoft: -ms-  
+        Mozilla: -moz-  
+
+        .example{  为了支持旧版本浏览器，需要写一些带前缀的属性
+            -webkit-transform: translate(100px,0);
+                -ms-transform: translate(100px,0);
+                    transform: translate(100px,0);
+        }
+    */
+
+    </style>
+
+</head>
+<body>
+    
+</body>
+</html>

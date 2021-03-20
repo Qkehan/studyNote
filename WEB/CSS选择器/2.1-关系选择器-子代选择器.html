@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css的-关系选择器-子代选择器</title>
+    <style type="text/css">
+        h1>strong{   /*子代选择器*/
+            color:red;
+            font-size: 36px ;
+            font-family: "微软雅黑";
+        }
+    </style>
+
+    
+</head>
+
+<!--
+1、子代选择器（>）  子代选择器，主要用来选择某个元素的第一级子元素。例如希望选择只作为h1元素子元素的strong元素，可以这样写：h1>strong。  
+2、兄弟选择器（+、~）  兄弟选择器，用来选择与某元素位于同一个父元素之中，且位于该元素之后的兄弟元素。兄弟选择器分为，临近兄弟选择器和普通兄弟选择器两种。  
+（1）临近兄弟选择器  该选择器使用“+”来链接前后两个选择器。选择器中的两个元素有同一个父亲，而且第二个元素必须紧跟第一个元素。  
+（2）普通兄弟选择器  该选择器使用“~”来链接前后两个选择器。选择器中的两个元素有同一个父亲，但第二个元素不必紧跟第一个元素。  
+-->
+
+<body>
+    <h1>这个<strong>知识点</strong>，很<strong>重要</strong>！！</h1>
+    <h1><em><strong>陕工职院</strong></em>欢迎您！</h1>
+</body>
+</html>

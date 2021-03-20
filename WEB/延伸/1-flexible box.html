@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex-direction排版容器</title>
+    <style type="text/css">
+        .container{
+            display: flex;
+            border: 2px solid red;
+            /*flex-direction: row; */  /*从左到右*/
+            /*flex-direction: row-reverse; */  /*从右到左*/
+            /*flex-direction: column;  */   /*从上到下*/
+            /*flex-direction: column-reverse;  */  /*从下到上*/
+
+            /*justify-content:flex-start;    */  /*主轴-均衡排版位置属性*/
+            /*justify-content:flex-end;    */
+            /*justify-content:center;  */  
+            /*justify-content:space-between;  */
+            /*justify-content:space-around;   */ 
+            /*justify-content:space-evenly;  */
+            
+            align-items: flex-start;   /*【行内】侧轴-均衡排版位置属性*/
+            align-items: flex-end;   /*下边*/
+            align-items: center;    /*居中*/
+            align-items: stretch;   /*所有元素都拉伸*/
+            align-items: baseline;  /*所有元素都对其*/
+            
+            align-content: flex-start;   /*【fiex块内行】侧轴-均衡排版设置*/
+            align-content: flex-end;
+            align-content: center;
+            align-content: stretch; /*平铺*/
+            align-content: space-between;
+            align-content: space-around;
+        }
+        .a,.b,.c{
+            text-align: center;
+            padding: 1em;
+        }
+        
+
+        .a{
+            background: #fcc;
+            flex-grow: 3;   /*伸缩属性*/
+        }
+        .b{
+            background: #cfc;
+            flex-grow: 2;
+        }
+        .c{
+            background: #ccf;
+            flex-grow: 1;
+        }
+
+        .d,.e,.f{
+            text-align: center;
+            padding: 1em;
+        }
+        .d{
+            background: #fcc;
+        }
+        .e{
+            background: #cfc;
+            
+        }
+        .f{
+            background: #ccf;
+            
+        }
+    </style>
+
+</head>
+
+<!--
+
+----------------主轴方向------------------------------------
+
+    flex-direction子元素排版顺序
+    flex-wrap子元素换行，默认值是不换行，wrap是换行
+
+    /*flex-direction: row; */  /*从左到右*/
+    /*flex-direction: row-reverse; */  /*从右到左*/
+    /*flex-direction: column;  */   /*从上到下*/
+    /*flex-direction: column-reverse;  */  /*从下到上*/
+
+    /*justify-content:flex-start;    */  /*主轴-均衡排版位置属性*/
+    /*justify-content:flex-end;    */
+    /*justify-content:center;  */  
+    /*justify-content:space-between;  */
+    /*justify-content:space-around;   */ 
+    /*justify-content:space-evenly;  */
+
+    align-self单独给子元素，添加一个对齐方式
+
+    align-content是flex块内行的排版设置
+
+-----------------侧轴方向----------------------------------------
+
+    【flex块内，排布参数】
+    align-items: flex-start;   /*【行内】侧轴-均衡排版位置属性*/
+    align-items: flex-end;   /*下边*/
+    align-items: center;    /*居中*/
+    align-items: stretch;   /*所有元素都拉伸*/
+    align-items: baseline;  /*所有元素都对其*/
+    
+
+    【flex内，行间参数】
+    align-content: flex-start;   /*【fiex块内行块】侧轴-均衡排版设置【flex有很多行的时候使用】*/
+    align-content: flex-end;
+    align-content: center;
+    align-content: stretch; /*平铺*/
+    align-content: space-between;
+    align-content: space-around;
+
+-->
+
+<body>
+    <div class="container">
+        <div class="a">A</div>
+        <div class="b">B</div>
+        <div class="c">C</div>
+    </div>
+    <div class="container">
+        <div class="d">A</div>
+        <div class="e">B</div>
+        <div class="f">C</div>
+    </div>
+</body>
+</html>

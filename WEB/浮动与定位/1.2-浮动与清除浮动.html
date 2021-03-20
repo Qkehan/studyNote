@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>清除浮动</title>
+    <style type="text/css">
+        .father{
+            background: #ccc;
+            border: 1px dashed #999;
+            /*width: 500px;*/
+        }
+        .father2{  
+            /*如果碰到父元素被子元素浮动影响，通常有2两种方法解决*/
+            /*【方法一】是给div里面添加一个空div标记*/
+            background: #ccc;
+            border: 1px dashed #999;
+            /*width: 500px;*/
+        }
+        .father3{  
+            /*【方法二】overflow属性*/
+            background: #ccc;
+            border: 1px dashed #999;
+            overflow: hidden;  /*这里是处理溢出的时候用的属性，就可以决绝，父元素被浮动的影响*/
+        }
+        .box1,.box2,.box3{
+            height: 50px;
+            line-height: 50px;
+            background: #ff9;
+            border: 1px solid #f33;
+            margin: 15px;
+            padding:0px 10px;
+
+        }
+        p{
+            background: #fcf;
+            border: 1px dashed #f33;
+            margin: 15px;
+            padding: 0px;
+            clear: left;    /*clear是清除浮动left是左侧 right是右侧 both是两边*/
+        }
+        .box1,.box2,.box3{
+            float: left;
+            /*float: right; */  /*浮动造成p元素变化受影响，为了避免受影响，需要清除浮动*/
+        }
+        .box4{
+            clear: both;   /*空标记的类，可以清除浮动影响，可以使父元素，摆脱子元素浮动影响*/
+        }
+    </style>
+
+<!--
+【但是clear属性只能清除左右两侧的浮动影响】
+？问：但是如、对子元素设置浮动时，父元素没有设置宽高、那么子元素的浮动会影响父元素？
+1、方法一：设置一个空div并设置class类用clear清除。【缺点】增加了毫无意义的结构元素。
+2、方法二：overflow属性只需要将属性设置成hidden就可以清除浮动对父元素的影响，也弥补了【空标记的不足】overflow:hidden;  
+-->
+
+</head>
+<body>
+    <div class="father">
+        <div class="box1">盒子3</div>
+        <div class="box2">盒子2</div>
+        <div class="box3">盒子1</div>
+        <p>HTML称为超文本标记语言，是一种标记语言。它包括一系列标签．通过这些标签可以将网络上的文档格式统一，使分散的Internet资源连接为一个逻辑整体。HTML文本是由HTML命令组成的描述性文本，HTML命令可以说明文字，图形、动画、声音、表格、链接等。超文本是一</p>
+    </div>
+    <br><br><br><br>
+
+    <!--测试父元素被子元素浮动的影响-->
+    <!--【方法一】-->
+    <div class="father2">
+        <div class="box1">盒子3</div>
+        <div class="box2">盒子2</div>
+        <div class="box3">盒子1</div>
+        <div class="box4"></div>  <!--给空标记设置一个class用来清除父元素的被影响-->
+    </div>
+    <br><br><br><br>
+
+    <div class="father3">
+        <div class="box1">盒子3</div>
+        <div class="box2">盒子2</div>
+        <div class="box3">盒子1</div>
+    </div>
+
+</body>
+</html>

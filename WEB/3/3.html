@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="2.css">
+    <style type="text/css">
+
+        #p1{font-weight:bolder;}
+        #p2{font-size: 24px;}
+        #p3{font-size: 20px;color: deeppink;}
+        #p4{font-family: "黑体";font-weight: bolder;}
+    
+        p{color: deeppink;}
+        p.a{color: dodgerblue;}
+        div{
+            height: 100%;
+            background-color: #9b9b9bb9;
+        }
+        *{
+            margin: 0px;
+        }
+        strong{color: green;}
+        p strong{color: lightslategray;}
+        #p1,#p2,#p3,.a,p,p strong,strong{text-decoration: underline;}
+    </style>
+</head>
+
+<body>
+    <div>
+        <p id="p1">春眠不觉晓</p>
+        <p id="p2">处处闻啼鸟</p>
+        <p id="p3">夜来风雨声</p>
+        <p class="a" id="p4">花落知多少</p>
+        <p>春眠不觉晓,<strong>处处闻啼鸟.</strong>夜来风雨声,<strong>花落知多少.</strong></p>
+        <strong>春眠不觉晓,处处闻啼鸟.夜来风雨声,花落知多少.</strong>
+    </div>
+</body>
+</html>

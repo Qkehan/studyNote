@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置图像大小 background-origin 设置图像显示区域</title>
+    <style type="text/css" rel="stylesheet">
+        
+        .one{
+            width: 300px;
+            height: 300px;
+            border: 10px dotted #666;
+            padding: 40px;
+            background-color: #fcc;
+            background-repeat: no-repeat;
+            background-clip: padding-box;  /*这里的取值是决定了图片剪裁的方式取自有三个border-box\padding-box\content-box*/
+        }
+
+    </style>
+</head>
+
+<body>
+    <div title="标题">
+
+    </div>
+
+    <div title="主题背景" class="one">
+        <p>300像素的盒子。共和国湖广会馆湖广会馆湖广会馆湖广会馆。士大夫士大夫士大夫士大夫士大夫胜多负少复古一份顾云飞顾云飞顾云飞故意复古衣服</p>
+    </div>
+    
+</body>
+</html>

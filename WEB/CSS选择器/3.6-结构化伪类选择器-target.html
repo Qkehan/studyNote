@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>target选择器-跳转高亮选择器-指定链接选择器</title>
+    <style type="text/css">
+    
+        :target{   /*页面内的页面链接，点击动作，以pink高亮*/
+            background-color: pink;
+        }
+
+        /*指定链接选择器*/
+        
+    </style>
+</head>
+
+<!--
+  8、:target选择器  用于页面中的某个target元素（该元素的id被当做页面中的超链接来使用）指定样式。是有用户单击了页面中的超链接，并且跳转到target元素后，:target选择器所设置的样式才会起作用。  
+-->
+
+<body>
+    <h1>这是标题</h1>
+    <p><a href="#new1">跳转至内容1</a></p>
+    <p><a href="#new2">跳转至内容2</a></p>
+    <p>--------请点击以上链接-------</p>
+    <p id="new1">内容111111111111111111</p>
+    <p id="new2">内容222222222222222222</p>
+</body>
+</html>

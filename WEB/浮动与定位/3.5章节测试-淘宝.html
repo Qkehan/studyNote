@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>淘宝-绝对定位</title>
+    <style type="text/css">
+
+        body,div,h3,a,b,span,img,p,strong{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body{
+            font-size: 12px;
+            font-family: "微软雅黑";
+            color: black;
+        }
+
+        .box1{
+            width: 310px;
+            height: auto;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 80px auto;
+            position: relative;
+        }
+
+        .jiao{
+            position: absolute;  
+            left: 0;   
+            top: 0;   /*可以让角，紧贴box1的外边。并且absolute绝对定位，让图片B不在受到排挤*/
+        }
+        .img2{
+            width: 310px;
+        }
+        h3{
+            margin-top: 20px;
+            line-height: 20px;
+        }
+
+        /*
+        h3 a:hover{
+            text-decoration: underline;
+            color: green; 
+        } */  /*一般方法，下边是新方法  */
+
+        a:link,a:visited{
+            color: #3e3e3e;
+            font-size: 15px;
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: underline;
+            color: #339999;
+        }
+
+        .p1{
+            font-size: 14px;
+            color: gray;
+            float:left;
+        }
+        .p1 strong{
+            font-size: 30px;
+            color: #ed5238;
+            font-family: "微软雅黑";
+        }
+        .p2{
+            float: right;
+            width: 75px;
+            text-align: right;
+            line-height: 20px;
+        }
+        .p2 a{   /*去看看*/
+            display: block;
+            width: 75px;
+            line-height: 26px;
+            /*border: 1px solid black;  */
+            text-align: center;
+            font-size: 17px;
+            color: white;
+            text-decoration: none;
+            background: linear-gradient(170deg, rgb(255, 173, 21),rgb(209, 112, 0));            
+        }
+        .p2 b{
+            color: #ed5238;
+        }
+
+        .box2{
+            overflow: hidden;  /*直接将溢出收回*/
+            margin-top: 25px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <span class="jiao"><img class="img1" src="img/jiao.webp" alt="jiao"></span>
+
+        <a href="#"><img class="img2" src="img/tubk.webp" alt="nei"></a>
+
+        <h3><a href="#">【12店通用】领航冰品哈根达斯：冰淇淋双球，口味任选，口味任选，节假日通用</a></h3>
+
+        <div class="box2">
+            <p class="p1"><strong>¥20.8</strong>  原价¥38</p>
+            <p class="p2"><a href="#">去看看</a><span><b>32</b>人已购买</span></p>
+        </div>
+    </div>
+</body>
+</html>

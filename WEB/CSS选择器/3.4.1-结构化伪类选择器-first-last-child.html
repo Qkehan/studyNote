@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>结构化伪类选择器-长子幼子选择器</title>
+    <style type="text/css">
+
+        p:first-child{
+            color: red;
+        }
+        p:last-child{    /*幼子选择器特别依赖Chrome-因为他是幼子*/
+            color: #f27b03;
+        }
+
+    </style>
+
+    
+</head>
+
+<!--
+4、:first-child和:last-child选择器  【长子幼子选择器】分别用于，父元素中【相同属性】的第一个或者最后一个子元素设置样式。  
+-->
+
+<body>
+    <p>不知道自己不知道</p>
+    <p>知道自己不知道</p>
+    <p>不知道自己知道</p>
+    <p>知道自己知道</p>
+    <p>你知道吗？</p >
+</body>
+</html>

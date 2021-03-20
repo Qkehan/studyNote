@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css的-属性选择器</title>
+    <style type="text/css">
+
+        p[id^="one"]{     /*匹配标记中id值【前缀】为one的【所有符合项】*/
+            color: pink;
+            font-family: "微软雅黑";
+            font-size: 20px;
+        }
+        /* 只要p中的id属性值，是以"one"字符串开头的-前缀，就会被选中，从而呈现样式和文本效果*/
+
+
+        p[id$="1"]{        /*匹配标记中id值【后缀】为1的【所有符合项】*/
+            background-color: gray;
+        }
+        /* 只要p中的id属性值，是以"1"字符串结尾的-后缀，就会被选中，从而呈现样式和文本效果*/
+
+        p[id*="o"]{         /*匹配了标记中id值【前后任意字段】为o的【所有符合项】*/
+            border: 2px solid black;
+        }
+        /* 只要p中的id属性值，拥有包含"o"字符串，就会被选中，从而呈现样式和文本效果*/
+
+
+
+    </style>
+</head>
+
+<!--
+1、E[att^=value]  属性选择器，是指选择名称为E的标记，且该标记定义了att属性，att属性值包含前缀为value的子字符串。注意，E是可以省略的，如果省略则表示可以匹配满足条件的任意元素。  
+2、E[att$=value]  属性选择器，是指名称为E的标记，且该标记定义了att属性，at属性包含后缀为value的子字符串。与E[att^=value]选择器一样，E元素可以省略，如果省略表示可以匹配满足条件的任意元素。
+3、E[att*=value]  属性选择器，是指名称为E的标记，且该标记定义了att属性，att属性包含value的字符串。该选择器与前两个选择器一样，E元素也可以省略，如果省略则表示可以匹配满足条件的任意元素。
+-->
+
+<body>
+    <p id="one">段落一</p>
+    <p id="two">段落二</p>
+    <p id="one1">段落三</p>
+    <p id="two1">段落四</p>
+</body>
+</html>

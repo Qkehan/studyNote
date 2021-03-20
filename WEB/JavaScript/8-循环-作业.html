@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>循环，作业，案例</title>
+    <script>
+
+        //1、求1~100之间所有数的和与平均值  
+        var sum = 0;
+        for(var i = 1; i <= 100; i++){
+            sum += i;
+        }
+        console.log('累加和：' + sum);
+        console.log('平均值：' + (sum / 100));
+
+        //2、求1~100之间所有偶数的和 
+        var sum = 0;
+        for(var i = 1; i <= 100; i++){
+            if(i % 2 == 0){
+                sum += i;
+            }
+            
+        }
+        console.log('偶数累加和：' + sum);
+        
+
+        //3、求100以内7的倍数的总合
+        var sum = 0;
+        for(var i = 1; i <= 100; i++){
+            if(i % 7 == 0){
+                //console.log(i);
+                sum += i;
+            }
+            
+        }
+        console.log('7数累加和：' + sum);
+
+
+        //4、使用for循环打印四行五个的五角星矩形，每次只输出一个五角星  
+        var str = '';
+        for(var i = 1; i <= 5; i++){
+            for(var j = 1; j <= 5; j++){
+                str += '☆';
+            }
+            str += '\n';
+        }
+        console.log(str);
+        console.log('--------------------------');
+
+        //5、使用for循环打印正三角，五行  
+        var str = '';
+        for(var i = 1; i <= 5; i++){
+            for(var j = 1; j <= i; j++){
+                str += '☆';
+            }
+            str += '\n';
+        }
+        console.log(str);
+        console.log('--------------------------');  
+
+
+
+        //6、使用for循环打印9*9乘法表  
+        console.log('9*9乘法表：');
+        var str = '';
+        for(var i = 1; i <= 9; i++){
+            for(var j = 1; j <= i; j++){
+                str += j + 'x' + i + '=' + (j*i) + '\t';
+            }
+            str += '\n';
+        }
+        console.log(str);
+        console.log('--------------------------'); 
+
+        //7、接收用户输入的用户名和密码，若用户名为“admin”，密码为“1234566”，则提示用户登陆成功！  否则，让用户一直输入。  
+        /*
+        var adm = 'admin',pas = 123456;
+        do {
+            var a = prompt('请输入用户名：');
+            var p = prompt('请输入密码：');
+        } while (a != adm, p != pas);
+        console.log('登录成功！');
+        */
+        
+
+        //8、求整数1~100的累加值，但要求跳过所有“个位为3”的数【用continue实现】  
+        var sum = 0;
+        for(var i = 1; i <= 100; i++){
+            if(i % 10 == 3){
+                continue;
+            }
+            console.log(i);
+            sum += i;
+        }
+        console.log('跳3数累加和：' + sum);
+
+        //9、简易ATM   
+        //存钱，取钱，显示余额，退出 
+        
+
+        while (c != 4) {
+            var adm = 'admin',pas = 123456;
+            while (a != adm, p != pas) {
+            var a = prompt('请输入用户名：');
+            var p = prompt('请输入密码：');
+            } 
+            alert('登录成功！');
+            
+            // 取钱系统的主要代码，外层为嵌套代码  
+            var m = 100; 
+            while (c != 4) {
+                var c = Number(prompt('请输入您要的操作：\n1.存钱\n2.取钱\n3.显示余额\n4.退出'));
+                switch (c) {
+                        case 1:
+                            m = m + Number(prompt('请输入您要存的钱数：'));
+                            break;
+                        case 2:
+                            var i = prompt('请输入您要存的钱数：');
+                            if(i <= m){
+                                m = m - i;
+                            }
+                            break;
+                        case 3:
+                            alert('您的余额还有：' + m + '元');
+                            break;
+                        case 4:
+                            break;
+                        
+                    }
+            }
+        }
+
+        
+        
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

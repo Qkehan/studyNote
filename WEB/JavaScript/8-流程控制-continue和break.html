@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>流程控制-continue和break</title>
+    <script>
+        //continue 关键字，用于跳出本次循环，继续下次循环，
+        for(var i = 1; i <= 5; i++){
+            if(i == 3){
+                continue;  //如果遇见continue就直接退出循环，直接跳到i++   
+            }
+            console.log('我在吃第'+i+'个包子');
+        }
+
+        //1、求除了1-100之间的，除了能被7整除的整数和  
+        var sum = 0;
+        for(var i = 1; i <= 100; i++){
+            if(i % 7 == 0){
+                continue;
+            }
+            //console.log(i);
+            sum += i;
+        }
+        console.log(sum);
+
+        //break 跳出循环，不再执行  
+        for(var j = 1; j <= 5; j++){
+            if(j == 3){
+                break;
+            }
+            console.log('我在吃第'+j+'个包子');
+        }
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

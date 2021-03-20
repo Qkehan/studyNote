@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据类型转换</title>
+    <script>
+
+        //------【转换为字符串类型 3种方法】------  
+
+        //1、toString() 变量，
+        var num = 10;
+        var str = num.toString(num);
+        console.log(str);
+        console.log(typeof str);  //检查类型
+
+        //2、String() 强制转换
+        var num1 = 22;
+        console.log(String(num1));
+
+        //3、拼接，任何类型与字符串拼接，结果都是字符串，隐式转换
+        var num3 = 1;
+        alert(num3 + '我是字符串');
+
+
+        //------【转换为数字类型，4种方法】------  
+
+        //1、parseInt(string)函数   将string转换为整数类型  
+        var age = prompt('请输入您的年龄');
+        console.log(parseInt(age));
+        console.log(parseInt('3.14'));   //不进位不考虑小数大小
+        console.log(parseInt('120px'));  //会去掉px单位  
+        console.log(parseInt('rem120px'));  //NaN  
+
+
+        //2、parseFloat(string)函数    将string转换为浮点类型  
+        console.log(parseFloat('3.1415926'));
+        console.log(parseFloat('120px'));  //120会去掉px单位  
+        console.log(parseFloat('rem120px'));  //NaN 
+        
+        //3、Number()强制转换函数   将string转换为数值类型  
+        var str = '123';
+        console.log(Number(str));
+        console.log(Number('12'));  
+
+        //4、JS隐式转换( - * / )   利用运算符,隐式转换为数值类型  
+        console.log('12' - 0);   //12 数字型
+        console.log('123' - '3');   //120数字型
+        console.log('234' * 1);
+
+        //------【转换为布尔类型】------    
+        //1、Boolean()函数   将前往圣安类型转换为布尔值  Boolean('true');   
+        //2、代表空、否定的值会被转换为false，如：'', 0 , NaN , null, undefined 。  
+        //3、其余值都会被转换为true   
+        console.log(Boolean(''));  //false
+        console.log(Boolean(0));   //false  
+        console.log(Boolean(NaN));  //false  
+        console.log(Boolean(null));  //false 
+        console.log(Boolean(undefined));  //false  
+        console.log(Boolean('开始看'));  //true  
+        console.log(Boolean(12));   //true  
+
+        
+
+        
+
+
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

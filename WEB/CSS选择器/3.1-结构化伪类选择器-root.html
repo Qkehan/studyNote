@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>结构化伪类选择器-root超级选择器</title>
+    <style type="text/css">
+    
+        :root{    /*对所有页面生效，但是可以被单独覆盖*/
+            color: red;
+        }
+        h2{
+            color: blue;
+            font-size: 36px;
+            font-family: "微软雅黑";
+        }
+        
+
+    </style>
+
+    
+</head>
+
+<!--
+1、:root选择器  用于匹配文档根元素，在html中，根元素始终是HTML元素。也就是说明“:root选择器”定义的样式，对所有页面元素都生效。对于不需要该样式的元素，可以单独设置样式进行覆盖。 
+
+-->
+
+<body>
+    <h2>《赠汪伦》</h2>
+    <p>李白乘舟将欲行,</p>
+    <h2>忽闻岸上踏歌声。</h2>
+    <h2>桃花潭水深千尺,</h2>
+    <h2>不及汪伦赠我情。</h2>
+</body>
+</html>

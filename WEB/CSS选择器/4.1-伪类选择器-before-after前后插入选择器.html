@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>before-after前后插入-选择器</title>
+    <style type="text/css">
+
+        p:before{   /*在段落p前面插入红色台词字样*/
+            content:"【台词】";
+            color: red;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        p:after{   /*在段落p后面插入蓝色收到字样*/
+            content:"【收到】";
+            color: rgb(0, 47, 255);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+
+<!--
+1、before/after前后插入选择器  用于在被选择的内容前面插入，必须配合content属性来指定要要插入的具体内容。
+
+-->
+
+<body>
+    <p>你吃饭了没？</p>
+    <p>没呢！</p>
+    <p>走，一起吃饭~~</p>
+    <p>好！</p>
+</body>
+</html>

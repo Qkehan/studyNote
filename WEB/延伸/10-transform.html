@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transform变形</title>
+<style type="text/css">
+    div{
+        width: 300px;
+        height: 300px;
+        
+        border:1px solid red;
+        margin: 0 auto;
+
+    }
+    .one{
+        margin: 50% 50%;
+        /*transform:translate(100px ,100px);*/
+        /*transform:translate(-1em);*/
+        /*transform: translate(100%, 100%);*/
+
+/*rotate旋转*/
+
+        /*transform: rotate(90deg);  /*以自身中间点为原点旋转*/
+        /*transform: rotate(0.5turn);   /*turn圈数，半圈*/
+
+        /*transform-origin: 0 0;
+        transform: rotate(-0.25turn);  /*origin圆心点，*/
+
+        /*transform-origin: 0 0;
+        transform: rotate(180deg);  /*origin圆心点，*/
+
+/*scale--放大,默认以中心点放大*/
+
+        /*transform: scale(3);*/
+
+        /*transform-origin: 0 0;
+        transform: scale(3,3);   /*origin可以调整为左上角放大*/
+
+        /*transform-origin: 0 0;
+        transform: scaleY(3);   /*X、Y可以调整为横向竖向缩放*/
+
+/*skew 倾斜*/
+        /*transform: skew(30deg , 20deg);*/
+        /*transform: skewX(30deg);*/
+        /*transform: skewY(50deg);*/
+
+/*复合*/
+        /*transform: translate(100px) rotate(90deg);*/  /*复合属性*/
+
+        /*transform: rotate(90deg) translate(100px);*/  /*顺序效果不一样*/
+
+        /*transform: scale(2) translateX(100px) rotate(90deg);  /*图像会以自身放大后的像素移动*/
+
+/*3D视图*/
+        /*transform: perspective(100px) rotateY(40deg);  /*perspective人眼距离屏幕的长度*/
+        /*transform: perspective(100px) rotateX(40deg);  /*perspective人眼距离屏幕的长度*/
+        /*transform: perspective(40px) rotateX(40deg);  /*perspective的值越小，3D的倾斜度越大*/
+        
+        /*transform:  perspective(100px) 
+                    translate3d(100px,100px,10px)  /*增加Z轴
+                    rotateY(80deg);  */
+
+    }
+</style>
+
+</head>
+<body>
+    <div>
+        <img class="one" src="img/yun.webp" width="50px" alt="">
+    </div>
+</body>
+</html>

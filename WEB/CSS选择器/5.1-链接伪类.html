@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>链接伪类</title>
+    <style type="text/css">
+
+        a:link{   /*未访问时红色*/
+            font-weight: bold;
+            color: red;
+            text-decoration: none;
+        }
+        a:visited{    /*访问过后绿色*/
+            font-weight: normal;
+            color: green;
+            text-decoration: none;
+        }
+        a:hover{    /*悬停时橙色，有下划线*/
+            color: orange;
+            text-decoration: underline;
+        }
+        a:active{  /*点击时紫色*/
+            color: #f6c;
+            text-decoration: none;
+        }
+
+    </style>
+    
+</head>
+
+<!--
+
+    在css中，通过链接伪类可以实现不同的链接状态。所谓伪类并不是真正意义上的类，它的名称是由系统定义的，通常由标记名、类名或id名加“:”构成。超链接标记<a>的伪类有4种，除了文本样式，链接伪类还可以定义超链接的背景边框。
+    【注意：通常如果需要应用4种伪类，一定要遵循它的顺序link、visited、hover、active。】
+-->
+
+<body>
+    <a href="#">我是连接</a>
+</body>
+</html>

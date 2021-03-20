@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>淘宝轮播图</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        .tb-promo{
+            position: relative;
+            width: 520px;
+            height: 280px;
+            background-color: pink;
+            margin: 100px auto;
+        }
+        .tb-promo img{
+            width: 520px;
+            height: 280px;
+        }
+
+        .prev,.next{
+            position: absolute;
+            /* 绝对定位的盒子，垂直居中 */
+            top: 50%;
+            margin-top: -15px;
+            /* 半圆背景样式 */
+            width: 20px;
+            height: 30px;
+            background-color: rgba(0,0,0,0.3);
+            /* 文字居中 */
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            text-decoration: none;
+        }
+        .prev{
+            
+            left: 0;
+            /* 右半圆 */
+            border-radius: 0px 15px 15px 0px;
+            
+            
+        }
+        .next{
+            right: 0;
+            /* 左半圆 */
+            border-radius: 15px 0px 0px 15px;
+        }
+        .promo-nav{
+            /* 位置 */
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            margin-left: -35px;
+            /* 宽高 */
+            width: 70px;
+            height: 14px;
+            border-radius: 7px;
+            background-color: rgba(255,255,255,0.3);
+
+        }
+        .promo-nav li{
+            float: left;
+            width: 8px;
+            height: 8px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin: 3px;
+        }
+        /* 橙色没有应用，不要忘记选择器权重的问题 */
+        .promo-nav .selected{
+            background-color: #ff5000;
+        }
+        
+    </style>
+
+</head>
+<!-- visibility: visble; 元素可见 == display: block; -->
+<!-- visibility: hidden; 元素隐藏 == display: none; -->
+<body>
+    <div class="tb-promo">
+        <img src="images/tb1.jpg" alt="">
+        <!-- 左侧箭头  -->
+        <a href="#" class="prev"> &lt; </a>
+        <!-- 右侧箭头 -->
+        <a href="#" class="next"> &gt; </a>
+        <!-- 小圆点 -->
+        <ul class="promo-nav">
+            <li class="selected"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+</html>

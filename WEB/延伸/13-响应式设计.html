@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>适应不同设备</title>
+    <style type="text/css">
+        body{
+            margin: 0;
+        }
+        /*图片的尺寸设置*/
+        img{
+            max-width: 100%;
+        }
+
+        
+        /*背景图片
+        background-size:cover;
+        background-size:contain;*/
+        .box1{
+            height: 300px;
+            border: 1px solid red;
+            background: url(img/bj.jpg) no-repeat 50% 50%;
+
+            /*background-size: contain;  /*contain自动将图片缩放到容器内*/
+            background-size: cover;  /*cover裁切缩放*/
+        }
+
+        /*media query 【媒体询问】针对不同的屏幕应用不同的样式*/
+        @media screen and (min-width:480px){  /*表示最小480宽时，这条规则才生效*/
+            
+        }
+
+    </style>
+</head>
+
+<!--
+    第一步设置viewport 视口（设置不同浏览器大小的窗口）
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">  就在head里面
+
+    /*图片的尺寸设置*/
+        img{
+            max-width: 100%;
+        }
+
+    /*背景图片
+        background-size:cover;
+        background-size:contain;*/
+
+        /*media query 【媒体询问】针对不同的屏幕应用不同的样式*/
+        @media screen and (min-width:480px){  /*表示最小480宽时，这条规则才生效*/
+            
+        }
+
+        可以查询的media
+        width/height   窗口宽高
+        device-width / device-height  设备像素
+        device-pixel-ratio  设备横屏竖屏
+        orientation
+
+        /*使用不同的图片*/
+        /*流量的考虑，指定页面内各种图片的尺寸*/
+        <img    srcset="img/large.jpg 1200w,  /*大图片*/
+                        img/normal.jpg 800w,   /*中等图片*/
+                        img/small.jpg 400w"    /*小图片*/
+                sizes="(max-width:320px) 400px,
+                        (max-width:640px) 800px,
+                        1200px"
+                src="img/normal.jpg"
+                alt="description of the image">
+
+
+    -->
+
+<body>
+    <img src="img/bj.jpg" alt="">
+    <br>
+    <div class="box1"></div>
+
+</body>
+</html>

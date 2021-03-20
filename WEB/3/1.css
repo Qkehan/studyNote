@@ -1,0 +1,27 @@
+
+h1{
+    font-size: 50px;
+    color: pink;
+    text-align: center;
+}
+.one{
+    font-size: 25px;
+    font-family: "微软雅黑";
+    color: seagreen;
+    text-align: center;
+    text-decoration:underline;
+}
+.two{
+    font-size: 30px;
+    font-family: "微软雅黑";
+    color: sienna;
+    text-align: center;
+    text-decoration:underline;
+}
+.three{
+    font-size: 35px;
+    font-family: "微软雅黑";
+    color:purple;
+    text-align: center;
+    text-decoration:underline;
+}

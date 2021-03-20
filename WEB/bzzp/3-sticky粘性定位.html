@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sticky粘性定位</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .w{
+            width: 800px;
+            height: 1800px;
+            margin: 0 auto;
+            background: pink;
+        }
+
+        /*
+        .sticky{
+            float: left;  /*脱离流
+            left:50% ;
+            top: 10px;
+            margin: 300px 405px ;
+            
+        }  */
+
+        .sticky{   /*粘性定位*/
+            float: left;
+            left: 50%;
+            margin-top: 300px;  /* margin非常重要没有他，就没有粘性效果，300px决定了他的粘性效果。 */
+            transform: translate(405px,0px);
+            
+
+            position: sticky;
+            width: 50px;
+            height: 200px;
+            background: skyblue;
+            /*一般的粘性定位效果，使用JavaScript制作的，知道就好*/
+            top: 5px;  
+            /* 粘性定位必须有margin？？？啥原因？ */
+        }
+
+
+    </style>
+
+</head>
+<body>
+    
+    <div class="sticky">
+        粘性盒子
+    </div>
+    
+    <div class="w">
+        版心盒子800像素
+    </div>
+    
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>div与css</title>
+    <style type="text/css">
+        .one,.two,.three,.four{
+            width: 100px;
+            height: 100px;
+            border: 3px solid black;
+            /*margin: 0 auto;*/
+            
+        }
+        .one{
+            background-image: linear-gradient(90deg,red,pink);
+            float: left;
+        }
+        .two{
+            background-image: radial-gradient(90% 20%,black ,red ,pink );
+            float: left;
+        }
+        .three{
+            background-image: repeating-linear-gradient(180deg,pink, orange ,green);
+            float: right;
+        }
+        .four{
+            clear: left;
+        }
+        .fa{
+            width: 212px;
+            height: 212px;
+            border: 1px solid black;
+        }
+        .body{
+            background-image:url(img/bj.jpg) ;
+        }
+    </style>
+
+</head>
+<body class="body">
+    <div class="fa">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+        <div class="four"></div>
+    </div>
+
+    <div class="a">
+        <div class="b"></div>
+        <div class="c"></div>
+        <div class="d"></div>
+        <div class="e"></div>
+    </div>
+    
+    
+</body>
+</html>

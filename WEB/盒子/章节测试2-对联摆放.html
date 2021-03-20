@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>渐变属性的使用</title>
+    <style type="text/css">
+
+        body{
+            margin: 0px;
+            padding: 0px;
+        }
+        
+
+        #one{
+            /*标题和logo*//*线性渐变*/
+            margin: 0px;
+            /*background-color: rgba(180, 138, 180, 0.568);*/
+            background-image: linear-gradient(0deg,rgba(57, 109, 252, 0.863),rgba(199, 90, 90, 0.863));/*背景颜色渐变*//*默认是180deg,方向向下，角度可以调节，颜色参数可以多选*/
+            width: 100%;
+            position: fixed;
+        }
+        #img1{    /*one的高度由img的外边距决定了*/
+            float: left;
+            margin: 20px;   /*logo的外边距是20px,logo的宽是50px=标题90px*/
+        }
+
+
+        #p1{
+            
+            margin:center auto;
+        
+        }
+
+        .top{
+            border-style: 0px solid blue;
+            padding-top: 90px;
+            
+        }
+
+        
+        
+
+        #img2{
+            margin: 20px;
+        }
+
+        
+
+        .six{   /*径向渐变*/
+            width: 300px;
+            height: 300px;
+            border-radius: 50%; /*这样可以画出一个圆*/
+            background-image: radial-gradient(white,pink,red);
+            
+            position: absolute;   /*让盒子之间可以叠放，并且可以获得绝对位置*/
+            top: 50%;   
+            left: 50%;   
+            transform: translate(-50%, -50%);   /*transform扭转命令，是以图片左上角为基点进行位移*/
+            
+            
+            
+            
+
+        }
+
+        .six1{   /*径向渐变*/
+            width: 300px;
+            height: 300px;
+            border-radius: 50%; /*这样可以画出一个圆*/
+            background-image: radial-gradient(ellipse at 40% 65%, white,rgb(248, 156, 171),rgb(169, 112, 196)); /*ellipse中心点*/
+            box-shadow:5px 5px 5px 5px black;   /*阴影*/
+            
+            /*position: absolute;*/
+            /*top: 90px;   
+            left: 50%;   
+            transform: translate(-50%, 0%); */
+            margin: 0 auto;  /*这样使用会top居中，不知道原理*/
+            
+            
+            
+
+
+        }
+
+        .six2{   /*重复线性渐变*/
+            width: 300px;
+            height: 300px;
+            border-radius:50%;
+            /*border-radius: 50%; */ /*这样可以画出一个圆*/
+            background-image:repeating-linear-gradient(90deg,red,yellow 10%,#3fa62e 15%) ;
+            position: absolute;
+            top: 50%;   
+            left: 0%;   
+            transform: translate(0%, 0%); 
+            
+            
+        }
+
+        .six3{   /*重复线性渐变*/
+            width: 300px;
+            height: 300px;
+            /*border-radius: 50%; */ /*这样可以画出一个圆*/
+            border-radius:50%;
+            background-image:repeating-radial-gradient(circle at 50% 50%,red,yellow 10%,#3fa62e 15%);  /*circle中心点*/
+            position: absolute;
+            top: 50%;   
+            right: 0%;   
+            transform: translate(0%, 0%); 
+            
+            
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div id="one" title="标题盒子，线性渐变"> 
+        <img id="img1" src="img/yun.webp" width="50px" alt="logo"/> <!--线性渐变-->
+        <h1 id="p1">标题</h1>
+    </div>
+
+    
+    
+    <div title="主体" class="top">
+        
+        
+
+        <div title="径向渐变" class="six">  
+
+        </div>
+
+        <div title="径向渐变" class="six1">  
+
+        </div>
+
+        <div title="重复线性渐变" class="six2">  
+            
+        </div>
+        
+        <div title="重复径向渐变" class="six3"> 
+            
+        </div>
+    </div>
+    
+        
+    <!--
+        <div title="径向渐变" class="six">  
+
+            <div title="径向渐变" class="six1">  
+
+                <div title="重复线性渐变" class="six2">  
+
+                    <div title="重复径向渐变" class="six3"> 
+                    
+                    </div>
+                
+                </div>
+
+            </div>
+
+        </div>
+    -->
+        
+
+
+    </div>
+</body>
+</html>
+
+<!--
+.six{   /*径向渐变*/
+    width: 300px;
+    height: 300px;
+    border-radius: 50%; /*这样可以画出一个圆*/
+    background-image: radial-gradient(white,pink,red);
+    float: left;
+    margin: 5px;
+    
+
+}
+
+.six1{   /*径向渐变*/
+    width: 300px;
+    height: 300px;
+    border-radius: 50%; /*这样可以画出一个圆*/
+    background-image: radial-gradient(ellipse at 40% 65%, white,rgb(248, 156, 171),rgb(169, 112, 196)); /*ellipse中心点*/
+    float:left;
+    box-shadow:5px 5px 5px 5px black;   /*阴影*/
+    margin:5px;
+
+
+}
+
+.six2{   /*重复线性渐变*/
+    width: 300px;
+    height: 300px;
+    /*border-radius: 50%; */ /*这样可以画出一个圆*/
+    background-image:repeating-linear-gradient(90deg,red,yellow 10%,#3fa62e 15%) ;
+    margin: 5px;
+    float: left;
+}
+
+.six3{   /*重复线性渐变*/
+    width: 300px;
+    height: 300px;
+    /*border-radius: 50%; */ /*这样可以画出一个圆*/
+    border-radius:50%;
+    background-image:repeating-radial-gradient(circle at 50% 50%,red,yellow 10%,#3fa62e 15%);  /*circle中心点*/
+    margin: 5px;
+    float: left;
+}
+-->

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        
+    </style>
+
+</head>
+
+<!--
+    <table></table> 表格标记  
+    <tr></tr>  行标记  
+    <td></td>  单元格标记  
+    表格特殊属性cellspacing="0" 单元格之间的间距
+                cellpadding=""  单元格文字和边框的间距
+                bordercolor=""  表格颜色  
+                bgcolor="yellow"  表格背景色
+                background=""  背景图片  
+-->
+
+<body>
+    <table border="1" width="300" height="150">
+        <tr><td>A</td><td>B</td></tr>
+        <tr><td>1</td><td>1</td></tr>
+    </table>
+    <br><br><br><br>
+
+    <table  border="10" 
+            bordercolor="red"
+            width="300" height="200" 
+            cellspacing="0" 
+            cellpadding="10" 
+            background="img/bg.jpg"
+            >
+
+        <tr bgcolor="green"
+            align="center"
+            valign="top">
+
+            <td>A</td><td>B</td>
+        </tr>
+
+        <tr>
+            <td>1</td><td>1</td>
+        </tr>
+
+    </table>
+    <br><br><br><br>
+
+    <!--单元格练习-->
+    <!--水平跨度colspan=""，与垂直跨度rowspan=""，需要删除多余项-->
+
+    
+
+    <table  border="1"  cellspacing="0">
+        <tr>
+            <td>学号</td>
+            <td colspan="2" align="center">姓名/性别</td>
+            <td>年级</td>
+        </tr>
+        <tr>
+            <td>0110</td>
+            <td>李四</td>
+            <td>男</td>
+            <td rowspan="3" align="center">三年级</td>
+        </tr>
+        <tr>
+            <td>0210</td>
+            <td>张三</td>
+            <td>女</td>
+        </tr>
+        <tr>
+            <td>0310</td>
+            <td>王五</td>
+            <td>女</td>
+        </tr>
+    </table>
+    <br><br><br><br>
+
+
+    <!--标题<caption></caption>-->
+    <!--表头<th></th>它本身会加粗居中,表头通常位于表格的第一行，用来显示内容类别-->
+
+    <h3>某学期成绩</h3>
+    <table border="1" width="300" height="150" cellspacing="0" align="center" >
+        <caption>一年级计算机应用基础成绩信息</caption>
+        <tr>
+            <th>学号</th>
+            <th>姓名</th>
+            <th>成绩</th>
+        </tr>
+        <tr>
+            <td>001</td>
+            <td>张三</td>
+            <td>90</td>
+        </tr>
+        <tr>
+            <td>002</td>
+            <td>李四</td>
+            <td>85</td>
+        </tr>
+        <tr>
+            <td>003</td>
+            <td>王五</td>
+            <td>80</td>
+        </tr>
+
+    </table>
+
+
+</body>
+</html>

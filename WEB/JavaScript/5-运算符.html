@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>算术运算符</title>
+    <script>
+        console.log(1 + 1);
+        console.log(1 - 1);
+        console.log(1 * 1);
+        console.log(1 / 1);
+
+        //------【取余】------    
+        console.log(4 % 2);  //0  
+        console.log(5 % 3);  //2  
+        console.log(3 % 5);   //3  
+
+        //------【浮点  浮点数运算会有问题】------   
+        console.log(0.1 + 0.2);  //0.30000000000000004 
+        console.log(0.07 * 100);  //7.000000000000001  
+        //不能直接用浮点数进行比较，  
+        var num = 0.1 + 0.2;
+        console.log(num == 0.3);  //不相等
+
+        console.log('------------------------');
+
+        //------【递增和递减运算符】------    
+
+        //前值递增运算符  ++ 写在变量前面  【先自加一，后返回值】
+        var age = 10;
+        ++age;  
+        console.log(age);   //11   
+        
+        var p = 10;
+        console.log(++p + 10);
+        
+        //后置递增运算符  ++  写在变量后面  【先返回值，后自加一】
+        var num = 10;
+        num++;  
+        console.log(num);  //11  
+
+        //1、前值递增和后置递增如果单独使用，效果是一样的，
+        //2、后置递增  口诀：先返回值，后自加一。  
+        var age1 = 30;
+        console.log(age1++ + 10);  //40    
+        console.log(age1);   //31  
+
+        //题目
+        var a = 10; 
+        ++a;  
+        var b = ++a + 2; 
+        console.log(b);    //14  
+
+        var c = 10;
+        c++;
+        var d = c++ + 2;
+        console.log(d);   //13  
+
+        var e = 10;
+        var f = e++ + ++e;  // e++ = 10 , e=11, ++e = 11+1 = 12, 
+        console.log(f);   //22    
+
+
+        //------【比较运算符】------    
+
+        console.log(3 >= 5);  //false  
+        console.log(2 <= 4);  //true 
+
+        //1、是否相等 == 比较符 
+        console.log(3 == 5);  //false  
+        console.log(6 == 2 * 3);  //true 
+        //---在比较运算符里  【会有默认数据转换类型】会把字符串类型的数据转换为数字型---
+        console.log(18 == 18);  //true  
+        console.log(18 == '18');  //true   
+        console.log('---------');
+
+        console.log(18 != 18);  //false  
+        console.log(18 != 1 + 8);   //true  
+
+        //全等号 ===   不全等号 ！==  
+        console.log(18 === 18);  //true  
+        console.log(18 === '18');   //false  
+        console.log('--------');
+
+        //题目
+        var num1 = 10;    //10
+        var num2 = 100;  //100
+        var res1 = num1 > num2;   //false  
+        var res2 = num1 == 11;   //false  
+        var res3 = num1 != num2;  //true  
+        console.log(num1);
+        console.log(num2);
+        console.log(res1);
+        console.log(res2);
+        console.log(res3);
+        console.log('--------');
+
+
+        //------【逻辑运算符】------      
+        //1、逻辑‘与’  and   true && false 
+        //2、逻辑‘或’  or    true || false  
+        //3、逻辑‘非’  not  ！true 
+
+        //逻辑与  两侧都为true  结果才是true   
+        console.log(3 > 5 && 3 > 2);  //false  
+        console.log(3 < 5 && 3 > 2);   //true  
+
+        //逻辑或  or  两侧都为false  结果才是false，只要有一侧为true，结果就是true  
+        console.log(3 > 5 || 3 > 2);   //true  
+        console.log(3 > 5 || 3 < 2);   //false  
+
+        //逻辑非  not ！
+        console.log(!true);  //false   
+        console.log(!false);   //true  
+        var isOk = !true;  //0
+        console.log(isOk);   //false  
+
+
+        //1、逻辑与----【短路运算符】--求假符   
+        //语法：表达式1 && 表达式2
+        //如果第一个表达式的值为真，则返回表达式2   
+        //如果第一个表达式的值为假，则返回表达式1   
+        console.log(123 && 456);  //456  
+        console.log(0 && 123);  //0  数字里面除了0，其他都是真的  
+        console.log(0 && 1 + 2 && 456 * 56789);  //0  
+        //如果有空的或否定的为假，其余是真的 0 '' null undefined NaN  
+
+        
+        //2、逻辑或----【短路运算】--求真符    
+        //如果表达式1 结果为真，则返回表达式1，如果表达式1结果为假，则返回表达式2  
+        console.log(123 || 456);  //123  
+        console.log(123 || 456 || 789 + 123);  // 123  
+        console.log(0 || 456 || 456 + 123);   //456 
+        //逻辑中断很重要，他会影响我们程序的运行结果  
+        var num4 = 0;
+        console.log(123 || num4++);  //自增未执行
+        console.log(num4);  //0   
+
+
+
+        //------【赋值运算符】------    
+        //1、=  直接赋值
+        //2、 += , -=  加，减一个数后在赋值  
+        //3、*= , /= , %=   乘、除、取模后在赋值  
+
+        //num = num + 1；   num++； 每次加一，下面是可以每次加2，或加更多  
+        //num = num + 2;   //num += 2;
+        var num5 = 10;
+        //num5 += 2;   //12
+        num5 += 5;   //15  
+        console.log(num5);
+
+        var age2 = 2;
+        age2 *= 3;
+        console.log(age2);  //6
+
+        var sum6 = 81;
+        sum6 %= 3;  //=2   //1  
+        console.log(sum6);  //0
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head> 
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多重背景图像</title>
+    <style type="text/css" rel="stylesheet">
+        
+        .one{
+            width: 300px;
+            height: 300px;
+            border: 10px dotted #666;
+            background-image: url(img/ty.jpg),url(img/lt.jpg),url(img/cd.jpg);
+            background-repeat: no-repeat;
+            background-size: 100px 100px,300px 100px, 300px 200px;
+            background-position:right top, top, bottom;
+            
+        }
+
+    </style>
+</head>
+
+<body>
+    <div title="标题">
+
+    </div>
+
+    <div title="主题背景" class="one">
+        <p>多重背景图像</p>
+    </div>
+    
+</body>
+</html>

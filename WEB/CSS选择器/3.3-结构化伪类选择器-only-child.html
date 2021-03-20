@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>结构化伪类选择器-only-child独子选择器</title>
+    <style type="text/css">
+
+        li:only-child{   /*只选择【独生子女的li】应用样式*/
+            color: red;
+        }
+
+    </style>
+
+    
+</head>
+
+<!--
+3、:only-child选择器  用于匹配属于父亲的唯一子元素的元素，也就是说，如果某个父元素【只有一个子元素——独生子女】，则使用“:only-child选择器”可以选择这个子元素。 
+-->
+
+<body>
+    <div>
+        国内电影：
+        <ul>
+            <li>一代宗师</li>
+            <li>叶问</li>
+            <li>非诚勿扰</li>
+        </ul>
+        国外电影：
+        <ul>
+            <li>侏罗纪公园</li>
+        </ul>
+        日本动漫：
+        <ul>
+            <li>樱桃小丸子</li>
+            <li>火影忍者</li>
+            <li>航海王</li>
+        </ul>
+    </div>
+</body>
+</html>

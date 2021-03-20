@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        @font-face {
+            font-family: "yan";
+            src: url(/WEB/font/颜真卿颜体.ttf);
+        }
+        .box{
+            width: 1024px;
+            height: 768px;
+            margin: 0 auto;
+            border: 5px solid grey;
+            background: url(/WEB/盒子/img/500-375.jpg) 50% 50% no-repeat;   /*图片中心点对齐，一定要记住*/
+            background-size: 1024px 768px;  /*拉伸图片大小*/
+        }
+        .one{
+            width: 340px;
+            height: 383px;
+            border-right: 1px solid rgb(255, 255, 255);
+            border-bottom: 1px solid rgb(255, 255, 255);
+            float: left;
+        }
+        .two{
+            width: 340px;
+            height: 383px;
+            border-left: 1px solid rgb(255, 255, 255);
+            border-right: 1px solid rgb(255, 255, 255);
+            border-bottom: 1px solid rgb(255, 255, 255);
+            float: left;
+        }
+        .three{
+            width: 340px;
+            height: 383px;
+            border-left: 1px solid rgb(255, 255, 255);
+            border-bottom: 1px solid rgb(255, 255, 255);
+            float: left;
+        }
+        .four{
+            width: 340px;
+            height: 383px;
+            border-right: 1px solid rgb(255, 255, 255);
+            border-top: 1px solid rgb(255, 255, 255);
+            float: left;
+        }
+        .five{
+            width: 340px;
+            height: 383px;
+            border-left: 1px solid rgb(255, 255, 255);
+            border-right: 1px solid rgb(255, 255, 255);
+            border-top: 1px solid rgb(255, 255, 255);
+            float: left;
+        }
+        .six{
+            width: 340px;
+            height: 383px;
+            border-left: 1px solid rgb(255, 255, 255);
+            border-top: 1px solid rgb(255, 255, 255);
+            float: left;
+        }
+
+        /*对外边距与内边距的总结*/
+        .box2{
+            
+            margin: 10px auto;
+            width: 405px;
+            height: 405px;
+            border:10px dashed rgb(255, 208, 0);
+            background: url(img/3.jpeg) 50% 50% no-repeat;
+            background-size: 405px 405px;
+        }
+        .seven{
+            width: 350px;
+            height: 350px;
+            border: 2px solid white;
+            margin:50%;
+            transform: translate(-50%, -50%);  /*调整自身位置偏移*/
+            background-color: rgba(255, 255, 255, 0.39);
+            text-align: center;
+        }
+        p{
+            font-size: 26px;
+            font-family: "yan";
+            color:rgb(255, 208, 0) ;
+            text-shadow: -8px -5px 10px black;
+        }
+        h1{
+            font-family: "yan";
+            color:rgb(255, 208, 0) ;
+            text-shadow: -8px -5px 10px black;
+            font-weight: bold;
+        }
+        cite{
+            font-family: "yan";
+            color:rgb(255, 208, 0) ;
+            text-shadow: -8px -5px 4px black;
+        }
+    
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+        <div class="four"></div>
+        <div class="five"></div>
+        <div class="six"></div>
+    </div>
+    <div class="box2">
+        <div class="seven">
+            <h1>如梦令·常记溪亭日暮</h1>
+            <cite>李清照 〔宋代〕</cite>
+            <p>
+                常记溪亭日暮，<br>
+                沉醉不知归路。<br>
+                兴尽晚回舟，<br>
+                误入藕花深处。<br>
+                争渡，争渡，<br>
+                惊起一滩鸥鹭。<br>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

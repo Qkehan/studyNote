@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浮动属性</title>
+    <style type="text/css">
+
+        body,div,img,ul,li,p,a,input{
+            margin: 0;
+            padding: 0;
+            border: 0;
+            list-style: none;
+        }
+        body{
+            color: black;
+            font-size: 12px;
+            font-family: "宋体";
+        }
+
+        a:link,a:visited{
+            color: #000;
+            text-decoration: none;
+        }
+        a:hover{
+            color: #f27b03;
+        }
+
+        .all{  /*总盒子*/
+            width: 810px;
+            height: 122px;  /*整个样式的高度*/
+            margin: 0 auto;
+            /*border: 1px solid black;  *//*黑边*/
+        }
+
+
+        .logo{  /*logo图片*/
+            
+            width: 150px;
+            float: left;
+            padding: 20px 0 0 0px;
+            /*border: 1px solid black;  *//*黑边*/
+        }
+
+        .B{  /*右侧B盒子*/
+            width: 650px;
+            height: 122px;
+            float: left;
+            /*border: 1px solid black; *//*黑边*/
+        }
+
+        .one{ /*顶栏*/
+            width: 647px;
+            height: 23px;
+            padding: 19px 19px 0px 19px;
+            
+        }
+        ul{
+            width: 647px;
+            height: 23px;
+        }
+        ul li{
+            float: left;
+            margin-right: 18px;
+            height: 23px;
+            line-height: 23px;
+        }
+        .current{  /*宝贝*/
+            background: #f27b03 ;
+            width: 56px;
+            height: 23px;
+            border-radius: 4px 4px 0px 0px ;
+            text-align: center;
+            color: #fff;
+        }
+        ul li span{ /*淘宝商城样式*/
+            color: #f27b03;
+        }
+
+
+        .two{  /*中盒*/
+            width: 647px;  /*中盒宽*/
+            height: 33px;
+            
+            background: #ffffff00 0 0 no-repeat;
+            
+            margin-top: 0px;
+        }  
+        .so{  /*输入盒*/
+            height: 33px;    /*输入盒,的高*/
+            /*border: 1px solid black;  */ /*输入盒黑边*/
+            width: 500px;  /*中栏宽*/
+            
+            border-radius: 0px 4px 4px 4px; /*中栏圆角*/
+            background: #f27b03 0 0 no-repeat;
+            margin-left: 19px;
+            margin-top: 0px;
+            float: left;
+            /*border: 1px solid black; */
+        }
+
+        .so_input{  /*输入栏input*/
+            width: 335px;
+            height: 29px;
+            margin-left: 2px;
+            border: 2px solid #f27b03;
+            border-radius: 4px;    /*input样式参数*/
+
+            background: url(img/spso.webp) no-repeat left 8px center;   /*so图标-调整background图片大小*/
+            background-size: 18px;    /*图片像素*/
+            background-color: white;  /*这个放在img之后才会生效*/
+            padding:0px 30px;  /*光标位置*/
+            color: #f27b03;  /*输入字体色*/
+            float: left;
+            outline:none;  /*去掉点击后的边框，去掉输入栏的边框，无论是放在这，或者hover都可以？哈原理？*/
+        }
+
+        /*.so_input{
+            /*outline:none;  /*去掉点击后的边框颜色
+            /*outline-color:red; /*点击后的颜色
+        }
+        */
+
+/*
+    //去掉input点击后边框颜色
+    input { outline:none; }
+    //改变input触发后边框颜色
+    input{ outline-color:red; }
+*/
+
+        .so_p a{   /*搜索文字*/
+            font: bold 18px "黑体";
+            float: left;
+
+            /*width: 80px; */ /*字，背景宽*/
+            text-align: center;  /*居中*/
+            letter-spacing: 20px;   /*字间距*/
+            color: white;  /*字色*/
+            padding-left: 20px;
+            line-height: 33px;
+
+            /*border: 1px solid black;*/  /*黑边*/
+        }
+
+        .text{ /*高级搜索栏*/
+            float: left;  
+            margin-left: 10px;
+            height: 33px;
+            line-height: 16.5px;
+        }
+        .botton{
+            padding-top: 10px;
+            margin-left: 19px;
+        }
+
+        .botton a{
+            margin-right: 15px;
+        }
+
+
+
+        
+        
+
+    </style>
+    
+</head>
+<body>
+
+    <div class="all" >
+        <div class="A"> <!--logo-->
+            <a href="#"><img class="logo" src="img/tdbd.jpg" alt="logo"></a>
+        </div>
+
+        <div class="B"> <!--右边B盒子-包括上中下-->
+
+            <div class="one">  <!--顶栏-->
+                <ul>
+                    <li class="current">宝贝</li>
+                    <li><a href="#">天猫<span>（淘宝商城）</span></a></li>
+                    <li><a href="#">店铺</a></li>
+                </ul>
+            </div>
+
+            <div class="two">  <!--中盒-->
+
+                <div class="so">  <!--输入盒-->
+
+                    
+                    <input class="so_input" type="text" name="search" autocomplete="on" required="required" autofocus=”true“  >  <!--输入栏-->
+                    
+
+                    
+                    <p class="so_p"><a href="#">搜索</a></p>
+                    
+
+                </div>
+                
+                <div class="text">
+                    <a href="#">高级搜索</a><br>
+                    <a href="#">使用帮助</a>
+                </div>
+            </div>
+                
+
+            <div class="three">   <!--底栏-->
+                <p class="botton">
+                    <a href="#">长裙</a>
+                    <a href="#">哈伦裤</a>
+                    <a href="#">新款连衣裙</a>
+                    <a href="#">时尚包包</a>
+                    <a href="#">中老年夏装</a>
+                    <a href="#">男T恤</a>
+                    <a href="#">手机壳</a>
+                    <a href="#">更多>></a>
+                </p>
+            </div>
+                
+        </div>
+    </div>
+    
+</body>
+</html>

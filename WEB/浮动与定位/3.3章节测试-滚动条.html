@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>overflow滚动条</title>
+    <style type="text/css">
+    
+        div,h1,a,p,body{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body{
+            font-size: 14px;
+            color: rgb(221, 190, 15);
+            font-family: "宋体";
+        }
+
+        .all{
+            width: 700px;
+            height: 140px;
+            border: 1px solid black;
+            background-color: #000;
+            padding: 30px;
+            margin: 100px auto 20px;  /*黑色背景位置*/
+            
+            overflow: auto;
+        }
+        h1{
+            font-size: 18px;
+            color: #990000;
+        }
+        .top1{
+            font-size: 40px;
+            color: rgb(0, 174, 255);
+            font-weight: bold;
+            font-family: "微软雅黑";
+            text-align: center;
+        }
+        span{
+            background: linear-gradient(10deg,rgba(0, 140, 255, 0),rgba(0, 217, 255, 0.336));
+        }
+        .nei{
+            line-height: 26px;
+            text-indent: 2em;  /*文字缩进*/
+            
+        }
+        .a1{
+            display:block;
+            width: 50px;
+            height: 26px;
+            text-align: right;
+            margin-top: 20px;
+            margin-left: auto;
+            margin: 0 auto;
+            transform: translate(350px,0px);  /*红字位置*/
+        }
+        a{
+            text-decoration: none;
+            color: brown;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="all">
+            <h1>VGS</h1>
+            <p class="top1"><span>命运不是机遇，</span>而是选择</p>
+            <p class="nei">人出生的家庭情况是命运的基础，也就像一条公路（公路有长有短），你可以靠你自己建一个飞机场或者火车铁轨，所以说并不是出生家庭差的人就是命运不好，人都是平等的（有可能你那些地方比一般人强），一个人想实现自己的目标但假如实现不了，这也不是命运不好或者神没有帮助你（要知道神只帮助努力对道的人）。</p>
+            <p class="nei">如何判断运气好坏，比如说要达成某个目标，你必须先自己努力对道，假如你努力对道了最后还是失败，那证明你真的运气不好。（不过要知道运气是会变化的）我们要达到某个目标，最主要是别放弃目标，过程怎么样无所谓，就像比如2个人在同一地点出发，但都要到达同一个目的，一个人走山路，另一个人走公路，只要目标不变，最终两个人都能到达同一个目标（也就是说，生活中虽然有些风雨阻挡，有时让人走错路，只要目标不变，最终还是能达成目标的。）</p>
+        </div>
+        <a class="a1" href="#"><img src="img/webp.webp" width="20px">展开</a>
+    </div>
+</body>
+</html>

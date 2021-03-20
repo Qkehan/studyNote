@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fixed固定定位</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .w{
+            width: 800px;
+            height: 1800px;
+            margin: 0 auto;
+            background: pink;
+        }
+        .fixed{
+            position: fixed;
+            width: 50px;
+            height: 200px;
+            background: skyblue;
+            /* 算法让固定定位靠在版心右侧，先走浏览器宽度的50%，再走版心宽度的一半。 */
+            left: 50%;
+            top: 50%;
+            /*margin-left: 405px;*/  /*版心宽度的一半*/
+            /* 复合语句，让固定定位，处在版心右侧，同时高度处于中间，需要向上走自身宽度的一半。 */
+            margin: -100px 405px ;  /*四个参数只用了两个，但是可以的。*/
+        }
+
+
+    </style>
+
+</head>
+<body>
+    <div class="w">
+        版心盒子800像素
+    </div>
+    <div class="fixed">
+        固定盒子
+    </div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单总结</title>
+    <style type="text/css">
+        body{
+            font-size: 12px;
+            font-family: "微软雅黑";
+        }
+
+        body,form,input,h2,p,div{
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+
+        .bg{  /*div*/
+            width: 1680px;  /*透明背景的宽高*/
+            height: 1050px;
+            background: url(img/bv.jpg) no-repeat;
+            position: relative;  /*相对定位*/
+            margin: 0 auto;   /*div在页面的位置*/
+        }
+        form{
+            width: 525px;
+            height: 580px;    
+            margin: 50px auto;    /*位置调整*/
+            padding-left: 30px;
+            position: absolute;  /*绝对定位*/
+            left: 15%;
+            top: 10%;
+
+            border-right: 1.3px solid white;  /*透明边框亮线*/
+            border-bottom: 1.3px solid white;
+
+            background-color: rgba(255, 242, 168, 0.411); /*透明边栏*/
+            border-radius: 20px;  /*圆角边框*/
+            box-shadow: -18px -11px 10px rgba(37, 37, 37, 0.548);
+        }
+        h2{
+            text-align: center;
+            margin: 30px 25px 25px 0px;
+
+        }
+        p{
+            margin-top: 20px;
+
+        }
+        p span{
+            width: 75px;
+            display: inline-block;
+            text-align: right;   /*提示信息右侧对齐*/
+            padding-right: 10px;
+        }
+        p input{
+            width: 135px;   /*输入栏长短*/
+            height: 18px;
+            border: 1px solid #38a1bf;
+            padding: 2px;
+            border-radius: 4px;   /*输入栏圆角*/
+        }
+        .lucky input{
+            width: 100px;
+            height: 24px;
+        }
+        .btn input{
+            width: 80px;
+            height: 30px;
+            background: #93b518;
+            margin-top: 20px;
+            margin-left: 100px;
+            border-radius: 8px;  /*按钮圆角*/
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="bg">
+        <form action="#" method="GET" >
+            <h2>学院信息登记表</h2>
+            <p>
+                <span>用户登录名：</span>
+                <input type="text" name="user_name" value="myemail@163.com" disabled readonly >(不能修改，只能查看) <!--disabled readonly就是不能修改，只能查看-->
+            </p>
+            <p>
+                <span>真实姓名：</span>
+                <input type="text" name="real_name" required autofocus placeholder="例如：王明" pattern="^[\u4E00-\u9fa5]{0,}$" >（必须填写，只能输入汉字）
+            </p>
+            <p>
+                <span>真实年龄：</span>
+                <input type="text" name="number" name="real_age" value="24" min="15" max="120" required autofocus >(必须填写)
+            </p>
+            <p>
+                <span>出生日期：</span>
+                <input type="date" name="birthday" value="1990-10-01" required >(必须填写)
+            </p>
+            <p>
+                <span>电子邮箱：</span>
+                <input type="email" name="my-email" required multiple >(必须填写) <!--multiple是文件和email的input类型，不需要正则表达式-->
+            </p>
+            <p>
+                <span>身份证号：</span>
+                <input type="text" name="card" required pattern="^([0-9]){7,18}(x|X)" >(必须填写，能够以数字、字母x结尾的短身份证号)
+            </p>
+            <p>
+                <span>手机号码：</span>
+                <input type="tel" name="telephone" pattern="^\d{11}&" required >(必须填写)
+            </p>
+            <p>
+                <span>个人主页：</span>
+                <input type="url" name="my-url" list="url-list" placeholder="http://www.itcast.cn" pattern="^http://([\w-]+\.)+[\w-]+(/[\w-./?%&=]*)?&" >(请选择网址)
+                <datalist id="url-list">
+                    <option>http://www.baidu.con</option>
+                    <option>http://www.boxuegu.cn</option>
+                    <option>http://www.w3cschool.cn</option>
+                </datalist>
+            </p>
+            <p class="lucky">
+                <span>幸运颜色：</span>
+                <input type="color" name="mycolor" value="#fed000"  />(请选择你喜欢的颜色)
+            </p>
+
+            <p class="btn">
+                <input type="submit" value="提交" >
+                <input type="reset" value="重置" >
+            </p>
+            
+        </form>
+    </div>
+</body>
+</html>

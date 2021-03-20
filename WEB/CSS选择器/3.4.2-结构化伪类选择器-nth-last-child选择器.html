@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>结构化伪类选择器-nth-亚军选择器</title>
+    <style type="text/css">
+
+        p:nth-child(2){   /*正数第二*/
+            color: red;
+        }
+        p:nth-last-child(2){  /*倒数第二*/  /*幼-亚军选择器-也特别依赖Chrome-因为他是幼子的补充*/
+            color: #47f203;
+        }
+
+    </style>
+
+    
+</head>
+
+<!--
+5、:nth-child(n)和:nth-last-child(n)选择器  使用:frist-child选择器和:last-child选择器可以选择某个父元素中【相同属性的】第一个或最后一个子元素，但是如果用户想要选择第2个或倒数第2个子元素，这两个选择器就不起作用了。为此，CSS3引入了:nth-child(n)和:nth-last-child(n)选择器，它们是:frist-child选择器和:last-child选择器的扩展。
+-->
+
+<body>
+    <p>不知道自己不知道</p>
+    <p>知道自己不知道</p>
+    <p>不知道自己知道</p>
+    <p>知道自己知道</p>
+    <p>你知道吗？</p>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>流程控制-循环</title>
+    <script>
+        
+        //JS里面，主要有三类循环语句
+        //1、for循环  
+        //2、while循环
+        //3、do...while循环  
+
+        //循环体 + 终止条件 = 循环语句   
+        /*
+        for(初始化变量；条件表达式；操作表达式){
+            //循环体  
+        }
+        */
+        //1、初始化变量，就是用var声明的一个普通变量，通常用于作计数器使用  
+        //2、条件表达式，就是用来快定每一次循环是否继续执行，就是终止的条件  
+        //3、操作表达式，是每次循环最后执行的代码，经常用于我们计数器变量进行更新（递增或者递减）    
+        //4、代码体验，举个例子
+        for(var i = 1; i <= 100; i++){
+            console.log('你好吗！');
+        }
+        //1、首先执行里面的计数器变量 var i = 1; 但是这句话在for循环里面只执行一次 i是index缩写  
+        //2、去 i <= 100 来判断是否满足条件，如果满足条件，就去执行循环体，不满足条件就退出循环     
+        //3、最后去执行 i++   i++是单独写的代码，递增，第一轮结束  
+        //4、接着去执行 i <= 100 如果满足条件，就去执行循环体，不满足条件退出循环。
+
+        var num = prompt('请您输入次数：');
+        for(var i = 1; i <= num; i++){
+            console.log('我很好！');
+        }
+
+        for(var i = 1; i <= 100; i++){
+            if(i == 1){
+                console.log('这个人今年1岁了，他刚出生！');
+            } else if(i == 100){
+                console.log('这个人今年100岁了，也快死了');
+            } else{
+                console.log('这个人今年'+ i +'岁了');
+            }
+        }
+
+        //求1~100的整数累加
+        var sum = 0;
+        for(var i = 1; i <= 100; i++){
+            sum += i;   //sum = sum + i;  
+        }
+        console.log(sum);
+
+        //求1~100之间偶数和奇数的和  
+        var even = 0, odd = 0;
+        for(var i = 0; i <= 100; i++){
+            if(i % 2 == 0){
+                even += i;
+            } else {
+                odd += i;
+            }
+        }
+        console.log(even, odd);
+        
+        //求1~100之间能被3整除的和
+        var three = 0;
+        for(var i = 0; i <= 100; i++){
+            if(i % 3 == 0){
+                three += i;
+            }
+        }
+        console.log(three);
+
+
+        //学生平均成绩
+        /*
+        var peo = Number(prompt('请输入学生人数：'));
+        for(i = 1, num1 = 0; i <= peo; i++){
+            var num = Number(prompt('请输入第'+ i +'个学生成绩：'));
+            var num1 = num1 + num;
+        }
+        console.log('学生平均成绩：' + (num1 / peo));
+        */
+        var num = prompt('请输入学生人数：');
+        for(i = 1,sum = 0; i <= num; i++){
+            var score = Number(prompt('请输入第'+ i +'个学生成绩：'));
+            var sum = sum + score;
+        }
+        console.log('学生平均成绩：' + (sum / num));
+
+        //打印；星星
+        //☆☆☆☆☆☆☆    
+        var str = '';
+        for(var i = 1, s = 0; i <= 1000; i++){
+            str = str + '☆';
+            s++;
+            if(s % 50 == 0){
+                str = str + '\n';
+            }
+        }
+        console.log(str);
+
+        //三角阵列,双层for循环  
+        var str = '';
+        for(var i = 1; i <= 5; i++){
+            for(var j = 1; j <= 5; j++){
+                str = str + '☆';
+            }
+            str = str + '\n';
+        }
+        console.log(str);
+        console.log('---------');
+
+        var str1 = '';
+        for(var i = 1; i <= 10; i++){
+            for(var j = i; j <= 10; j++){
+                str1 = str1 + '☆';
+            }
+            str1 = str1 + '\n';
+        }
+        console.log(str1);
+
+        console.log('---------');
+
+        var str2 = '';
+        var n = prompt('请输入行数，打出倒三角：');
+        for(var i = 1; i <= n; i++){
+            for(var j = i; j <= n; j++){
+                str2 = str2 + '☆';
+            }
+            str2 = str2 + '\n';
+        }
+        console.log(str2);
+
+        console.log('---------');
+        var str3 = '';
+        var n = prompt('请输入行数,打出正三角：');
+        for(var i = 1; i <= n; i++){
+            for(var j = 1; j <= i; j++){
+                str3 = str3 + '☆';
+            }
+            str3 = str3 + '\n';
+        }
+        console.log(str3);
+
+
+        //乘法口诀表
+        var i,j,equal;
+        console.log('乘法口诀：');
+        for(i = 1; i <= 9; i++){
+            for(j = 1; j <= 9; j++){
+                equal = i * j;
+                console.log(String(i) +'*'+ String(j) +'='+ String(equal));
+            }
+        }
+
+        //
+        var str = '';
+        console.log('乘法口诀表：');
+        for(var i = 1; i <= 9; i++){   //行数
+            for(var j = 1; j <= i; j++){   //每行打印的数量小于等于行数
+                //1 x 2 = 2  
+                str += j+'x'+i+'='+ (j*i) +'\t';  //tab键\t   转义字符
+            }
+            str += '\n';
+        }
+        console.log(str);
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input的其他属性</title>
+
+</head>
+<body>
+    <!--form表单域-->
+    <form action="#" method="POST" id="user_form"> <!--get是指页面分段提交-->
+        <!--autofocus属性，指定页面加载，是否自动获取焦点-自动发出-输入光标-->
+        请输入您的姓名：
+        <input type="text" autocomplete="on" autofocus="true" /><br><br> <!--autofocus光标自动显示-->
+        请输入您的昵称：
+        <input type="text" autocomplete="on" name="username1" /><br><br>
+        <input type="submit" value="提交" />
+    </form>
+    请输入您的昵称：<input type="text" autocomplete="on" name="username1" form="user_form" /> 
+    <!--如果在表单之外-有表单需要一起提交上传-就需要为这个表单加一个from=“”属性-【属性值】必须和上面的from id="值"-一毛一样-->
+    <!--form属性适用于所有的input输入类型。在引用的时候只需要引用所属表单的id就可以了-->
+</body>
+</html>

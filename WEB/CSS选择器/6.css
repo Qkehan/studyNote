@@ -1,0 +1,118 @@
+@charset "utf-8";
+
+body,div,dl,dt,nav,a,img{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+hr{              /*分割线样式*/
+    /*height: 3px; */   /*像素-不是必须值*/
+    border: none;   /*去除边框*/
+    border-top: 3px solid #724c4c;  /*上侧线的样式*/
+    width: 750px;    /*宽*/
+}
+dl dt img{
+    width: 687px;
+    height: 379px;
+}
+
+body{
+    font-family: "微软雅黑";
+    text-align: center;
+}
+
+a{
+    text-indent: 1em;    /*首行缩进*/
+    display:inline-block;
+    font-size: 22px;
+    color: #724c4c;  /*导航栏*/
+}
+a:nth-child(1){
+    text-indent: 0em;
+}
+
+a:link,a:visited{
+    text-decoration: none;
+}
+a:hover{
+    color: red;
+    text-decoration: underline;
+}
+
+
+dl{   /*块描述列表*/
+    width: 687px;  /*也是图片的宽度*/
+    margin: 0 auto;  /*外居中*/
+    display:none;  /*dl本身就是块元素，这一句使得整个页面的-所有dl全部消失*/
+}
+
+:target{   /*指定链接选择器*/
+    display: block;
+}
+
+
+dd{
+    width: 680px;
+    margin-left: 0px;    /*消除左侧空隙*/
+    text-align: left;  /*文字居左对齐*/
+    line-height: 29px;
+}
+
+dd:before{                     /*【文本前】添加【】图片，并调整大小*/
+    content:'';  /*空项,双引号和单引号都可以*/  /*重点是这一句，要问一下老师*/
+    background: url(img/icon.webp) no-repeat ;  /*背景不平铺*/
+    background-size: 22px;   /*背景图片大小*/
+    display: inline-block;   /*行内块元素*/
+    width: 22px;   
+    height: 22px;  /*盒子大小*/
+
+    transform: translate(0px ,5px);   /*位置向下浮动，更和谐*/
+    margin-right: 4px;   /*图片与字体间距*/
+    /*border:  1px solid black;*/  /*黑边*/
+}
+
+
+/*
+解决方案
+你可以把图片设为背景图片，通过bakckground-size来设置大小
+<a href="https://www.it1352.com/734759.html" title="文档出处" ></a>
+
+#center_box:before{
+    content:'';
+    background-image:url(http://localhost/quding/photos/u14.png);
+    background-size:1000px 200px;
+    position: absolute;
+    width:1000px;
+    height:200px;
+    z-index: 100;
+    top: -110px;
+}
+*/
+
+/*
+dd:nth-of-type(even){   /*所有双数even偶数dd样式
+    color: rgb(145, 106, 106);
+}
+*/
+dd:nth-child(odd){  /*亚军选择器，所有odd偶数dd样式*/
+    color: rgb(146, 122, 122);
+}
+
+
+
+
+dd:nth-child(2) em{    /*亚军选择器，不要求同属父元素的相同属性，顺位选择即可。 */
+    color: red;
+    font-weight: bold;
+    font-style: normal;
+}
+
+dd:nth-child(3) em{
+    color:#5e2d00;
+    font-weight: bold;
+    font-style: normal;
+}
+
+

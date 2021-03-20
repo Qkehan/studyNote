@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <form action="#" method="POST">  <!--autocomplete可以记录输入历史-->
+        用户名：
+        <input type="text" value="用户名、邮箱、手机号" maxlength="6" name="用户名" /><br><br>
+        密码：
+        <input type="password" name="密码" size="40" /><br><br>  <!--size设置输入框长短-->
+        性别：
+        <input type="radio" name="sex" checked="checked" />男
+        <input type="radio" name="sex"  />女<br><br>  <!--name属性不单单是阐述，他还将男和女放在同一个radio里面来计算，所以同意radio下的name必须一样-->
+        兴趣：
+        <input type="checkbox"/>游泳<input type="checkbox"/>唱歌<input type="checkbox"/>跳舞<br><br>
+        上传头像：
+        <input type="file" /><br><br>
+        <input type="reset" /> <!--可以将页面重置-->
+        <input type="button" value="普通" />   <!--普通按钮，要和JavaScript配合使用-->
+        <input type="submit" value="提交" />  <!--如果没有submit表单将没有意义-->
+    </form>
+    
+</body>
+</html>

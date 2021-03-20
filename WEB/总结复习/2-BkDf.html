@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>总结2-表单</title>
+        <style type="text/css">
+
+        </style>
+</head>
+
+<!--
+    表单域、表单控件、提示信息
+    autocomplete属性，自动完成
+====input元素的type属性
+        1、单行文办输入框<input type="text" />
+        2、密码输入框<input type="password" />
+        3、单选按钮<input type="radio" />
+        4、复选框<input type="checkbox" />
+        5、普通按钮<input type="bottom" />
+        6、提交按钮<input type="submit" />
+        7、重置按钮<input type="reset" />
+        8、图像形式的提交按钮<input type="image" />
+        9、隐藏域<input type="hidden" />
+        10、文件域<input type="file" />
+        11、email类型<input type="email" />
+        12、url类型<input type="url" />
+        13、tel类型<input type="tel">
+        14、search类型<input type="search" />
+        15、color类型<input type="color" />
+        16、number类型<input type="number" />
+                value指定输入框的默认值
+                max指定输入框可以接受的最大值
+                min指定输入框可以接受的最小值
+                step输入域合法的间隔，如果不设置，默认值是1。
+        17、range类型<input type="range" />
+                提供一定输入范围的滑动条，它的常用属性与number类型一样。
+        18、Date pickers类型<input type="date,month,week" />
+                指定时间日期类型，date 选取日、月、年
+                                month 选取月、年
+                                week 选取周和年
+                                time 选取时间（小时和分钟）
+                                datetime 选取时间、日、月、年（UTC时间）
+                                datetime-local 选取时间、日、月、年（本地时间）
+====input元素的其他属性
+        1、autofocus属性    属性用于指定页面加载后是否自动获取焦点。
+        2、form属性         必须把相关的控件都放在表单内部，在提交时会将不是表单子元素的控件都忽略掉。
+        3、list属性         通过datalist元素实现数据列表的加拉效果，而list属性用于指定输入框所绑定的datalist元素，其值是某个datalist元素的id。
+        4、multiple属性     属性指定输入框可以选择多个值，该属性适用于email和file类型的input元素。multiple属性用于email类型的input元素时，表示可以向文本框中输入多个E-mail地址，多个地址通过逗号隔开；multiple属性用于file类型的input元素时，表示可以选择多个文件。
+        5、min、max和step属性       html5中的min、max和step属性用于包含数字和日期的input输入类型规定值，也就是给这些类型的输入框加一个数值的约束，适用于date、pickers、number和range标签。
+        6、pattern属性      属性用于验证input类型输入框中，用户输入的内容是否与所定义的正则表达式相匹配。pattern属性适用于的类型是：text、search、url、tel、email和password的<input/>标记。
+        7、paceholder属性   属性用于为input类型的输入框提供相关提示信息，以描述输入框期待用户输入何种内容。【灰色提示】
+        8、required属性     HTML5中的输入类型，不会自动判断用户是否在输入框中输入了内容，如果开发者要求输入框中的内容是必须填写的，那么需要为input元素指定required属性。用于规定输入框填写的内容不能为空，否则不允许用户提交表单。
+====其它表单元素
+        1、textarea元素     input如果需要输入大量的信息，单行文本输入框就不再使用，为此HTML语言提供了<textarea></textarea>标记。通过textarea控件可以轻松地创建多行文本输入框，除了cols和rows属性外，还拥有几个可选属性，
+                            分别为disable、name和readonly,
+                            name控件的名称
+                            readonly控件内容为只读
+                            disabled第一次加载页面时禁用该控件（显示为灰色）
+
+                                <textarea cols="每行中的字符数" row="显示的行数" >
+                                    文本内容
+                                </textarea>
+                            
+        2、select元素       浏览器中的下拉菜单
+                                
+                                <select>
+                                    <option>选项1</option>
+                                    <option>选项2</option>
+                                    <option>选项3</option>
+                                </select>
+
+        3、datalist元素     用于定义输入框的选项列表，列表通过datalist内的option元素进行创建。如果用户不希望从列表中选择某项，也可以自行输入其他内容。datalist元素通常与input元素配合使用，来定义input的值。在使用datalist标记时，需要通过id属性与其指定一个唯一的标识，然后为input元素指定list属性，将该属性值设置为option元素对应的id属性值即可。
+                                
+        4、keygen元素       用于表单的密码生成器，能够使用户验证更为安全、可靠。当提交表单时会生成两个键：一个是私钥，它存储在客户端；一个是公钥，它被发送到服务器，验证用户的客户端证书。如果新的浏览器能够对keygen元素的支持度在增强一些，则有望使其成为一种有用的安全标准。
+                                autofocus       使得keygen字段在页面加载时获得焦点。
+                                challenge       如果使用，则将keygen的值设置为在提交时询问。
+                                disable         禁用keygen字段。
+                                form            定义该keygen字段所属的一个或多个表单。
+                                keytype         定义keytype。rsa生成RSA密钥。
+                                name            定义keygen元素的唯一名称。name属于用于在提交表单时搜集字段的值。
+
+        5、output元素       元素用于不同类型的输入，可在浏览器中显示计算结果或脚本输出。
+                                for     定义输出域相关的一个或多个元素。
+                                form    定义输入字段所属的一个或多个表单。
+                                name    定义对象的唯一名称。
+
+-->
+
+<body>
+    <form action="url地址" method="POST" name="表单名称" autocomplete="on" >
+        各种表单控件 
+        <input type="text">
+    </form>
+    <form action="#" method="POST" name="单选按钮" autocomplete="on" >
+        <span><input type="radio" name="fruit" value="" />苹果</span>
+        <span><input type="radio" name="fruit" value="" />苹果</span>
+        <span><input type="radio" name="fruit" value="" />苹果</span>
+        <span><input type="radio" name="fruit" value="" />苹果</span>
+        <span><input type="radio" name="fruit" value="" />苹果</span>
+    </form>
+    <form action="#" method="GET" name="多选按钮" autocomplete="on" >
+        <span><input type="checkbox" name="fruit" value="" />苹果</span>
+        <span><input type="checkbox" name="fruit" value="" />苹果</span>
+        <span><input type="checkbox" name="fruit" value="" />苹果</span>
+        <span><input type="checkbox" name="fruit" value="" />苹果</span>
+        <span><input type="checkbox" name="fruit" value="" />苹果</span>
+
+        
+    </form>
+</body>
+</html>

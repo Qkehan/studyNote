@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2</title>
+    <script>
+        
+
+        //交换两个变量的值
+        //JS有很强的逻辑性，实现要求思路，先怎么做后怎么做。
+        var temp;  //临时变量
+        var apple1 = 'green';
+        var apple2 = 'red';
+        temp = apple1;
+        apple1 = apple2;
+        apple2 = temp;
+        console.log(apple1, apple2);
+        
+        //不同于Java, int num = 10; ，JS的变量不需要声明类型
+        var num = 10; //num属于数字类型
+
+        //【JS的变量数据类型，是程序在程序运行中，根据等号右边的值来确定的】
+
+        var str = 'pink'; //str 字符串类型
+        var areYouOk = '是的';  //这是个字符串类型
+
+        //JS拥有动态语言，变量的数据类型是可以变化的。
+        var x = 6;  //x为数字类型
+        var x = 'Bill';  //x为字符串类型
+        
+        //【数据类型的分类--两类】
+        //1、简单数据类型【 Number,String,Boolean,Undefined,Null 】
+        //2、复杂数据类型【 object 】
+        var num = 10; //Number
+        var Pi = 3.14; // Number
+
+        //1、八进制 0~7 程序里面数字前面加0，表示八进制。
+        var num1 = 010;
+        console.log(num1);
+        var num2 = 012;
+        console.log(num2);
+
+        //2、十六进制 0~9 a~f #ffffff  数字前面加0x表示十六进制。
+        var num3 = 0x9;
+        console.log(num3);
+        var num4 = 0xa;
+        console.log(num4);
+        
+        //得到数字型的，最大值与最小值
+        alert(Number.MAX_VALUE);
+        alert(Number.MIN_VALUE);
+
+        //数字型的三个特殊值
+        console.log(Number.MAX_VALUE*2);  //alert(Infinity);  //代表无穷大，大于任何数
+        console.log(-Number.MAX_VALUE*2);  //alert(-Infinty);  //代表无穷小，小于任何数
+        console.log(Number.NaN);  //alert(NaN);      //NaN，Not a Number,代表一个非数值
+        console.log('pink' - 100);  //NaN 
+
+        //isNaN()  这个方法用来判断非数字，并且返回一个值，如果是数字发那会的false，不是数字返回的是true。
+        console.log(isNaN(16));  //false
+        console.log(isNaN('快快快'));  //true
+        var userName = 'Qkehan';
+        console.log(isNaN(userName));  //ture, Qkehan
+
+
+        //【字符串类型】
+        alert('道道道但但但饭付但额二二额“收破烂了～”反复');
+        
+        //字符串长度，通过字符串的length 属性可以获得整个字符串的长度，
+        var str = 'dddddddddddddddff';
+        console.log(str.length);
+
+        //字符串的拼接,只要有字符串和其他类型想拼接，最终的结果是字符串类型，数值相加，字符相连
+        console.log('沙漠'+'骆驼');
+        console.log('pink'+18);
+        console.log('pink'+true);
+        console.log('12'+12);  
+        var age = 18;
+        console.log('你'+ age +'岁');
+        var age = prompt('请输入年龄');
+        var str = '您今年已经'+age+'岁了';
+        alert(str);
+
+
+
+        //【布尔型Boolean】  
+        var flag = true;   //flag布尔型
+        var flag1 = false;  //*1*
+        console.log(flag + 1);  //结果2，true参与加法运算当做1来看待。
+        console.log(flag1 + 1);  //结果1，false参与加法运算当做0来看待。
+
+
+        //【Undefined 和 Null】
+
+        //如果一个变量声明，未赋值，就是undefined 未定义数据类型。
+        var str1;
+        console.log(str1);
+        var variable = undefined;
+        console.log(variable + 'pink');  //undefinedpink    
+        console.log(variable + 18);  //NaN  ,undefined和数字相加，最后结果是NaN，不是一个数字  
+
+        //Null是空的值  
+        var space = null;
+        console.log(space + 'pink');  //任何类型与字符串相加，结果是字符串
+        console.log(space + 18);  //和数字相加，被看做是空或0  
+        console.log(true + space);  // 1,
+
+        //【获取检测数据类型】
+        var num = 10;  
+        console.log(typeof num);
+        var str = 'pink';
+        console.log(typeof str);
+        var flag3 = true;
+        console.log(typeof flag3);
+        var vari = undefined;
+        console.log(typeof vari);
+        var timer = null;
+        console.log(typeof timer);
+
+
+        //prompt 取过来的值是字符串类型的
+        var age = prompt('请输入您的年龄');
+        console.log(age);
+        console.log(typeof age);
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

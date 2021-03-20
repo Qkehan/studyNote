@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        h2:nth-of-type(odd){    /*【奇数】就是将所有h2中，单数行的元素设置成红色，这里没有设置第几行，odd代表单数行*/
+            color: red;
+        }
+        h2:nth-of-type(even){   /*【偶数】就是将所有h2中，双数行的元素设置成绿色，这里没有设置第几行，even代表双数行*/
+            color: #0f0;
+        }
+        p:nth-last-of-type(2){    /*就是用来将倒数第2个p元素的字体加粗*/
+            font-weight: bolder;
+        }
+        p:nth-of-type(n){    /*【所有】就是将所有p中，所有行的元素设置成蓝色，这里没有设置第几行，n代表所有行*/
+            color: blue;
+        }
+    </style>
+
+</head>
+
+<!--
+6、:nth-of-type(n)和:nth-last-of-type(n)选择器  用于匹配属于父元素的特定类型的，第n个子元素和倒数第n个子元素，而:nth-child(n)和:nth-last-child(n)选择器用于匹配属于父元素的第n个子元素和倒数第n个子元素，与元素类型无关。
+-->
+
+<body>
+    <h2>网页设计</h2>
+    <p>网页设计是根据企业希望向浏览者传达的精神</p>
+    <h2>Java课程</h2>
+    <p>是一种可以撰写跨平台应用的面向对象的程序设计语言</p>
+    <h2>iOS课程</h2>
+    <p>有苹果公司平台开发的移动操作系统</p>
+    <h2>PHP课程</h2>
+    <p>通用开源脚本语言</p>
+</body>
+</html>
