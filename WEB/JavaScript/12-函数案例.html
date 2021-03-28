@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案例</title>
+    <script>
+
+        //利用函数翻转任意数组  
+        function reverse(arr) {
+            var newArr = [];
+            for(var i = (arr.length-1); i >= 0; i--){
+                newArr[newArr.length] = arr[i];
+            }
+            return newArr;
+        }
+        var arr1 = reverse([2,3,4,5,6]);
+        console.log(arr1);
+        var arr2 = reverse(['red','yellow','green','blue']);
+        console.log(arr2);
+
+
+
+
+        //利用函数进行冒泡排序  sort 排序  
+        function sort(arr) {
+            for(var i = 0; i <= arr.length - 1; i++){  //次数   
+                for(var j = 0; j < arr.length - i - 1; j++){
+                    if(arr[j] > arr[j+1]) {
+                        var temp = arr[j];
+                        arr[j] = arr[j+1];
+                        arr[j+1] = temp;
+                    }
+                }
+            }
+            return arr;
+        }
+        var arr1 = sort([5,8,10,11,6,4,15]);  
+        console.log(arr1);  
+        var arr2 = sort([10,15,26,6,7,9,28,30]);
+        console.log(arr2);  
+
+
+
+        //利用函数判断闰年  
+        function isRunYear(year) {
+            var flag = false;
+            if( (year % 4 == 0 && year % 100 != 0) || (year % 100 == 0 && year % 400 == 0) ){
+                flag = true;
+            }
+            return flag;
+        }
+        console.log(isRunYear(2000));
+        console.log(isRunYear(2018));  
+
+
+        //函数可以互相调用   
+        function fn1() {
+            console.log(11);
+            fn2(); //在fn1里面调出fn2函数  
+        }
+        fn1();  
+        function fn2() {
+            console.log(22);
+        }
+        console.log('------------');
+
+
+
+        //判断输入年份的二月份的天数   
+        function backDay() {
+            var year = prompt('请输入年份：');
+            //引用函数  
+
+            if(isRunYear(year) == true){
+                alert(year + '年是闰年二月有29天');
+            } else {
+                alert(year + '年是平年二月有28天');
+            }
+
+        }
+        backDay();  
+
+
+
+        //函数的两种声明方式   
+        //1.利用函数关键字自定义函数【命名函数】 function     
+
+        //2.函数表达式来声明函数  
+        var 变量名 = function(){};
+        var fun = function(){
+            console.log('我是函数表达式');
+        }
+        fun();  //调用函数  
+
+        //*     1.fun是变量名  不是函数名  
+        //*     2.函数表达式声明方式跟声明变量差不少多，只不过变量里面存的是值，而函数表达式里面存的是函数  
+        //*     3.函数表达式也可以进行传递参数   
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

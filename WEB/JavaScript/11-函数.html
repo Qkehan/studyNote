@@ -140,6 +140,8 @@
         getResult(); //getResult() = 666 相当于一个赋值操作，所以不显示信息的要在打印一下      
         console.log(getResult());    //所以，要打印一下   
 
+
+
         //所以上面的函数要从新构造称为，返回值的    
         function cook2(aru) {
             return aru;
@@ -148,12 +150,17 @@
         cook2('鱼香肉丝');  //什么都没有  
         console.log(cook2('蒜薹炒鸡蛋'));  
 
+
+
         //举个例子，求任意两个数的和 
         function getSum4(num1,num2){
             return num1 + num2;
         }
         console.log(getSum4(10,20));  
 
+
+
+        // 求两个数的最大值
         function getSum5(num1,num2){
             if(num1 == num2){
                 return num1 + '与' + num2 + '一样大!';
@@ -166,7 +173,10 @@
         console.log(getSum5(10,100));
         console.log(getSum5(10,200));
         console.log(getSum5(300,10));  
-        
+
+
+
+
         //举个栗子，求数组中的最大值  
         function getArrMax(arr) {
             var max = arr[0];
@@ -182,8 +192,12 @@
         // 在我们实际开发里面，我们经常用一个变量来接收，函数的返回结果，使用更简单  
         var re = getArrMax([5,2,99,101,67,77,87]);
         console.log(re);
+
         var re = getArrMax([3,77,44,99,143]);
         console.log(re);
+        console.log('-----------------');
+
+
 
 
         //8、return 终止函数 
@@ -191,12 +205,13 @@
             return a + b;    //return 后面的代码不会被执行   
             alert('我是不会被执行的哦！');
         }
-        console.log(getSum6(5,15));  
+        console.log(getSum6(5,15));  //20
+
         //* return 只能返回一个值  
         function fn(a,b){
             return a,b;   //返回的结果是最后一个值   
         }
-        console.log(fn(1,2));  
+        console.log(fn(1,2));  //2  
 
         //* 求任意两个数的，加减乘除结果  
         function getResult1(a, b) {
@@ -205,10 +220,12 @@
         var re = getResult1(2,3);  //返回的是一个数组  
         console.log(re);
 
+
+
         //9、函数没有return 他返回的就是undefined  
         //*     如果我们的函数有return 则返回的就是后面的值， 如果函数没有return 则返回undefined  
         function fun() {
-
+        
         }
         console.log(fun(666));  //undefined   
 
@@ -221,6 +238,42 @@
         //11、练习题  
         //* 1.用户输入任意两个数字的任意算术运算（简单计算器），并能弹出运算后的结果   
         //* 2.素数，质数判断，并返回值    
+
+
+
+        //11、arguments的使用 -- 只有函数才有arguments对象，而且是每个函数都内置好的arguments  
+        //*     当我们不确定，有几个参数传递的时候，可以使用argumnets来获取。在JavaScript中，arguments实际上它是当前函数的一个内置对象，所有函数都内置了arguments其中存储了传递的所有实参。  
+        function fn(){
+            // console.log(arguments);
+            // console.log(arguments.length);  //3  
+            // console.log(arguments[2]); 
+            // 可以按照数组的方式遍历arguments  
+            for(var i = 0; i< arguments.length; i++){
+                console.log(arguments[i]);
+            }
+        }
+        fn(1,2,3);   //显示里面的所有实参，是一种’伪数组‘属性。  
+        fn(4,5,6,7,8);
+        //伪数组，并不是真正意义上的数组   
+        //1.具有数组的length属性  
+        //2.按照索引方式进行存储的  
+        //3.他没有真正数组的一些方法  pop()  push()  等等    
+        console.log('------------');
+
+
+        //案例，利用函数求任意一个数的最大值  
+        function getMax() {
+            var max = arguments[0];
+            for(var i = 1; i < arguments.length; i++){
+                if(arguments[i] > max){
+                    max = arguments[i];
+                }
+            }
+            return max;
+        }
+        console.log(getMax(1,2,3));  
+        console.log(getMax(1,2,3,4,5));  
+        console.log(getMax(11,23,32,400,500));  
 
 
 
