@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript作用域</title>
+    <script>
+
+        //【JavaScript作用域】
+        //1、JavaScript作用域：就是代码名字（变量）在某个范围内起作用和效果，目的是为了提高程序的可靠性，更重要的是减少命名冲突    
+        //2、JS的作用域（es6）现阶段学的是（es5）之前：全局作用域，局部作用域。     
+        //3、全局作用域：整个script标签，或者是一个单独的JS文件   
+        //4、局部作用域（函数作用域）：在函数内部就是局部作用域，这个代码的名字只在函数内部起效果和作用。   
+
+
+
+
+
+
+
+        //【变量作用域】 
+        //1、全局变量：在全局作用域下的变量  
+        //注意：如果在函数内部没有var声明，直接赋值的变量也属于全局变量   
+        var num = 10; //num就是全局变量  
+        console.log(num);
+
+        function fn(){
+            console.log(num);
+        }    
+        fn();
+
+        //2、局部变量： 在局部作用域下的变量，就是局部变量，或者在函数内部的变量就是局部变量  
+        //注意：函数的形参也可以看作是局部变量   
+        function fun(aru){
+            var num1 = 40;   //num1就是局部变量，只能在函数内部使用   
+            num2 = 20;  //可以外部调用，是一个特殊的全局变量，（未声明直接赋值的变量）     
+        }
+        
+
+        //3、从执行效率来看全局变量和局部变量   
+        //*     1.全局变量只有浏览器关闭的时候才会销毁，比较占内存资源    
+        //*     2.局部变量，当我们程序执行完毕就会销毁，比较节约内存资源     
+
+
+
+
+
+        //JS中没有块级作用域，JS的作用域： 全局作用域，  局部作用域   
+        //现阶段我们JS 没有块级作用域  
+        //那JS也是在 es6 的时候新增的块级作用域   
+        //块级作用域 {} 就是用花括号包含的， if{}  for{}  
+
+        //java  
+        /*
+        if(xx){
+            int num = 10;  //外面是不能调用num的  
+        }
+        */
+        
+        //JS   
+        if(3 < 5) {
+            var num = 30;
+        }
+        console.log(num);   //可以输出  
+
+
+
+
+
+
+
+        //【作用域链】 ：  内部函数访问百步函数的变量，采取的是链式查找的方式来决定取那个值，这种结构我们称之为作用域链        
+        //【就近原则】
+        //1、只要是代码，就至少有一个作用域   
+        var num = 10;  
+        function fn() {   //外部函数  
+            var num = 20;
+            function fun() {   //内部函数 
+                console.log(num);  //是可以访问外部函数的变量的   
+            }
+            fun();
+        }
+        fn();
+        //根据在内部函数访问外部函数变量，用链式查找决定那些数据能被内部函数访问，就称为作用域链    
+
+        //案例1：结果是几？  //123   
+        function f1() {
+            var num = 123;
+
+            function f2() {
+                console.log(num);
+            }
+            f2();
+        }
+        var num = 456;
+        f1();  
+
+        //案例2：结果是几？？  
+        var a = 1;
+        function fn1(){
+            var a = 2;
+            var b = '22';
+            fn2();
+            function fn2() {
+                var a = 3;
+                fn3();
+                function fn3() {
+                    var a = 4;
+                    console.log(a);  //a的值是？？？ 4  
+                    console.log(b);   //b的值是？？？  '22'  
+                }
+            }
+        }
+        fn1();  
+
+        
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
