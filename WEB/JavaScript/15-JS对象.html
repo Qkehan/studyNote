@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS对象</title>
+    <script>
+        //在JS当中，对象是一组无序的相关属性和方法的集合，所有的事物都有对象，例如字符串、数值、数组、函数等。  
+
+        //---【在JS中，可以采用三种方法创建对象（object）  】---
+
+        //----【1、利用 字面量 创建对象 】----
+
+        //1、用{}花括号，里面包含表达这个具体事物（对象）的属性和方法。
+        //      var obj = {}   //创建了一个空的对象  
+        var obj = {
+            uname: '张三丰',
+            age: 128,
+            height: 154,
+            sex: '男',
+            sayHi: function(){
+                console.log('Hi~');
+            }
+        }
+        //      1.里面的属性或者方法我们采取键值对的形式 键 属性名：值 属性值  
+        //      2.多个属性或这方法中间用逗号隔开的  
+        //      3.方法冒号后面跟的是一个匿名函数   
+        //2、使用对象  
+        //      1.调用对象的属性，我们采取  对象名.属性名  
+        console.log(obj.uname);
+        //      2.调用属性还有一种方法  对象名['属性名']  
+        console.log(obj['age']); 
+        //      3.调用对象的方法 sayHi  对象名.方法名  一定要添加小括号   
+        obj.sayHi();   
+        //案例
+        var obj = {
+            uname: 'keke',
+            age: 5,
+            type: '阿拉斯加',
+            color: '棕红色',
+            bark: function(){
+                console.log('wang~');
+            },
+            showFilm: function(){
+                console.log('播放电影');
+            }
+        }
+
+        //变量、属性、函数、方法的区别   
+        //变量和属性的相同的， 他们都是用来存储数据的  
+        //变量和属性的不同点  *变量单独声明并赋值  使用的时候直接写变量名   单独存在  
+        //                 *属性 在对象里面的不需要声明的  使用的时候必须是  对象.属性  
+
+
+        //------【2、利用 new Object 创建对象  】------
+        //      
+        var obj = new Object();  //创建了一个空的对象   
+        obj.uname = '张三疯'; 
+        obj.age = 12;
+        obj.sex = '男'; 
+        obj.sayHi = function(){
+            console.log('Hi~');  
+        }
+        //      1.我们是利用  等号 = 赋值的方法，添加对象的属性和方法  
+        //      2.每个属性和方法之间用 ； 分号结束  
+        console.log(obj.age); 
+        console.log(obj.uname);
+        console.log(obj['sex']); 
+        obj.sayHi();  
+
+        //案例  
+        var obj1 = new Object();
+        obj1.uname = '鸣人';
+        obj1.age = 19;
+        obj1.sex = '男'; 
+        obj1.skil = function(){
+            console.log('影分身术');
+        } 
+        console.log(obj1.uname); 
+        console.log(obj1.sex); 
+        console.log(obj1.age);  
+        obj1.skil();
+
+
+        //------【3、利用 构造函数 创建对象 】------  
+        //我们为什么需要构造函数   
+        //因为之前的两种方式，一次只能创建一个对象   
+        //我们每次创建对象，里面的很多的属性和方法是大量相同的，  
+        //因此我们可以利用函数的方法，重复这些相同的代码，我们就把这个函数称为 构造函数    
+        //又因为这个函数不一样，里面封装的不是普通代码，而是  对象  
+        //构造函数，就是把我们对象里面的一些相同的属性和方法抽象出来封装到函数里面  
+        //例如：创建四大天王的对象  
+        //我们需要创建四大天王的对象，相同的属性：名字  年龄  性别  都会干什么？？  
+        // 构造函数的语法格式  
+        /*
+        function 构造函数名(){
+            this.属性 = 值；
+            this.方法 - function(){}
+        }
+        */
+        //使用的时候必须是用 new 关键字来使用构造函数  
+        // new 构造函数名();   
+        function Star(uname,age,sex){
+            this.name = uname;  /*将形参里面的值，抽取出来赋值给，this */
+            this.age = age;
+            this.sex = sex;
+            this.sing = function(song){
+                console.log(song);
+            }
+        } 
+        var ldh = new Star('刘德华',18,'男');   /*实参传递给，构造函数的，形参。调用函数返回的是一个对象 */
+        console.log(ldh);
+        console.log(ldh.name);
+        console.log(ldh['sex']);
+        console.log(typeof ldh); /*检查返回的类型*/
+        ldh.sing('忘情水');
+        
+
+        var zxy = new Star('张学友',19,'男');  
+        console.log(zxy);  
+        zxy.sing('李兰香');  
+        //      1.构造函数名字首字母要大写  
+        //      2.构造函数不需要return 就可以返回结果   
+        //      3.我们调用构造函数，必须使用new   
+        //      4.我们只要new Star() 调用函数，就创建一个对象 ldh{}  
+        //      5.我们的属性和方法前面必须添加 this  
+
+        //------ 【构造函数和对象】 ------    
+        //1.构造函数 明星  泛指的某一大类  它类似于Java语言里面的  类class  
+        //2.对象 特指 是一个具体的事物  刘德华 = {name  age  sex sing}  
+        //3.我们利用构造函数创建对象的过程 我们也称之为对象的--实例化  
+
+
+        //------ 【 new 关键字 】 ------   
+        //new关键字的执行过程  
+        //1.new 构造函数可以在内存中 创建了一个空的对象   
+        //2.this 就会指向刚才创建的空对象  +
+        //3.执行构造函数里面的代码， 给这个空对象添加属性和方法   
+        //4.返回这个对象  
+
+        //------ 【】 ------    
+        var obj2 = {
+            name: 'pink老师',
+            age:18,
+            sex:'男',
+            fn: function(){
+
+            }
+
+        }  
+        //对象里面的属性是无序的  
+        //for....in.....可以遍历对象 和 对象方法  
+
+        /*  
+        for (变量 in 对象)P{
+        }
+        */
+
+        for (var k in obj2){
+            console.log(k);   /* k变量 输出 得到的是 属性名 */
+            console.log(obj2[k]);  /*必须是采取中括号[]来输出  得到的是属性值 k是变量不加‘’引号  */
+        }
+
+        //我们使用 for in 里面的变量  我们喜欢些 k 或者  key   
+
+        //------ 【对象总结】 ------   
+        //1.对象可以让代码结构更清晰  
+        //2.对象复杂数据类型object  
+        //3.本质：对象就是一组无序的相关属性和方法的集合   
+        //4.构造函数泛指某一大类，比如苹果，不管是红苹果还是绿苹果，统称为苹果  
+        //5.对象实例特指一个事物，比如这个苹果，一个具体的个体。   
+        //6.for...in...语句用于对，对象属性进行循环操作。   
+
+        //--作业--
+        //1.创建电脑对象，颜色、重量、品牌、型号、，可以看电影打游戏敲代码   
+        //2.创建一个按钮对象，包含宽高背景色，点击行为   
+        //3.创建车对象，重量，颜色、牌子、可以载人拉货、耕田   
+
+        //1.写一个函数，实现反转任意数组   
+        //2.写一个函数，实现对数字数组的排序    
+
+        //3.写一个加减乘数的简易计算器   
+        
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
