@@ -131,6 +131,121 @@
 
 
 
+        //----- 【字符串操作方法】 -----    
+        //1、concat(str1,str2,str3)   *concat()方法用于连接两个或多个字符串。等效于+，  
+        var str = 'andy';  
+        console.log(str.concat('red'));  
+
+        //2、substr(start,length)    *从start位置开始（索引号），length取的个数，重点记住  
+        var str1 = '改革春风吹满地';  
+        console.log(str1.substr(2,2));    //春风  第一个是索引号的2，第二个是取几个字符  
+
+        //3、alice(start,endd)     *从start开始位置，截取到end位置，end取不到（他们俩都是索引号）  
+        //4、substring(start,end)    *从start位置开始，截取到end 位置，end娶不到，基本和slice相同，但是不接受负值  
+
+
+        //----- 【】 ----- 
+        //1、替换字符串 replace('被替换的字符','替换为的字符')    
+        var str = 'andy';   
+        console.log(str.replace('a','b'));    //bndchuxiandeciiuy  只会替换第一个字符元素    
+        //有一个字符串'abcdefoaosjfkdhadoddod'要求把里面的o替换为*   
+        var str1 = 'abcdefoaosjfkdhadoddod';  
+        while(str1.indexOf('o') != -1){
+            str1 = str1.replace('o','*');   //原来不用考虑第几个，因为替换之后，就没了，后面的就成了第一个  
+        } var obj = {};  //声明一个对象  
+        for(var i = 0; i < str2.length; i++){
+            var chars = str2.charAt(i);   //chars是字符串的每一个字符  
+            if(obj[chars]){  //判断是否存在  
+                obj[chars]++;  
+            } else{
+                obj[chars] = 1;
+            }
+        }
+        console.log(str1);
+
+
+        //2、字符转换为数组  split('分隔符')  &  前面学习的join()把数组转换为字符串     
+        var str3 = 'red, pink, blue, yellow';  
+        console.log(str3.split(', '));  //分隔成为数组  逗号后面有一个空格  
+        var str4 = 'red&pink&blue&yellow';    
+        console.log(str4.split('&'));   //原来是将，符合条件的符号替换，并分隔为数组   
+
+        //--- 【扩展】 ---   
+        //1、toUpperCase  *转换为大写   
+        var str5 = 'abcdefoaosjfkdhadoddod'; 
+        console.log(str5.toUpperCase());    //ABCDEFOAOSJFKDHADODDOD   
+
+        //2、toLowerCase   *转换为小写   
+        var str6 = 'ABCDEFOAOSJFKDHADODDOD';   
+        console.log(str6.toLowerCase());    //abcdefoaosjfkdhadoddod  
+
+
+        //---- 【案例】 -----  
+        //给定字符串完成 操作   
+        var str7 = 'abaasdffggghhjjkkgfddsssss3444343';  
+        //1、字符串的长度  
+        //2、取出指定位置的字符，0,3,5,9    
+        //3、查找指定字符，是否在以上字符串中存在  i,c,b   
+        //4、替换指定字符，g替换为22，ss替换为b等操作方法   
+        //5、截取制定开始位置的字符串，取的1-5的字符串    
+        //6、找出以上字符串中出现次数最多的字符和出现的次数   
+        console.log(str7.length);  
+        console.log('-------');
+        var newStr = [];  
+        newStr = str7[0] + str7[3] + str7[5] + str7[9];
+        console.log(newStr);  
+        console.log('----------');  
+        console.log(str7.indexOf('i'));  
+        console.log(str7.indexOf('c'));
+        console.log(str7.indexOf('b'));  
+        console.log('-----------');
+        var str8 = 'abaasdffggghhjjkkgfddsssss3444343'; 
+        while(str8.indexOf('g') != -1){
+            str8 = str8.replace('g','22');   //原来不用考虑第几个，因为替换之后，就没了，后面的就成了第一个  
+        }
+        while(str8.indexOf('ss') != -1){
+            str8 = str8.replace('ss','b');   //原来不用考虑第几个，因为替换之后，就没了，后面的就成了第一个  
+        }
+        console.log(str8);  
+        console.log('----------');  
+        console.log(str7.substr(5,5));  
+        console.log('--------------');
+
+        var str9 = 'abaasdffggghhjjkkgfddsssss3444343'; 
+        var obj1 = {};
+        
+
+        for(var i = 0; i < str9.length; i++){
+            var chars = str9.charAt(i);   //chars是字符串的每一个字符  
+            if(obj1[chars]){  //判断是否存在  
+                obj1[chars]++;  
+            } else{
+                obj1[chars] = 1;
+            }
+        }
+    
+        //然后遍历obj对象  for..in..遍历对象   
+        var max = 0;  
+        var ch = ''; 
+        for(var k in obj1){
+            //   k 得到的是属性名。   
+            //要得到里面的属性值  obj[k]  
+            if(obj1[k] > max){
+                max = obj1[k];  
+                ch = k;  
+            }
+        }
+        console.log('最多的字符是：' + ch +':'+max);  //次数  
+        
+
+        //
+
+
+
+
+
+
+
 
 
 
