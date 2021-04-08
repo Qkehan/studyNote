@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS字符串对象</title>
+    <script>
+        //------ 【基本包装类型】 ------   
+        var  str = 'andy';  
+        console.log(str.length);   //4  
+        //对象才有  属性和方法   复杂数据类型才有  属性和方法   
+        //简单数据类型为什么会有length属性呢？？？   
+        //基本包装类型：就是吧简单数据类型包装成 复杂数据类型,这样基本数据类型就有了属性和方法    
+        //1、把简单数据类型包装成为复杂数据类型  
+        var temp = new String('andy');   
+        //2、把临时变量的值  给str  
+        str = temp;  
+        //3、销毁临时变量  
+        temp = null;  
+
+        //JS还提供了三个特殊的引用类型，String    Number   Boolean。   
+        
+        //----- 【字符串的不可变性】 -----   
+        var str = 'andy';
+        console.log(str);   //andy
+        str = 'red';
+        console.log(str);   //red  
+        //因为字符串的不可变性，所以不要大量的拼接字符串    
+        /*
+        var str = '';  
+        for(var i = 1; i <= 10000; i++){
+            str += i;  
+        }
+        console.log(str);  //系统会不停地开辟空间会非常的卡   
+        */
+
+        //----- 【根据字符返回位置】 -----  
+        //1、indexOf('需要查找的字符'，开始的位置)
+        var str = '改革春风吹满地';  
+        console.log(str.indexOf('春'));  
+        console.log(str.indexOf('春',3));   //-1  
+
+        //2、lastIndexOf()  从后往前找，只找第一个匹配的  
+        console.log(str.lastIndexOf('风'));  
+        console.log(str.lastIndexOf('风',2));    //-1  
+
+        //返回字符位置  
+        //查找'abcdefoaosjfkdhadoddod'中，所有o出现的位置以及次数   
+        //1、核心算法： 先查找第一个o出现的位置  
+        //2、然后只要indexOf返回的结果不是-1就继续往后查找   
+        //3、因为indexOf只能查找第一个，所以后面的查找，利用第二个参数，当前索引加1，从而继续查找   
+        var str = 'abcdefoaosjfkdhadoddod';  
+        var index = str.indexOf('o');  //计数器  
+        //console.log(index);   
+        var num = 0;
+        while(index != -1){
+            console.log(index);
+            index = str.indexOf('o', index + 1);
+            num++;
+        }
+        console.log('o 出现的次数是' + num + '次');  
+
+        //案例 ['qkehan','red','qkehan','yellow','blue','red','red'] 求red出现的位置和次数  
+        var str1 = ['qkehan','red','qkehan','yellow','blue','red','red'];  
+        var index = str1.indexOf('red');  
+        var num = 0;
+        //console.log(str1.indexOf('red'));  //1  
+        while(index != -1){
+            console.log(index);  
+            index = str1.indexOf('red', index + 1);  
+            num++; 
+        }
+        console.log('red 出现的次数是：' + num);  
+
+        //----- 【根据位置返回字符（重点）】 -----    
+        var str = 'andy';
+        //1、charAt(index)    *返回指定位置的字符（index字符串的索引号）  
+        console.log(str.charAt(3));  //y  
+        for(i = 0; i < str.length; i++){
+            console.log(str.charAt(i)); 
+        }
+
+        //2、charCodeAt(index)   *获取指定位置处字符的ASCLL码（index索引号）,判断用户按下了哪个键      
+        console.log(str.charCodeAt(2));   //100   d  
+        for(var i = 0; i < str.length; i++){
+            console.log(str.charCodeAt(i));  
+        }
+
+        //3、str[index]     *获得指定位置处字符，H5新增       
+        console.log(str[2]);   //d  
+
+
+        //---- 【统计出现最多的字符】 ----   
+        //判断一个对象，是否有该属性   对象['属性名']   
+        var o = {
+            age: 18
+        }
+        if(o['age']){
+            console.log('里面有该属性');
+        } else {
+            console.log('里面没有该属性'); 
+        }
+
+        //判断一个字符串'abcdefoaosjfkdhadoddod'中，出现次数最多的字符，并统计次数  
+        var str2 = 'abcdefoaosjfkdhadoddod';  
+        //算法，利用charAt() 遍历字符串   
+        //把每个字符都存储给对象，如果对象没有该属性，就为1，如果存在了就+1   
+        //遍历对象，得到最大值和字符    
+        var obj = {};  //声明一个对象  
+        for(var i = 0; i < str2.length; i++){
+            var chars = str2.charAt(i);   //chars是字符串的每一个字符  
+            if(obj[chars]){  //判断是否存在  
+                obj[chars]++;  
+            } else{
+                obj[chars] = 1;
+            }
+        }
+        console.log(obj);  
+        //然后遍历obj对象  for..in..遍历对象   
+        var max = 0;  
+        var ch = ''; 
+        for(var k in obj){
+            //   k 得到的是属性名。   
+            //要得到里面的属性值  obj[k]  
+            if(obj[k] > max){
+                max = obj[k];  
+                ch = k;  
+            }
+        }
+        console.log('最多的字符是：' + ch +':'+max);  //次数
+
+
+
+
+
+
+        
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS数组对象</title>
+    <script>
+        //创建数组的两种方式  
+        //1、利用数组字面量   
+        var arr = [1,2,3];  
+
+        //2、利用new Array()  
+        var arr1 = new Array();  //空数组 构造函数   
+        //var arr1 = new Array(2);   //表示数组长度为2，里面有两个空的数组元素  
+        //console.log(arr1);  //结果是arr1 的length为2   
+        var arr1 = new Array(2,3);  //等价于[2,3] 这样写表示里面有两个数组元素  
+        console.log(arr1);  
+
+        //翻转数组   
+        //----- 【检测是否为数组，有两种方法】 ------      
+
+        //1.instanceof  运算符  它可以用来检测是否为数组   
+        var arr2 = [];    
+        console.log(arr instanceof Array);    //true  
+        var obj = {};  
+        console.log(obj instanceof Array);    //false   
+        console.log(obj instanceof Object);    //true   
+
+        //程序改进   
+        function reverse(arr){
+            if(arr instanceof Array){
+            //if(Array.isArray(arr)){  
+                var newArr = []; 
+                for(var i = arr.length - 1; i >= 0; i--){
+                    newArr[newArr.length] = arr[i];   
+                }
+                return newArr;  
+            } else {
+                return 'error 这个参数要求必须是数组格式 [1,2,3]';    
+            }
+        }
+
+        console.log(reverse([1,2,3,4]));  //[4,3,2,1]  
+        console.log(reverse(1,2,3,4,5));   //error  
+        console.log('----------');  
+
+        //2.Array.isArray();  H5新增的方法     
+        console.log(Array.isArray(arr));  //true  
+        console.log(Array.isArray(obj));  //false  
+
+        //------ 【添加和删除数组元素】 ------   
+        var arr3 = [1,2,3];   
+
+        //1、push(参数1...)    *末尾添加一个或多个元素，注意修改原数组  *返回值=返回新的长度  
+        //arr3.push(4,'qkehan');  
+        console.log(arr3.push(4,'qkehan'));   //5   
+        console.log(arr3);  //[1,2,3,4,'qkehan']    
+
+        //*     1.可以给数组添加新的元素  
+        //*     2.push() 里面的参数，直接写数组元素就可以了       
+        //*     3.push完毕之后，返回的是新数组的长度   
+        //*     4.原数组会发生变化    
+
+        //2、unshift（参数1....）    *向数组的前面开头，添加元素，     *返回值=新的长度    
+        console.log(arr3.unshift('red','purple') );     //7  
+        console.log(arr3);   //["red", "purple", 1, 2, 3, 4, "qkehan"]  
+        //*     1.unshift是在数组的前面，追加元素  
+        //*     2.unshift（）  参数直接写 数组元素就可以了  
+        //*     3.unshift完毕之后，返回的结果是 新数组的长度   
+        //*     4.原数组有变化   
+
+        //3、pop()            *删除数组最后一个元素    *返回值=删除元素的值   
+        console.log(arr3.pop());     //qkehan   
+        console.log(arr3);  
+        //*     1.pop是在数组的后面，删除元素，一次只能删除一个     
+        //*     2.pop（）  没有参数直接写    
+        //*     3.pop完毕之后，返回的结果是 删除元素的值     
+        //*     4.原数组有变化   
+        
+        //4、shift（）        *删除数组的第一个元素     *返回值=返回新的第一个元素的值   
+        console.log(arr3.shift());   //red   
+        console.log(arr3);    
+        //*     1.shift是在数组的前面，删除元素，一次只能删除一个     
+        //*     2.shift（）  没有参数直接写    
+        //*     3.shift完毕之后，返回的结果是 删除元素的值     
+        //*     4.原数组有变化    
+
+        //要求将数组[1500,1200,2000,2100,1800] 中，超过2000的删除，剩余的放入新数组   
+        var arr4 = [1500,1200,2000,2100,1800];      
+        var newArr = [];  
+        for(var i = 0; i < arr4.length; i++){
+            if(arr4[i] < 2000){
+                //newArr[newArr.length] = arr4[i];  
+                //新方法  
+                newArr.push(arr4[i]);  
+            }
+        }
+        console.log(newArr);    
+
+
+        //----- 【数组排序】 -----    
+        var arr5 = ['yellow','red','blue','green'];    
+        
+        //1、reverse()  点到数组中的顺序，无参数   
+        arr5.reverse();  
+        console.log(arr5);  
+
+        //2、sort()  对数组进行排序(冒泡排序)   
+        var arr6 = [3,4,7,1,5,9,10,11,12,8];  
+        arr6.sort();  
+        console.log(arr6.sort());  //[1, 10, 11, 12, 3, 4, 5, 7, 8, 9]  
+        //解决方法  
+        arr6.sort(function(a,b){
+            return a - b;  //升序的谁序排列   
+        });
+        console.log(arr6);  //[1, 3, 4, 5, 7, 8, 9, 10, 11, 12]  
+        arr6.sort(function(a,b){
+            return b - a;  //降序的谁序排列    
+        });
+        console.log(arr6);  // [12, 11, 10, 9, 8, 7, 5, 4, 3, 1]   
+
+
+        //----- 【数组索引的方法】 -----    
+        var arr7 = ['yellow','red','blue','green','blue'];   
+        //1、indexOf()  数组最前面，查找给定元素的第一个索引  
+        //*     只返回第一个符合条件的索引号 
+        //*     如果在数组中找不到元素，就返回-1  
+        console.log(arr7.indexOf('blue'));   //2  
+        var arr8 = ['yellow','red','green'];
+        console.log(arr8.indexOf('blue'));    //-1 表示没有符合的元素  
+
+        //2、lastIndexOf()  在数组中的最后，一个符合条件的索引   
+        console.log(arr7.lastIndexOf('blue'));  //4  最后的符合条件元素索引号  
+        console.log(arr8.lastIndexOf('blue'));  //-1  没有符合条件的元素  
+        //*     只返回第一个符合条件的索引号 
+        //*     如果在数组中找不到元素，就返回-1   
+
+        //----- 【数组去重】 -----     
+        //1、把旧数组中的重复元素选取出来，放到新的数组中，重复的元素直白留一个，放到新数组当中    
+        var arr9 = ['c','a','z','a','x','a','x','c','b'];  
+        function unique(arr){
+            newArr = [];  
+            for(var i = 0; i < arr9.length; i++){
+                if(newArr.indexOf(arr9[i]) === -1){  //类型全等  
+                    newArr.push(arr9[i]);
+                }
+            }
+            return newArr;
+        }
+        console.log(unique(arr9));  //["c", "a", "z", "x", "b"]   
+
+
+        //----- 【数组转换为字符串】 -----   
+        //1、toString    把数组转换成字符串，逗号分隔每一项   
+        var arr10 = [1,2,3,4,5];   
+        console.log(arr10.toString());  //1,2,3,4,5   
+        //2、join('分隔符')    把数组所有元素转换为字符串,可以添加（'分隔符'）    
+        var arr11 = ['qkehan','blue','red'];    
+        console.log(arr11.join('/'));     //qkehan/blue/red   但是默认是逗号  
+        console.log(arr10.join());  //1,2,3,4,5   
+        console.log(arr10.join('&'));  //表单常用符号   
+
+
+        //---- 【扩展】 ------
+        var arr12 = ['qkehan','blue','red'];  
+        //1、concat()  连接两个或多个数组       *返回一个新数组   
+        console.log(arr12.concat(1,2,3,4,5));    //["qkehan", "blue", "red", 1, 2, 3, 4, 5]   
+        console.log(arr12.concat(arr10));  //["qkehan", "blue", "red", 1, 2, 3, 4, 5]   
+        arr13 = arr12.concat(arr10);
+        console.log(arr13);  //yes   
+
+        //2、slice()   数组截取slice(begin,end)         *返回被截取项目   
+        console.log(arr13.slice(2,5));   //["red", 1, 2]  不包含5     
+
+        //3、splice()   数组删除splice(第几个开始，要删除个数)    *返回被删除项目的新数组  注意，这个会影响原数组  
+        //slice和splice()  目的基本相同，建议同学们重点看一下splice()   
+        console.log(arr13);  
+        //console.log(arr13.splice(0,3));  // ["red", 1, 2]  返回被删除的元素    
+        //arr13.splice(0,3,0,0,0); 
+        //console.log(arr13);   //[0, 0, 0, 1, 2, 3, 4, 5]   
+        arr13.splice(3,5,'pink');
+        console.log(arr13);  //["qkehan", "blue", "red", "pink"]  
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
