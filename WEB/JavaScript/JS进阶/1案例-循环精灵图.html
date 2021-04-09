@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>循环精灵图</title> 
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .box{
+            position: relative;
+            margin: 100px auto;
+            width: 400px; height: 300px; 
+            background-color: rgb(169, 169, 169);
+        }
+        .box ul li{
+            display: block;
+            float: left;
+            width: 99px; height: 99px;
+            margin: 0.5px 0.5px 0.5px 0.5px;
+            /*background: url(img/tubk.jpg) no-repeat;*/
+            background-image: url(img/tubk.jpg);
+            /*background-position: -30px -30px;  */
+            background-size: 630%;
+            
+            
+        
+        }
+    </style>
+
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    
+    <script>
+        //1、精灵图图片一定是有规律的  
+        //2、核心思路：利用for循环，修改精灵图片的背景位置 background-position  
+        //3、剩下的就是考验你的数学功底了  
+        //4、让里面的索引号*44像素就是每个图片的y坐标       
+        
+        //1、获取元素  
+        var lis = document.querySelectorAll('li');  
+        for(var i = 0; i < lis.length; i++){
+            var index = i * 87 + 30;  /* 初始坐标 -30px -30px  */
+            lis[i].style.backgroundPosition = '-30px -'+ index +'px';
+        }
+    </script>
+</body>
+</html>
