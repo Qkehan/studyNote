@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案例-操作元素-表单密码</title>
+    <script>
+        //密码显示问题   
+        //1、核心思路：点击按钮，把密码框类型改为文本类型，就可以看见了  
+        //2、一个按钮两个状态，点击一次，显示，再点击一次，隐藏密码    
+        //3、算法：利用一个flag变量，来判断flag的值，如果是1就切换为文本框，flag设置为0，如果o就设置为我密码框，flag ，
+        
+    </script>
+    <style>
+        .pass{
+            position: relative;
+            width: 400px;
+            border-bottom: 1px solid #ccc;  
+            margin: 100px auto;
+        }
+        .pass input{
+            width: 370px;
+            height: 30px;
+            border: none;   /*0也可以*/
+            outline: none;  /*去除点击后，边框样式 */
+        }
+        .pass label{
+            position: absolute;
+            right: 10px;
+            bottom: 0px;
+        }
+        .pass img{
+            width: 24px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="box">
+        <form action="">
+            <h3></h3>
+            <div class="pass">
+                <label for="">
+                    <img src="img/close.png" alt="" id="eye">
+                </label>
+                <input type="password" name="" id="pwd">
+            </div>
+            
+        </form>
+    </div>
+
+    <script>
+        //1、获取元素  
+        var eye = document.getElementById('eye');  
+        var passd = document.getElementById('pwd');  
+        //2、注册事件，  处理程序  
+        var flag = 0;
+        eye.onclick = function(){
+            if(flag == 0){
+                passd.type = 'text';
+                eye.src = 'img/open.png';
+                flag = 1;
+            } else {
+                passd.type = 'password';
+                eye.src = 'img/close.png';
+                flag = 0;
+            }
+        }
+
+    </script>
+</body>
+</html>

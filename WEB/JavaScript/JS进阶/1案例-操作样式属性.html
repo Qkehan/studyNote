@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作样式属性</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: pink;  
+
+            transition: all 0.3s esae;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        //----- 【样式操作属性】 -----  
+        //1、element.style   行内样式操作   
+        //2、element.className  类名样式操作   
+        //注意： 驼峰命名法   
+        //JS修改style样式，产生的是行内样式 css权重比较高    
+
+
+        //1、获取元素  
+        var div = document.querySelector('div');  
+        //2、注册事件   处理程序   
+        var flag = 0;
+        div.onclick = function(){
+            if(flag == 0){
+                //div.style = 'width:300px; height:300px; background: purple;';  
+                this.style.backgroundColor = 'purple';  //这个也可以  
+                this.style.width = '300px';  //这个也可以  
+                this.style.height = '300px';   //这个也可以  
+                flag = 1;
+            } else {
+                this.style = 'none';
+                flag = 0;
+            }
+            
+        }
+
+    </script>
+</body>
+</html>

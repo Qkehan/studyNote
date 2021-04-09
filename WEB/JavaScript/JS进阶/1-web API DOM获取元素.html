@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web API DOM获取元素</title>
+    <script>
+        //web api是浏览器提供的一套 操作系统 和 页面元素 的API（BOM & DOM）    
+
+        //DOM树    
+        //1、文档  document   
+        //2、元素  element  
+        //3、节点  node   
+
+
+        //----- 【获取元素】 -----   
+        //1、根据ID获取   
+        //*     使用getElementByid() 方法 可以获取带有ID的元素对象    
+        
+        //2、根据标签名获取   
+        //*     使用 getElementByTagName() 方法可以返回带有指定标签元素的对象的集合   
+
+        //3、通过HTML5新增的方法获取  
+        //*     1.使用 document.getElementsByClassName('类名')  //根据类名返回元素的对象集合     
+        //*     2.使用 document.querySelector('选择器')    //根据指定选择器返回第一个元素对象    
+        //*     3.使用 document.querySelectorAll('选择器')    //根据指定选择器返回  
+
+
+        //4、特殊元素获取   
+        //*     1.获取body 元素   document.body;   //返回body元素对象   
+        //*     2.获取html 元素   document.documentElement;      //返回html元素对象   
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+    <div id="time">2021-4-9</div> 
+    <ul>
+        <li>知否知否，应是等你好久1</li>
+        <li>知否知否，应是等你好久2</li>
+        <li>知否知否，应是等你好久3</li>
+        <li>知否知否，应是等你好久4</li>
+        <li>知否知否，应是等你好久5</li>
+    </ul>
+    <ol id="ol">
+        <li>生僻字</li>
+        <li>生僻字</li>
+        <li>生僻字</li>
+        <li>生僻字</li>
+    </ol>
+    <div class="box">盒子1</div>
+    <div class="box">盒子2</div>
+    <div id="nav">
+        <ul>
+            <li>首页</li>
+            <li>产品</li>
+        </ul>
+    </div>
+
+    <script>
+        //1、因为我们文档页面从上往下加载，所以先得有标签，所以我们script写到标签的下面  
+        //2、get 获取 element 元素 by 通过  驼峰命名法   
+        //3、参数 id 是大小写敏感的字符串   
+        //4、返回一个【元素对象】匹配到ID的DOM  element 对象，若在当前document 下没有找到，则返回null  
+        var timer = document.getElementById('time');  
+        console.log(timer); 
+        console.log(typeof timer);   //Object  
+        //5、console.dir 打印我们返回的元素对象，更好的查看里面的属性和方法    
+        console.dir(timer);  
+        console.log('---------------------------------------');
+
+        //1、返回的是，获取过来元素对象的集合,以伪数组的形式存储的    
+        var lis = document.getElementsByTagName('li');  
+        console.log(lis);  
+        console.log(lis[0]); 
+        //console.dir(lis);  
+
+        //2、我们想要一次打印里面的元素对象，我们可以采取遍历的方式，得到的元素对象是动态的        
+        for(var i = 0; i < lis.length; i++){
+            console.log(lis[i]);  
+        }  
+        //3、如果页面中只有一个li  返回的还是伪数组的形式   
+        //4、如果页面中没有这个元素，他返回的是，空的伪数组 [] undefined   length:0    
+        //5、element.getElementsByTagName('标签名')；  
+        var ol = document.getElementsByTagName('ol')  //[ol]  不能作为父元素，父元素必须是指定的单个元素    
+        //console.log(ol.getElementsByTagName('li'));   //error  
+        console.log(ol[0].getElementsByTagName('li'));  
+        //*     这样会非常麻烦，一般给ol添加一个id这样父元素就是唯一的了  
+        var ols = document.getElementById('ol');
+        console.log(ols.getElementsByTagName('li'));           
+        console.log('-------------------------------------------');  
+
+        //1、getElementsByClassName 根据类名获得某些元素集合   
+        var boxs = document.getElementsByClassName('box');  
+        console.log(boxs);  
+        //2、querySelector 返回制定选择器的第一个元素对象，切记，里面的选择器需要加符号 .box  #nav       
+        var firstBox = document.querySelector('.box');  
+        console.log(firstBox);  
+        var nav = document.querySelector('#nav');  
+        console.log(nav);    
+        var li = document.querySelector('li');
+        console.log(li);  
+        //3、querySelectorAll()  返回制定选择器的所有对象集合    
+        var allBox = document.querySelectorAll('.box');  
+        console.log(allBox);  
+        var lis = document.querySelectorAll('li');   
+        console.log(lis);  
+        console.log('-------------------------------------------------');  
+
+        //1、获取body元素  
+        var bodyEle = document.body;   
+        console.log(bodyEle);  
+        console.dir(bodyEle);    //元素对象   
+        //2、获得html元素  
+        //var htmlEle = document.html;   //Undefined    html元素比较特殊  
+        var htmlEle = document.documentElement;  
+        console.log(htmlEle);    
+        
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

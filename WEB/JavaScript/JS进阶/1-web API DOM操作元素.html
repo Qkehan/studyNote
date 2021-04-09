@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web API DOM 操作元素</title>
+    <script>
+        //--- 【常用元素的属性操作】 ---   
+        //1、innerText、innerHTML 改变元素内容  
+        //2、src、href  
+        //3、id、alt、title   
+    </script>
+    
+</head>
+<body>
+    <button id="ldh">刘德华</button>
+    <button id='zxy'>张学友</button>
+    <img id="img1" src="img/ldh.jpg" alt="" title="ldh">
+
+    <script>
+        //修改元素属性 src  
+        //1.获取元素   
+        var ldh = document.getElementById('ldh');  
+        var zxy = document.getElementById('zxy');  
+        var img = document.getElementById('img1') 
+        //2、注册事件  处理程序  
+        zxy.onclick = function(){
+            img.src = 'img/zxy.jpg';
+            img.title = 'zxy';
+        }
+        ldh.onclick = function(){
+            img.src = 'img/ldh.jpg';
+            img.title = 'ldh';
+        }
+
+    </script>
+</body>
+</html>

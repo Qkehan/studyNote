@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分时间显示图片</title>
+    <script>
+        //1、根据系统时间判断，所需要用到的内置对象
+        //2、利用分支语句来设置不同图片
+        //3、需要图片，并格根据事件来修改图片，就需要用到SRC元素   
+        //4、需要一个div元素，来显示不同问候语句，修改元素内容即可  
+    </script>
+    <style>
+        img{
+            width: 300px;  
+        }
+    </style>
+</head>
+<body>
+    <img src="img/swh.jpg" alt="">
+    <div>上午好</div>
+
+    <script>
+        //1、获取元素  
+        var img = document.querySelector('img');  
+        var div = document.querySelector('div');  
+        //2、得到当前系统的小时
+        var date = new Date();   
+        var h = date.getHours() + 8;
+        //var h = 19;
+
+        //3、判断时间，改变文字和信息  
+        if(h < 12){
+            img.src = 'img/swh.jpg';  
+            div.innerHTML = '上午好'; 
+        } else if (h < 18) {
+            img.src = 'img/xwh.jpg';  
+            div.innerHTML = '下午好'; 
+        } else if (h > 18){
+            img.src = 'img/wsh.jpg';  
+            div.innerHTML = '晚上好'; 
+        } 
+        console.log(date);
+
+
+
+    </script>
+</body>
+</html>
