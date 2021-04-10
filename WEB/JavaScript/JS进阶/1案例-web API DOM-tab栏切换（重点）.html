@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> TAB栏-切换分析（重点） </title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none; 
+        }
+        body{
+            text-align: center;
+        }
+        .tab{
+            width: 550px;
+            margin: 50px auto;
+        }
+        
+
+        .tab_list li{
+            float: left;  
+            height: 39px; 
+            line-height: 39px;  
+            padding: 0 20px;  
+            text-align: center;  
+            cursor: pointer;
+            
+        }
+        .tab_list .current{
+            background-color: #c81623;
+            color: #fff;  
+        }
+
+        .item_info{
+            padding: 20px 0 0 20px; 
+        }
+        .item{
+            display: none;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="tab">
+        <div class="tab_list">
+            <ul>
+                <li class="current">商品介绍</li>
+                <li>规格与包装</li>
+                <li>售后保障</li>
+                <li>商品评价</li>
+                <li>手机社区</li>
+            </ul>
+        </div>
+        <div class="tab_con">
+            <div class="item" style="display:block;">
+                商品介绍模块内容
+            </div>
+            <div class="item">
+                规格与包装模块内容
+            </div>
+            <div class="item">
+                售后保障模块内容
+            </div>
+            <div class="item">
+                商品评价（50000）模块内容
+            </div>
+            <div class="item">
+                手机社区内容
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //案例分析  
+        //当鼠标点击上面相应的选项卡（tab）,下面内容随之变化  
+        //1、tab栏切换有2个大的模块  
+        //2、上的模块选项卡，点击某一个，当前一个底色会是红色，其余不变（排他）修改类名方式   
+        //3、下面的模块内容，会跟随按钮变化一一对应   
+        //4、规律：
+        //5、核心思路：给上面的tab_lis里面的所有小li添加自定义属性，属性值从0开始编号   
+        
+        
+        //1、获取元素  
+        var tab_list = document.querySelector('.tab_list');   
+        var lis = tab_list.querySelectorAll('li');   
+
+        var item = document.querySelectorAll('.item'); 
+
+        //for循环绑定点击事件  
+        for(var i = 0; i < lis.length; i++){  
+            //开始给【按钮添加序号】5个小li  设置索引号  
+            lis[i].setAttribute('index',i);
+
+            lis[i].onclick = function(){
+                //1、点击模块  
+                //干掉所有-按钮 
+                for(var i = 0; i < lis.length; i++){
+                    lis[i].className = '';
+                }
+                //留下自己-按钮   
+                this.className = 'current';
+
+                //2、显示内容模块
+                //干掉所有内容  
+                for(var i = 0; i < item.length; i++){
+                    item[i].style = 'display: none;';
+                }
+
+                //获取当前点击按钮的序号，赋值   
+                var index = this.getAttribute('index');   
+                //用序号值，作为计数器，并且它是随按钮变化的    
+                item[index].style = 'display: block;';   //设置第几个的style样式   
+
+            }
+        }
+
+
+
+
+    </script>
+</body>
+</html>

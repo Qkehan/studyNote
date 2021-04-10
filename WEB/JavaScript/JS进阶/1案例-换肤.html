@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片换肤</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body{
+            text-align: center; 
+            background: url(img/skin/1.jpg) no-repeat center top;
+        }
+        .bai{
+            width: 430px;
+            padding-top: 5px;
+            margin: 100px auto;
+            background-color: pink;
+            border-radius: 8px;
+        }
+        .bai li{
+            display: inline-block;
+        }
+        .bai img{
+            width: 100px;
+            height: 75px;
+        }
+    </style>
+</head>
+<body>
+    <ul class="bai">
+        <li><img src="img/skin/1.jpg" alt=""></li>
+        <li><img src="img/skin/2.jpg" alt=""></li>
+        <li><img src="img/skin/3.jpg" alt=""></li>
+        <li><img src="img/skin/4.jpg" alt=""></li>
+    </ul>
+    <script>
+        //案例分析  
+        //1、案例练习给一组元素注册事件  
+        //2、给4个小图片利用循环注册点击事件  
+        //3、当点击按钮，让背景改变为当前图片
+        //4、核心算法：把图片的src路径取出来，给body作为背景即可   
+
+
+
+
+        //1、获取元素  
+        var btns = document.querySelector('.bai').querySelectorAll('img');   
+        console.log(btns);  
+        //2、循环注册事件
+        for(var i = 0; i < btns.length; i++){
+            btns[i].onclick = function(){
+                console.log(this.src);  //当前图片的src路径    
+                //当前路径给 body   
+                document.body.style.backgroundImage = 'url('+this.src+')';    
+            }
+        }
+        
+    </script>
+</body>
+</html>

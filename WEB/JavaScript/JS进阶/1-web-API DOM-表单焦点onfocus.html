@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>焦点onfocus-显示隐藏文本框内容</title>
+    <style>
+        input{
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" value='手机'>
+    <script>
+        //案例分析 
+        //1、首先表单需要两个新事件，获得焦点 onfocus 失去焦点  onblur 
+        
+        //1、获取元素  
+        var text = document.querySelector('input');  
+        //2、注册事件 获得焦点事件 onfocus   
+        text.onfocus = function(){
+            console.log('得到了焦点');
+            if(this.value == '手机'){  //如果用户重新编辑，不清空
+                text.value = '';
+            }
+            //获得焦点需要文本框字体黑色  
+            text.style.color = '#000';  
+        }
+        //3、注册事件 失去焦点事件 onblur  
+        text.onblur = function(){
+            console.log('失去焦点事件');
+            if(this.value == ''){   //就是如果用户没有输入 就还原  
+                text.value = '手机';
+            }
+            //失去焦点颜色为灰  
+            text.style.color = '#999';   
+        }
+
+
+
+    </script>
+</body>
+</html>

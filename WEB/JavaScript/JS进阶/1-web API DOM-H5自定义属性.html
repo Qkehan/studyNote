@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> H5 自定义属性 </title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div getTime="20" data-index="2" data-list-name="qkehan">盒子</div>
+
+    <script>
+        //自定义属性的目的：是为了保存并使用数据。 有些数据可以保存到页面中而不保存到数据库中  
+        var div = document.querySelector('div');  
+        console.log(div.getAttribute('getTime'));   //20
+        div.setAttribute('data-time',11);  
+        console.log(div.getAttribute('data-list-index'));   
+
+        console.log(div.getAttribute('data-time'));   //11
+        console.log(div.dataset.index);    //2  
+
+        // dataset 是一个集合里面存放了，所有以data- 开头的自定义属性  
+        console.log(div.dataset);
+        console.log(div.dataset['index']);   //2  
+
+        //如果自定义属性里面有多个 - 短横线，连接的单词，我们获取的时候采取驼峰命名法    
+        console.log(div.dataset.listName);   //意外吧不是list-name   
+
+
+
+
+
+        
+        //1、设置H5自定义属性    
+        //*     H5规定规范，所有的自定义属性 data- 开头，作为属性名并赋值    
+        //*     例如：<div data-index="1" ></div>    
+        //*     或者使用JS设置  element.setAttribute('data-index',2);   
+
+        //2、获取H5自定义属性  
+        //*     1.兼容性获取  element.getAttribute('data-index');   
+        //*     2.H5新增方法  element.dataset.index  //它只能获取 data- 开头的  
+        //*     兼容性问题：getAtrribute没有兼容性问题，但，dataset需要新浏览器支持 
+
+
+    </script>
+</body>
+</html>
