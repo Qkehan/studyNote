@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 节点操作-节点层级 </title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <!-- 节点的优点 -->
+    <div>div</div>
+    <span>span</span> 
+
+    <ul>
+        <li>li</li>
+        <li>li</li>
+        <li>li</li>
+        <li>li</li>
+    </ul>
+    <ol>
+        <li>li1</li>
+        <li>li2</li>
+        <li>li3</li>
+        <li>li4</li>
+    </ol>
+    <div class="demo">
+        <div class="box">
+            <span class="erweima">X</span>
+        </div>
+    </div>
+    
+
+    <script>
+        //1、为什么学结点操作？ 主要目的是为了获取元素  
+        //获取元素通常有两种方式  
+
+        //*     1.利用DOM提供的方法获取元素   
+        //*         document.getElementById()   
+        //*         document.getElementByTagName()   
+        //*         document.querySelector()  等等  
+        //*         逻辑性不强，繁琐 
+
+        //*     2.利用节点的层次关系获取元素     
+        //*         利用父子兄节点关系获取元素  
+        //*         逻辑性强，但兼容性差  
+
+        //这两种方法都可以获取元素节点，我们后面都会使用，但是节点操作更简单   
+
+        //----- 【节点概述】 -----   
+        //网页中的所有内容都是节点，（标签、属性、文本、注释等），在DOM中，节点使用node来表示  
+        //HTML DOM树中的所有节点均可通过，JavaScript进行访问，所有HTML元素（节点）均可被修改，也可以创建或删除   
+        // node 就是节点的意思  
+
+        //一般的，节点至少拥有nodeType（节点类型），nodeName（节点名称），nodeValue（节点值）这三个基本属性  
+        //*     元素节点 nodeType  为 1    
+        //*     属性节点 nodeTYpe  为 2   
+        //*     文本节点 nodeType  为 3（文本节点包含文字、空格、换行等）   
+        //注：在实际开发中，节点操作主要操作的是【元素节点】   
+
+        
+        //------ 【节点层级】 ------    
+        //利用DOM树可以吧把节点划分为不同层级关系，常见的是--父子兄层级关系   
+
+        //1、父级节点   node.parentNode    
+        var erweima = document.querySelector('.erweima');   
+        //var box = document.querySelector('box');   //常规方法  
+        
+        erweima.parentNode;   //节点方法    
+        //得到的是离他最近的父节点  如果找不到父节点（亲爸爸），就返回为空undefined     
+        console.log(erweima.parentNode);   //div.box  
+
+
+        //2、子节点    
+        //*     1.parentNode.childNodes(标准)    //返回所有节点。
+        //*     2.parentNode.children(非标准)    //只返回子‘元素’。虽然不是标准，但是得到了大多浏览器的支持【重点掌握】     
+        
+        //*     3.parentNode.firstChild     //返回第一个子节点，找不到则返回null，同样，也是包含所有的节点     
+        //*     4.parentNode.lastChild     //返回最后一个，找不到则返回null，同样，也是包含所有的节点 
+        
+        //*     5.parentNode.firstElementChild   //返回第一个子元素  
+        //*     6.parentNode.lastElementChild    //最后一个子元素   
+
+        //注：实际开发中，firstChild && lastChild （3 && 4）包含其他节点，操作不方便，
+        // 而firsElementChild && lastElementChild （5 && 6）又有兼容性问题，那么我们如何获得第一个子元素和最后一个子元素呢？？？
+        //*     7.element.children[*]   //*为伪数组中的序列号   
+
+
+
+        //3、兄弟节点   
+        //*     1.node.nextSibling  //下一个兄弟节点，包括所有的节点(空格、换行等等)    
+        //*     2.node.previousSibling  //上一个兄弟节点，包括所有节点（空格换行）   
+        //*     3.node.nextElementSibling   //返回当前元素下一个‘元素’兄弟节点，   
+        //*     4.node.perviousElementSibling   //返回当前元素上一个‘元素’兄弟节点   
+        //注意： nextElementSibing && previoussElementSibling 这两个方法有兼容性问题     
+        //问题解决：封装兼容性函数   
+
+        
+
+
+
+
+
+        //------ 【子节点】 ------    
+
+        var ul = document.querySelector('ul');   //常规方法   
+        var lis = ul.querySelectorAll('li');  
+        
+
+        //1、 parentNode.childNodes(标准)  返回的是，包含指定节点的子节点的集合，该集合为及时更新的集合。  
+        console.log(ul.childNodes);  //所有子节点，包含，元素节点，文本节点等等（包括换行）   
+        console.log(ul.childNodes[0].nodeType);  //3  节点类型 (换行，text为文本类型)    
+        console.log(ul.childNodes[1].nodeType);   //1  节点类型（元素节点）  
+
+        //注意：返回值里面包含了所有的子节点，包含元素节点，文本节点等等   
+        //如果指向获取李明浩二元素节点，则需要专门处理(比较麻烦)。所以我们一般不提倡使用childNodes      
+        var ul = document.querySelector('ul');   
+        for(var i = 0; i < ul.childNodes.length; i++){
+            if(ul.childNodes[i].nodeType == 1){
+                //如果节点类型为1   
+                console.log(ul.childNodes[i]);  
+            }
+        }
+        //循环检查类型，比较麻烦     
+
+        //2、 parentNode.children  是一个只读属性，返回所有的元素节点。它只返回子元素节点，其余节点不返回（这个是要重点掌握的）    
+        // children 获取所有的子‘元素’节点，也是我们实际开发常用的       
+        console.log(ul.children);  //只读    
+
+
+        //【尝试获取ol里面的元素 第1个 & 最后1个】  
+        //3、fristChild && lastChild 不太好用  
+        var ol = document.querySelector('ol');   
+        console.log(ol.firstChild);   //#text  
+        console.log(ol.lastChild);   //#text  
+
+        //5、firstElementChild   返回第一个子元素   
+        console.log(ol.firstElementChild);   //li1   
+        console.log(ol.lastElementChild);   //li4  
+        console.log('--------------------------');
+
+        //注：实际开发中，firstChild && lastChild （3 && 4）包含其他节点，操作不方便，
+        // 而firsElementChild && lastElementChild （5 && 6）又有兼容性问题，那么我们如何获得第一个子元素和最后一个子元素呢？？？
+        //-- 【解决方案】 --  
+        //1、如果想要第一个元素节点，可以使用 parentNode.children[0]   
+        //2、实际开发的写法，既没有兼容性问题，又返回第一个子元素   
+        console.log(ol.children[0]);    //li1  虽然这个（非标准）得到的十位数组，但是可以加索引号   
+        console.log(ol.children[3]);  //li4  
+        console.log(ol.children.length);  //4  
+        console.log(ol.children[ol.children.length-1]);   //li4   
+        console.log('---------------');
+
+
+        //------ 【兄弟节点】 ------    
+        //1、下一个
+        var div = document.querySelector('div');   
+        console.log(div.nextSibling);  //#text    
+        console.log(div.nextElementSibling);  //span   
+        console.log('---------------');
+        //2、上一个
+        var span = document.querySelector('span'); 
+        console.log(span.previousSibling);   //#text  
+        console.log(span.previousElementSibling);  //div    
+        console.log('---------------');
+        
+        //注意： nextElementSibing && previoussElementSibling 这两个方法有兼容性问题   
+        function getNextElementSibing(element){
+            var el = element;  
+            while(el = element.nextSibing){
+                //如果下一个兄弟是元素
+                if(el.nodeType === 1){
+                    return el;  
+                }
+            }
+            return null; 
+        }
+        console.log(getNextElementSibing(span));   //null
+        console.log(getNextElementSibing(div));   //null 
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

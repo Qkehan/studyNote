@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节点操作-评论区</title>
+    <style>
+        li{
+            width: 300px;
+            padding: 5px; 
+            background-color: rgb(245,209,243);
+            color: red; 
+            font-size: 14px;  
+            margin: 15px 0;  
+        }
+        li a{
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <textarea name="" id="" cols="30" rows="10">123</textarea>
+    <button>发布</button>
+    <ul>
+        
+    </ul>
+    
+
+    <script>
+        //1、核心思路：点击按钮就传建一个li，添加到ul里面   
+        //2、创建li的同时，把文本域里面的值通过li.innerHtml赋值给li   
+        //3、如果想要新的留言后面显示就用appendChild如果想要前面显示就用inserBefore    
+        //删除评论  
+        //1、当我们把文本域赋值给li的时候，多添加一个删除的链接   
+        //2、需要把所有的链接获取过来，当我们点击当前的链接时，删除当前链接所在的li   
+        //3、因为<a href="#">的原因，阻止链接跳转需要添加 javascript:void(0); || javascript:;
+
+
+
+        //1、获取元素  
+        var btn = document.querySelector('button');   
+        var text = document.querySelector('textarea');   
+        var ul = document.querySelector('ul');  
+        
+        
+        
+        //2、注册事件
+        btn.onclick = function(){
+            if(text.value == ''){
+                alert('你没有输入内容');   
+                return false;  /*终止操作*/
+            } else {
+                //1.创建元素  
+                var li = document.createElement('li');   
+                //2.添加元素  
+                console.log(text.value);  
+                li.innerHTML = text.value + '<a href="javascript:;">删除</a>';    
+                //ul.appendChild(li);  
+                ul.insertBefore(li,ul.childNodes[0]);  
+
+                //3、删除元素  
+                var a = document.querySelectorAll('a'); //获取a元素  
+                for(var i = 0; i < a.length; i++){
+                    a[i].onclick = function(){
+                        //node.removeChild(child);  删除的是li 是当前a所在的li   
+                        ul.removeChild(this.parentNode);   
+                        
+                    }
+                }
+
+            }
+        }
+        
+        
+
+
+    </script>
+</body>
+</html>

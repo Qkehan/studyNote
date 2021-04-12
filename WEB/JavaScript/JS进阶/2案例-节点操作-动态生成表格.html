@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态生成表格【重点】</title>
+    <style>
+        table{
+            width: 500px;
+            margin: 50px auto;  
+            border-collapse: collapse;   
+            text-align: center;
+        }
+        td,
+        th{
+            border:1px solid #333;  
+        }
+        thead tr{
+            height: 40px;  
+            background-color: #ccc;    
+        }
+        
+
+
+    </style>
+</head>
+<body>
+    <table cellspacing="0">
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>科目</th>
+                <th>成绩</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+
+    <script>
+        //案例分析   
+        //1、因为里面的学生数据是动态生成的，我们需要js动态生成。这里我们模拟数据，自己定义好数据。数据我们采取对象形式存储。  
+        //2、所有数据都是放到tbody里面的行里面。  
+        //3、因为行很多，我们需要循环创建多个行（对应多个人）     
+        //4、每行里面有很多单元格（对应数组里面的数据），我们需要使用循环创建单元格，并把数据存入里面（双层for循环）。  
+        //5、最后一列单元格是删除，需要单独创建单元格   
+
+
+        //1、先去准备好学生的数据【数组里面也是可以存放，对象的】  
+        var dates = [
+        {
+            name: '张三',
+            subject: 'javascript',
+            score: 100
+        },
+        {
+            name: '李四',
+            subject: 'javascript',
+            score: 98
+        },
+        {
+            name: '王五',
+            subject: 'javascript',
+            score: 96
+        },
+        {
+            name: '赵六',
+            subject: 'javascript',
+            score: 94
+        },
+        {
+            name: '田七',
+            subject: 'javascript',
+            score: 96
+        }
+        ];  
+        //2、往tbody 里面创建行； 有几个人我们就创建几行，可以用数组长度     
+        var tbody = document.querySelector('tbody');  
+        //创加节点   
+        /*外面的for循环管tr*/
+        for(var i = 0; i < dates.length; i++){  /*根据数组的长度*/
+            //* 【创建行】  
+            var trs = document.createElement('tr'); 
+            //tbody.insertBefore(trs,tbody.length);   //成功了  
+            tbody.appendChild(trs);   //也成功了    
+
+            //3、【创建单元格】行里面创建单元格  td 单元格的数量取决于数组里，对象属性的个数        
+            /* 里面的for循环管td */   
+            for(var k in dates[i]){  //遍历数组里面的对象   
+                //创建单元格 
+                var td = document.createElement('td');   
+                //插入单元格，并把对象属性给td，如何得到对象的属性值？？？  
+                console.log(dates[i][k]);   //测试 都是属性值  
+
+                td.innerHTML = dates[i][k];  
+                
+                trs.appendChild(td);  
+            }   
+            //4、创建有删除两个字的单元格   
+            var td = document.createElement('td');  
+            td.innerHTML = '<a href="javascript:;">删除</a>';   
+            trs.appendChild(td);   
+        }
+        //回顾  
+        //遍历对象用   
+        /*
+        for(var k in object){
+            k 得到的是属性名   
+            object[k] 属性值   
+        }
+        */
+
+        //5、--- 【删除行】 ---    
+        var as = document.querySelectorAll('a');   
+        for(var i = 0; i < as.length; i++){
+            //点击a删除a所在的行  
+            as[i].onclick = function(){
+                //this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);  
+                tbody.removeChild(this.parentNode.parentNode);
+            }
+        }
+
+
+    </script>
+</body>
+</html>

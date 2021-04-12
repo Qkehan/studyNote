@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节点操作-下拉菜单</title> 
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+        .nav{
+            /*
+            width: 400px;
+            background-color: pink;
+            */
+            font-size: 24px;
+            text-align: center; 
+
+        }
+        /*主菜单*/
+        .nav li{
+            float: left; 
+            width: 100px;
+            position: relative;
+        }
+        
+        /* 小菜单 */
+        .nav>li>ul{  
+            /* display: flex; */  
+            display: none;   /*隐藏*/
+            flex-flow: column;
+            
+        }
+        .nav>li>a:hover{
+            background-color: #eee;  
+        }
+        .nav ul{
+            
+            top: 10px; left: 0; 
+            width: 100%;
+            border-left: 1px solid #fecc5b;
+            border-right: 1px solid #fecc5b; 
+            
+        }
+        .nav ul li{
+            border-bottom: 1px solid #fecc5b; 
+        }
+    </style>
+
+</head>
+<body>
+    <ul class="nav">
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <script>
+        //案例分析  
+        //1、导航栏里面的li都要有鼠标经过效果，所以需要循环注册鼠标事件   
+        //2、核心原理：鼠标经过里的，第二个孩子ul显示，当鼠标离开，则ul隐藏   
+
+        //1、获取元素  
+        var nav = document.querySelector('.nav');   
+        var lis = nav.children;  
+        console.log(lis);  
+        var uls = nav.children;  
+        console.log(uls.length);  
+
+        for(var i = 0; i < lis.length; i++){
+            lis[i].onmouseover = function(){
+                /*
+                //排他
+                for(var i = 0; i < lis.length; i++){
+                    lis[i].children[1].style.display = 'none';   //1为大li里面的第二个元素不是a元素    
+                    //lis[i] 是将所有大li里面的ul隐藏   
+                }
+                */
+                this.children[1].style.display = 'flex';
+            }
+
+            //鼠标离开,不用写排他，好方便  
+            lis[i].onmouseout = function(){
+                this.children[1].style.display = 'none'; 
+            }
+        }
+
+    </script>
+</body>
+</html>

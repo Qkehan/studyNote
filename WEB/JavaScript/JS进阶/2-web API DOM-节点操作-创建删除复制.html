@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节点操作-创建删除复制</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <ul>
+        <li>123</li>
+    </ul>
+
+    <button>删除</button>
+    <ul id="ul-two">
+        <li>熊大</li>
+        <li>熊二</li>
+        <li>光头强</li>
+    </ul>
+
+    <script>
+        //---- 【节点操作-创建 & 删除 & 复制】 ----    
+
+        //------ 【创建节点】 ------  
+        //1、document.createElement('tagName');  
+        //*     方法创建有tagName指定的HTML元素，因此这个元素是根据我们的需求动态生成的，所以我们也称为【动态创建元素节点】   
+        //------ 【添加节点】 ------   
+        //1、node.appendChild(child);     
+        //*     方法将一个节点添加到制定父节点的子节点列表末尾。类似于css里面的after伪元素   
+        //2、node.insertBefore(child,指定元素)   
+        //*     方法将一个节点添加到父节点的指定子节点前面。类似于css里面的before伪元素    
+
+        //------ 【删除节点】 ------   
+        //1、node.removeChild(child)    //方法从DOM中删除一个子节点，返回删除的节点      
+
+        //------ 【复制节点(克隆节点)】 ------    
+        //1、node.cloneNode()     //方法返回调用该方法节点的一个副本。也称为克隆节点/拷贝节点  
+        //*     1.如果（）括号参数为空或者为false，则是【浅克隆】，即只克隆复制节点本身，不克隆里面的子节点。    
+        //*     2.如果（）括号里面的参数为 true，则是【深拷贝】完全拷贝。   
+
+
+
+
+
+
+        //---【创建节点】---
+
+        //1、创建节点-元素节点  
+        var li = document.createElement('li');    
+        //2、添加节点   node.appendChild(child)  node父级  child是子级【后面追加元素】类似于数组中的push     
+        var ul = document.querySelector('ul');   
+        ul.appendChild(li);   //释放到元素最后面   
+        //3、添加节点   node.insertBefore(child,指定元素)   
+        var lili = document.createElement('li');  //必须重新创建，才能添加  
+        ul.insertBefore(lili,ul.children[0]);  
+        //4、我们想要页面添加一个新元素：1、创建元素2、添加元素  
+
+        //--- 【删除节点】 ---   
+        //1、获取元素  
+        var ul = document.getElementById('ul-two');  
+        var btn = document.querySelector('button');  
+        //2.删除元素 node.removeChild(child)  
+        //ul.removeChild(ul.children[0]); 
+        //3、点击按钮依次删除里面的li   
+        btn.onclick = function(){
+            ul.removeChild(ul.children[0]);
+            if(ul.children.length == 0){
+                btn.disabled = true;  
+            }
+            
+        }
+
+        //----- 【复制节点】 -----   
+        var ul = document.getElementById('ul-two');  
+        //1、node.cloneNode();   括号为空，只复制标签本身不复制里面的内容。    
+        var lili = ul.children[0].cloneNode();  
+        ul.appendChild(lili);  
+        //2、node.cloneNode(true);   括号为true，深拷贝，复制里面的内容。 
+        var lili = ul.children[0].cloneNode(true); 
+        ul.appendChild(lili); 
+
+
+
+
+    </script>
+</body>
+</html>
