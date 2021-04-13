@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    
+    <script>
+        /*
+        function fn(){
+            var d1 = +new Date();  
+            var str = '';   
+            for(var i = 0; i < 1000; i++){
+                document.body.innerHTML += '<div style="width:100px; height:2px; border:1px solid blue;"><a href="#">百度</a></div>';  
+            }
+            var d2 = +new Date();  
+            console.log(d2 - d1);  
+        }
+        fn();    //2500ms  
+        */  
+
+
+        //效率改进   
+        function fn(){
+            var d1 = +new Date();  
+            var arr = [];  
+            for(var i = 0; i < 1000; i++){
+                arr.push('<a href="#">百度</a>');  
+            }
+            document.body.innerHTML = arr.join('');  
+            var d2 = +new Date();  
+            console.log(d2 - d1);  
+        }
+        fn();    //8ms   < 13ms  
+
+
+    </script>
+</body>
+</html>
