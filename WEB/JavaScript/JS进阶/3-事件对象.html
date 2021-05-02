@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件对象</title>
+    <style>
+        div{
+            width: 100px; height: 100px;  
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div>123</div>
+
+    <script>
+        //事件对象  
+        var div = document.querySelector('div');  
+        //传统方式,是小括号里面不写内容，现在可以     
+        /*
+        div.onclick = function(event){
+            console.log(event);  
+        } 
+        */
+        /*
+        div.addEventListener('click', function(event){
+            console.log(event);  
+        })
+        */
+        //1、event就是一个事件对象，写到我们侦听函数的（）小括号里面，当做形参来看       
+        //2、事件对象只有有了事件才会存在，它是系统给我们自动创建的，不需要我们传递参数     
+        //3、事件对象，我们事件一系列相关数据的集合，跟事件相关的，比如鼠标点击里面就包含了鼠标的相关信息，鼠标坐标，如果是键盘事件里面就包含见键盘事件的信息，比如，判断用户按下了哪个键？   
+        //4、这个事件对象我们可以自己命名，比如 event、evt、e、   
+        //5、事件对象也有兼容性问题 ie678 通过 window.event 来进行获取对象      
+        div.onclick = function(e){
+            // console.log(e);
+            // console.log(window.event);  
+            e = e || window.event; 
+            console.log(e);
+        }
+
+        //eventTarget.onclick = function(event){}  
+        //eventTarget.addEventListener('click', function(event){})   
+        //这个event就是时时见对象，我们可以写成e或者evt   
+        //官方解释： event对象代表事件的状态，比如键盘按键的状态，鼠标的位置，鼠标按钮的状态。   
+        //简单解释：事件发生后，跟事件相关的一系列信息数据的集合都放到这个对象里面，这个对象就是事件对象event，它有很多属性和方法。    
+        //这个event是一个形参，系统帮我们设定为事件对象，不需要传递实参过去。当我们注册事件时，event对象就被系统自动创建，并依次传递给事件监听器（事件处理函数）。    
+        
+
+
+    </script>
+    
+</body>
+</html>

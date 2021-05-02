@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM事件流</title>
+    <style>
+        .father,.big{
+            position: relative;
+            width: 200px;  height: 200px;  
+            background-color: purple; 
+        }
+        .son,.small{
+            position: absolute;
+            width: 130px;  height: 130px;  
+            background-color: pink;  
+            margin-top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+
+</head>
+<body>
+    <div class="father">
+        <div class="son">son盒子</div>
+    </div>
+
+    <br><br><br><br>
+
+    <div class="big">
+        <div class="small">son盒子</div>
+    </div>
+
+
+
+    <script>
+        //事件流描述的事从页面中接收事件的顺序   
+        //事件发生时会在元素节点之间按照特定的顺序传播，这个传播过程即DOM事件流。  
+        //比如我们给一个div注册了点击事件：
+        //DOM事件流分为三个阶段：  
+        //1.捕获阶段  
+        //2.当前目标阶段  
+        //3.冒泡阶段   
+        //事件冒泡：IE最早提出，时间开始时由最具体的元素接收，然后逐级向上传播到DOM最顶层节点的过程。  
+        //事件捕获：网景最早提出，由DOM最顶层节点开始，然后逐级向下传播到最具体的元素接收的过程。   
+
+        //事件发生时会在元素节点之间按照特定的顺序传播，这个传播过程即DOM事件流。   +
+        //---【注意】--- 
+        //1、JS代码中只能执行捕获或者冒泡其中的一个阶段。   
+        //2、onclick和attachEvent只能得到冒泡阶段。   
+        //3、addEventListener(type,lisener[, useCapture])第三个参数如果时true，表示在事件捕获阶段调用事件处理程序；如果是false（不写默认就是false），表示在事件冒泡阶段调用事件处理程序。   
+        //4、实际开发中我们很少用到事件捕获，我们更关注事件冒泡。  
+        //5、有些事件是没有冒泡的，比如 onblur、onfocus、onmouseenter、onmouseleave   
+        //6、事件冒泡有的时候会带来麻烦，有时候又会帮助很巧妙的做某些事件！！！
+        
+
+        
+        //捕获阶段 (第三个参数true) document -> html -> body -> father -> son   
+        var son = document.querySelector('.son');   
+        son.addEventListener('click', function(){
+            alert('son');   
+        }, true);    
+
+        var father = document.querySelector('.father');   
+        father.addEventListener('click', function(){
+            alert('father');   
+        }, true);    
+
+
+        //冒泡阶段 （第三个参数省略或 false） son -> father -> body -> html -> document  
+        var small = document.querySelector('.small');   
+        small.addEventListener('click', function(){
+            alert('small');   
+        }, false);    
+
+        var big = document.querySelector('.big');   
+        big.addEventListener('click', function(){
+            alert('big');   
+        }, false);   
+        document.addEventListener('click', function(){
+            alert('document');  
+        })
+
+
+
+
+
+         
+
+
+
+
+    </script>
+    
+</body>
+</html>
