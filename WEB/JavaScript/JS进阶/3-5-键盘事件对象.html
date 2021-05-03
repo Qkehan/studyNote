@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>键盘事件对象</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    
+
+    <script>
+        //常用键盘事件对象    
+        //事件操作   
+        //1、键盘  
+        //*     onkeyup     //某个键盘按键被松开时触发   
+        //*     onkeydown   //某个键盘按键被按下时触发   
+        //*     onkeypress  //某个键盘按键被按下时 触发，区分ASCLL码大小写，但是它不识别功能键，比如Crtl、shift 箭头等等     
+
+        //2、判断用户按下了哪个键   
+
+
+
+
+
+
+
+        //1、keyup 按键弹起的时候触发   
+        document.onkeyup = function(){
+            console.log('弹起');
+        }
+        //2、keydown  按下时触发   
+        document.onkeydown = function(){
+            console.log('按下');
+        }
+        //3、keypress   按下时触发，不含功能键   
+        document.addEventListener('keypress', function(){
+            console.log('按下不含功能键');
+        })
+        //4、三个事件的执行顺序 keydown -> keypress -> keyup    
+
+        //注意： 
+        //1.如果使用 addEventListener 不需要加on    
+        //2.onkeypress 和前面的2个的区别是，它不识别功能键，比如左右箭头，shift等    
+        //3.三个时间的执行顺序是： keydown -> keypress -> keyup     
+
+
+        //键盘事件对象中的keyCode属性可以得到相应按键的ASCLL码值    
+        document.addEventListener('keyup', function(e){
+            console.log(e);
+            console.log('keyup:' + e.keyCode);  
+            //1.我么的 keyup 和 keydown 事件不区分字母大小写 a 和 A 得到的都是65     
+        })
+        //2.我们的 keypress 事件区分字母大小写  
+        document.addEventListener('keypress', function(e){
+            console.log('keypress:' + e.keyCode);
+        })
+
+
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阻止默认行为</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div>123</div>
+    <a href="http://www.baidu.com">百度</a>
+    <form action="http://www.baidu.com">
+        <input type="submit" value="提交" name="sub">
+    </form>
+
+
+    <script>
+        //事件对象的常见属性和方法   
+        // e.target         //返回触发事件的对象，标准    
+        //*e.srcElement     //返回书法事件的对象，非标准 ie6-8使用   
+        // e.type           //返回事件的类型，比如click、mouseover 不带 on      
+        //*e.cancelBubble   //该属性阻止冒泡，非标准 ie6-8使用   
+        //*e.returnValue    //该属性阻止默认事件（默认行为）非标准 ie6-8使用，比如不让链接跳转    
+        // e.preventDefault()       //该方法阻止默认事件（默认行为）标准，比如不让链接跳转  
+        // e.stopPropagation()      //阻止冒泡，标准   
+
+
+
+
+
+
+        //常见事件对象的属性和方法   
+        //1.返回事件类型   
+        var div = document.querySelector('div');   
+        div.addEventListener('click', fn);   
+        div.addEventListener('mouseover', fn);   
+        div.addEventListener('mouseout', fn);   
+
+
+        function fn(e){
+            console.log(e.type);
+        }
+        //2.阻止默认行为(事件) 让链接不跳转 或者让提交按钮不提交     
+        /* 
+        var a = document.querySelector('a');   
+        a.addEventListener('click', function(e){
+            e.preventDefault();   //DOM标准写法  preventDefault() 是一个方法   
+        })  
+        */
+
+
+        //3.传统注册方式  
+        var a = document.querySelector('a');  
+        a.onclick = function(e){
+            //普通浏览器  e.preventDefault();   
+            //那么低版本浏览器 ie6-8  returnValue 是一个属性   
+            /*
+            e.returnValue; 
+            */  
+
+            //我们还可以利用，return false 也能阻止默认行为，没有兼容性问题 特点：return后面的代码不执行，而且只限于传统的注册方式       
+            return false;    //所有浏览器都能用，但是加上return之后，后面代码就不再执行了   
+            alert(11);  //无反应
+        }
+
+    </script>
+    
+</body>
+</html>

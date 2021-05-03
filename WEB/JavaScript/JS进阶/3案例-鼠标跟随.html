@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        img{
+            position: absolute;
+            width: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <img src="img/octopi.gif" alt="">
+    
+
+    <script>
+        //案例分析：  
+        //1、鼠标不断的移动，使用鼠标移动事件：mousemove    
+        //2、在页面中移动，给document注册事件   
+        //3、图片要移动距离，而且不占位置，我们使用绝对定位即可   
+        //4、核心原理：每次鼠标移动，我们都会获得最新的鼠标坐标，把这个x和y坐标作为图片的top和left值，就可以移动图片。    
+
+        var img = document.querySelector('img');  
+        document.addEventListener('mousemove', function(e){
+            //1、mousemove只要我们鼠标移动1px 就会触发这个事件  
+            var x = e.clientX;
+            var y = e.clientY;  
+            //前往不要忘记给坐标添加px单位   
+            img.style.top = y + 'px';
+            img.style.left = x + 'px';
+        });   
+
+
+
+
+        
+    </script>
+</body>
+</html>

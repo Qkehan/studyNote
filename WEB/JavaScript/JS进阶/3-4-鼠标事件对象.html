@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼠标事件对象</title>
+    <style>
+        body{
+            height: 2000px;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <script>
+        //常用的鼠标事件   
+        // 事件操作:   
+        //1、鼠标：  
+        //*     onclick   点击 
+        //*     onmouseover   经过
+        //*     onmouseout    离开  
+        //*     onfocus   获得焦点
+        //*     onblur    失去焦点
+        //*     onmousemove   鼠标移动  
+        //*     onmouseup    弹起
+        //*     onmousedown   按下  
+
+        //鼠标事件对象   
+        //event对象代表事件的状态，跟事件相关的一系列信息的集合。现阶段我们主要是用鼠标事件对象MouseEvent 和键盘事件对象 KeyboardEvent。      
+        //*     e.clientX   //返回鼠标在浏览器窗口可视区的X坐标  
+        //*     e.clientY   //返回鼠标在浏览器窗口可视区的Y坐标 
+        //*     e.pageX     //返回鼠标在文档页面的X坐标  ie9以上可用
+        //*     e.pageY     //返回鼠标在文档页面的Y坐标  ie9以上可用  
+        //*     e.screenX   //返回鼠标相对于电脑屏幕的X坐标   
+        //*     e.screenY   //返回鼠标相对于电脑屏幕的Y坐标    
+
+
+        //鼠标事件对象 MouseEvent    
+        document.addEventListener('click', function(e){
+            console.log(e);
+            console.log(e.clientX);  //可视区坐标   
+            console.log(e.clientY);  
+            console.log(e.pageX);    //文档流坐标  
+            console.log(e.pageY);  
+            console.log(e.screenX);   //屏幕坐标  
+            console.log(e.screenY);
+        })
+
+
+
+        
+    </script>
+</body>
+</html>

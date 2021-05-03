@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阻止事件冒泡</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+
+        }
+
+        .father{
+            margin: 50px auto;
+            width: 300px; height: 300px; 
+            background-color: pink;
+
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+
+        }
+        .son{
+            width: 200px; height: 200px;
+            background-color: purple;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son">son儿子</div>
+    </div>
+
+
+    <script>
+        //事件对象的常见属性和方法   
+        // e.target         //返回触发事件的对象，标准    
+        //*e.srcElement     //返回书法事件的对象，非标准 ie6-8使用   
+        // e.type           //返回事件的类型，比如click、mouseover 不带 on      
+        //*e.cancelBubble   //该属性阻止冒泡，非标准 ie6-8使用   
+        //*e.returnValue    //该属性阻止默认事件（默认行为）非标准 ie6-8使用，比如不让链接跳转    
+        // e.preventDefault()       //该方法阻止默认事件（默认行为）标准，比如不让链接跳转  
+        // e.stopPropagation()      //阻止冒泡，标准   
+
+
+        //---【阻止事件冒泡的两种方式】---  
+        //事件冒泡：开始时由最具体的元素接收，然后逐级向上传播到DOM最顶层节点  
+        //事件冒泡本身的特点，会带来的坏处，也会带来好处。需要我们灵活掌握。   
+
+        //---【阻止事件冒泡】---     
+        //标准写法：利用事件对象里面的 stopPropagation()方法，有兼容性问题    
+        //非标准写法： IE6-8 利用事件对象 cancelBubble属性      
+
+
+
+        //案例：
+        var son = document.querySelector('.son');   
+        son.addEventListener('click', function(e){
+            alert('son');   
+            e.stopPropagation();  //stop停止 Propagation传播  
+            e.cancelBubble = true;   //cancel取消 bubble泡泡      
+        }, false);  
+        var father = document.querySelector('.father');   
+        father.addEventListener('click', function(){
+            alert('father');   
+        }, false);  
+        document.addEventListener('click', function(){
+            alert('document');  
+        }, false)  
+
+
+        //阻止事件冒泡的兼容性解决方案   
+        if(e && e.stopPropagation){
+            e.stopPropagation();   
+        } else {
+            window.event.cancelBubble = true;   
+        }
+
+
+
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

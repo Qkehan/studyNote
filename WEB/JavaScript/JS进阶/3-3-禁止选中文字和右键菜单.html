@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>禁止选中文字和右键菜单</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    我是一段不愿意分享的文字  
+
+    <script>
+        //常用的鼠标事件   
+        // 事件操作:   
+        //1、鼠标：  
+        //*     onclick   点击 
+        //*     onmouseover   经过
+        //*     onmouseout    离开  
+        //*     onfocus   获得焦点
+        //*     onblur    失去焦点
+        //*     onmousemove   鼠标移动  
+        //*     onmouseup    弹起
+        //*     onmousedown   按下  
+
+        //1、禁止鼠标右键菜单   
+        //  contextmenu 主要控制应该何时显示上下文菜单，主要用于程序员取消默认的上下菜单   
+            /*
+                document.addEventListener('contextmenu', function(e){
+                    e.preventDefault();  //阻止默认事件  
+                })
+            */
+
+        //2、禁止鼠标选中（selectstart 开始选中）  
+                /*
+                document.addEventListener('selectstart', function(e){
+                    e.preventDefault();  
+                })
+                */  
+
+
+
+
+
+        //我们可以禁用右键菜单  
+        document.addEventListener('contextmenu', function(e){
+            e.preventDefault();  
+        })
+        //禁止选中文字  selectstart     
+        document.addEventListener('selectstart', function(e){
+            e.preventDefault();  
+        })
+
+
+
+
+    </script>
+</body>
+</html>
