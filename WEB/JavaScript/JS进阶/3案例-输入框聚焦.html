@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聚焦输入框</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <input type="text">
+
+    <script>
+        //案例分析    
+        //1、核心思路：检测用户是否按下了S键，如果按下s键，就把光标定位到搜索框里面    
+        //2、使用键盘事件对象里面的keyCode判断用户按下的是否是S键    
+        //3、搜索框获得焦点：使用JS里面的focus()方法    
+        var search = document.querySelector('input');   
+        document.addEventListener('keyup', function(e){
+            console.log(e.keyCode);   //83
+            if(e.keyCode === 83){
+                search.focus();   //但是s居然写入到了input里面，原因是keydown会一直触发,所以用keyup比较合适，keyup是在按键弹起时触发，就不会把S写入input了         
+                
+            }
+        })
+        
+
+        
+    </script>
+</body>
+</html>
