@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM定时器</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    
+
+    <script>
+        //---【两种定时器】---     
+        //window对象给我们提供了2个非常好用的方法--定时器   
+        // setTimeout(）  
+        // setInterval()   
+        //
+        //---【setTimeout】---  
+        // window.setTimeout(调用函数,[延迟的毫秒数]);     
+        //setTimeout()方法用于设置一个定时器，该定时器在定时器到期后执行调用函数。   
+        //
+        //setTimeout() 这个调用函数也称为 callback (普通函数是按照代码顺序直接调用的，而回调函数不是){
+        //     这个函数，需要等待时间，时间到了才去调用这个函数，因此称为回调函数。
+        //     简单理解：回调，就是回头调用的意思。上一件事干完，再回头调用这个函数。 
+        //     以前我们讲的 element.onclick = function(){} 或者 element.addEventListener('click', fn); 里面的函数也是回调函数。   
+        // }
+        //
+        //注意：
+        //1.window可以省略    
+        //2.这个调用函数可以直接写函数，或者写函数名或者采取字符串 '函数名()' 三种形式。第三种不推荐    
+        //3.延迟的毫秒数省略默认为0，如果写，必须是毫秒。    
+        //4.因为定时器可能有很多，所以我们经常给定时器赋值一个标识符。   
+
+
+
+        //1. setTimeout    
+        //语法规范: window.setTimeout(调用函数,[延迟时间]);    
+        //1.这个window在调用的时候可以省略  
+        //2.这个延时时间单位是毫秒，但是可以省略，如果省略默认是0    
+        //3.这个调用函数可以直接写函数，还可以写函数名，还有一个写法 '函数名()'   
+        //4.页面中可能有很多的定时器，我们经常给定时器加标识符(名字) var timer1 =     
+        var timer0 = setTimeout(function(){
+            console.log('恭喜发财！');
+        }, 8000);  
+        
+        function callMyName(){
+            console.log('大爷！');
+        }
+        var timer1 = setTimeout(callMyName,5000);  
+        var timer2 = setTimeout('callMyName()', 8000);  //我们不提倡这个写法   
+    </script>
+</body>
+</html>
