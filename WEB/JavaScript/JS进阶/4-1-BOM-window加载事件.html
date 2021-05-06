@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window对象</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    
+
+
+    <script>
+        
+
+        //---【窗口加载事件】---   
+        //window.onload = function(){}  
+        //window.addEventListener('load', function(){})  
+        //document.addEventListener('DOMContentLoaded', funtion(){})     //非常相似的DOMContentLoaded   
+        //
+        //
+        //
+        //window.onload是窗口（页面）加载事件，当文档内容完全加载完成，会触发改时间（包括图像、脚本文件、CSS文件等等），就调用的处理函数。   
+        //
+        //因为js文档流加载顺序，如何将加载事件放在，body文档流前面呢？？？
+        //
+        //注意：
+        //1、有了window.inload就可以把JS代码写到页面元素的上方，因为onload是等页面内容完全加载完毕，再去执行处理函数。   
+        //2、window.onload传统注册时间方式只能写一次，如果有多个，会以最后一个window.onload为准。 
+        //3、如果使用addEventListener则没有限制   
+        //4、DOMContentLoaded事件触发时，仅当DOM加载完成，不包括样式表，图片，flash等等。   
+        //5、DOMContentLoaded的区别好处，如果页面图片很多的话，从用户访问到onload触发可能需要较长的时间，交互效果就不能实现，必然影响用户体验，此时用DOMContentLoaded事件比较合适。    
+
+
+
+
+
+
+
+        //这个就是文档流加载完成以后运行的程序，但是window.onload只能处理一次，而且以最后一个为准，会被覆盖掉      
+        
+        window.onload = function(){
+            var btn = document.querySelector('button'); 
+            btn.addEventListener('click', function(){
+                alert('touched');   
+            })
+        }
+        window.onload = function(){
+            var btn = document.querySelector('button'); 
+            btn.addEventListener('click', function(){
+                alert('22');   
+            })
+        }
+
+        //为了避免覆盖，可以用新的注册事件方式   
+        window.addEventListener('load', function(){
+            var btn = document.querySelector('button'); 
+            btn.addEventListener('click', function(){
+                alert('第一个新的注册方式');   
+            })
+        })
+        window.addEventListener('load', function(){
+            var btn = document.querySelector('button'); 
+            btn.addEventListener('click', function(){
+                alert('第二个新的注册方式');   
+            })
+        })
+        //会发现DOMContentLoaded最先弹出，document加载完就可以加载这个了   
+        document.addEventListener('DOMContentLoaded', function(){
+            alert(33);   
+        })
+
+
+
+    </script>
+
+    <button>点击</button>
+
+</body>
+</html>
