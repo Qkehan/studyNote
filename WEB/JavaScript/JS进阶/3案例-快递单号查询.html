@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快递单号查询</title>
+    <style>
+        .search{
+            position: relative;
+            width: 178px; height: 100px;  
+            margin: 100px auto
+        }
+        .con{
+            display: none;  
+            position: absolute;
+            top: -40px;  
+            width: 171px;  
+            border: 1px solid rgba(0, 0, 0, 0.2); 
+            padding: 5px 0;  
+            font-size: 18px;  
+            line-height: 20px;   
+            color: #333;   
+        }
+        /*小三角*/
+        .con::before{
+            content: "";
+            width: 0;   
+            height: 0;  
+            position: absolute;  
+            top: 28px;   
+            left: 18px;   
+            border: 8px solid #000;
+            border-style: solid dashed #000;   
+            border-color: #fff transparent transparent;  
+        }
+
+        span{
+            display: none;
+            font-size: 24px; 
+            line-height: 21px; 
+            transform: translate(-18px,0);
+        }
+
+        .dem{
+            display: flex;
+            justify-content: start;  
+            align-items: center;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="search">
+        <div class="con">123</div>
+        <div class="dem">
+            <input type="text" placeholder="请输入您的单号" class="jd">
+            <span>×</span>
+        </div>
+        
+    </div>
+    
+    
+
+    <script>
+        //1、快递单号输入内容，上面的大号字体盒子（con）显示（这里面的字号更大）  
+        //2、表单检测用户输入：给表单添加键盘事件   
+        //3、同时把快递单号里面的值（value）获取过来赋值给con盒子（innerText）作为内容   
+        //4、如果input里面的内容为空，则隐藏大号字体盒子（con）盒子   
+        //5、【注意】keydown和keypress在文本框里面的特点：他们两个事件触发的时候，文字还没有落入文本框中。  
+        //6、keyup事件触发的时候，文字已经落入文本框里面了   
+        //7、当我问失去焦点，就隐藏这个con盒子   
+        //8、当我们获得焦点，并且文本框内容不为空，就显示con盒子   
+
+
+        var con = document.querySelector('.con');   
+        var jd_input = document.querySelector('.jd');  
+        var clear = document.querySelector('span');   
+
+        jd_input.addEventListener('keyup', function(e){  
+            if(this.value == ''){
+                con.style.display = 'none';  //如果为空隐藏  
+                clear.style.display = 'none';  //隐藏按钮
+            } else {
+                con.style.display = 'block';   //不为空显示  
+                con.innerText = this.value;   //将当前input的值给con  
+                clear.style.display = 'block';   //显示按钮   
+            }
+        })
+        //当我们失去焦点，就隐藏这个con盒子   
+        jd_input.addEventListener('blur', function(){
+            con.style.display = 'none';  
+        })
+        //获得焦点   
+        jd_input.addEventListener('focus', function(){
+            if(this.value != ''){
+                con.style.display = 'block';   //不为空显示  
+                //con.innerText = this.value;   //不用赋值也可以显示    
+            } 
+        })
+        clear.addEventListener('click', function(){
+            jd_input.value = '';   //清空输入框   
+            clear.style.display = 'none'; //隐藏按钮span       
+        })
+
+    </script>
+</body>
+</html>
