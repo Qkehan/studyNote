@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>停止定时器 clearTimeout</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <button class="begin">开始定时器</button>
+    <button class="stopTimeOut">停止clearTimeout定时器</button>
+    <button class="stopInterVal">停止clearinterval定时器</button>
+
+    <script>
+        //---【停止定时器】---   
+
+        //--【clearTimeout】--    
+        // window.clearTimeout(timeoutID)     
+        //方法取消了先通过调用 setTimeout() 建立的定时器。   
+        //注意：
+        //1、window可以省略。   
+        //
+
+        //--【clearInterval】--  
+        // window.clearInterval(intervalID);   
+        //方法取消了先前通过调用 setInterval() 建立的定时器。   
+        //注意：   
+        //1、window可以省略。  
+        //2、里面的参数就是定时器的标识符。     
+
+
+
+
+
+        var stopTimeOut = document.querySelector('.stopTimeOut');    
+        var stopInterVal = document.querySelector('.stopInterVal');   
+        var begin = document.querySelector('.begin');   
+
+        var timeInterval = null;  //定义全局变量【其它函数就可以访问】， null是一个空对象【一定要赋值，不然会undefined，因为定时器也是一个对象，所以声明null空对象，比较合适】   
+        begin.addEventListener('click', function(){
+            timeInterval = setInterval(function(){  //因为没办法clear，所以当点击的时候，将空的null对象，赋值给计时器setInterval    
+                console.log('你好吗setInterVal');
+            }, 1000); //每隔一秒钟   
+        })  
+        stopInterVal.addEventListener('click', function(){
+            clearInterval(timeInterval);  
+        })
+
+
+        //计时器，添加名字   
+        var timer = setTimeout(function(){
+            console.log('爆炸了');
+        },3000);   
+
+        stopTimeOut.addEventListener('click', function(){
+            //停止定时器，参数为指定【函数】变量名      
+            clearTimeout(timer);   
+        })  
+
+
+
+        
+    </script>
+</body>
+</html>

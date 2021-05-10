@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计时器倒计时</title>
+    <style>
+        div{
+            margin: 50px auto;
+            width: 300px; height: 200px;  
+            border: 1px solid gray;   
+            border-radius: 15px;
+            padding-top: 80px;
+            padding-left: 100px;
+        }
+        span{
+            display: inline-block;
+            text-align: center;
+            line-height: 50px;
+
+            width: 50px; height: 50px;  
+            color: #fff;
+            background-color: black;
+            border-radius: 5px;  
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span class="hour">1</span>
+        <span class="minute">2</span>
+        <span class="second">3</span>
+    </div>
+
+    <script>
+        //案例分析   
+        //1、这个倒计时是不断变化的，因此需要定时器来自动变化（setInterval）     
+        //2、三个黑色的盒子分别存放时分秒    
+        //3、三个黑色盒子利用 innerHTML 放入计时器的小时分钟秒数   
+
+        
+
+        //1、获取元素  
+        var hour = document.querySelector('.hour');  //小时  
+        var minute = document.querySelector('.minute');  //小时  
+        var second = document.querySelector('.second');  //小时  
+
+        var inputTime = +new Date('2021-05-21 18:00:00');   //拿出来    
+
+        countDown();   //开启定时器之前，先调用函数，防止页面有空白【注意写在inputTime的下面，因为有时间才能开始计算的】   
+
+        //开启定时器   
+        setInterval(countDown, 1000);  //每隔一秒调用   
+
+        //倒计时函数   
+        function countDown(){
+            var nowTime = +new Date();  //返回当前时间总毫秒   
+            // var inoutTime = +new Date(time);   //返回用户输入的总毫秒数   
+            var times = (inputTime - nowTime) / 1000;   //times剩余时间总的秒数  
+
+            //将剩余时间，转换为 时分秒   
+            var h = parseInt(times / 60 / 60 % 24);  //时
+            var m = parseInt(times / 60 % 60);   //分  
+            var s = parseInt(times % 60);   //秒  
+
+            h = h < 10 ? '0' + h : h;   
+            m = m < 10 ? '0' + m : m;   
+            s = s < 10 ? '0' + s : s;   
+
+            //当定时器调用本函数的时候，时间也将赋值给，盒子里面的数字   
+            hour.innerHTML = h;    
+            minute.innerHTML = m;  
+            second.innerHTML = s;  
+        }
+
+    </script>
+</body>
+</html>
