@@ -63,6 +63,8 @@
         function callMyName(){
             console.log('大爷！');
         }
+        setTimeout(callMyName,3000);     //这样也可以  
+        //给定时器，起一个名字，就可以定义多个定时器   
         var timer1 = setTimeout(callMyName,5000);  
         var timer2 = setTimeout('callMyName()', 8000);  //我们不提倡这个写法   
 
