@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发送短信案例</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div>
+        填写手机号：<input type="text" name="text">
+        <button>发送短信</button>
+    </div>
+
+    <script>
+        //案例分析     
+        //1、按钮点击之后，会禁用disabled为true    
+        //2、按钮里面的内容会有变化，注意button里面的内容通过innerHTML修改   
+        //3、里面的毫秒数是变化的，在定时器里面，不断递减   
+        //4、如果变量为0 说明到了时间，我们需要停止定时器，并且复原按钮初始状态    
+
+
+
+        //1、获取元素    
+        var text = document.querySelector('input');    
+        var btn = document.querySelector('button');   
+
+        var timeDown = 5;   //初始化时间，定义剩下的秒数，用户的inputTime      
+
+        btn.addEventListener('click',function(){
+            btn.disabled = true;   //点击后禁用按钮  
+            text.disabled = true;   
+            
+            var timer = setInterval(function(){
+                //首先获取事件，所以需要一个全局变量   
+                
+                if(timeDown != 0){
+                    btn.innerHTML = '等待'+ timeDown +'秒发送';   //这个值是不断变化的，所以写进定时器  
+                    timeDown--;
+
+                } else {
+                    //清楚定时器clearInterval，所以要给整个函数起一个名字var timer      
+                    clearInterval(timer);   
+                    //复原按钮   
+                    btn.disabled = false;   //点击后禁用按钮  
+                    btn.innerHTML = '发送短信';
+                    text.disabled = false;
+                    return; 
+                }
+                
+            }, 1000);    //每隔一秒钟，把时间更新   
+        });
+        
+    </script>
+</body>
+</html>

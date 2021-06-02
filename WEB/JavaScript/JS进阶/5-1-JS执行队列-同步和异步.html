@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js执行队列-同步和异步</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    
+
+    <script>
+        //JS是单线程 ————最大的特点就是单线程    
+        //这是因为JavaScript这门语言诞生的使命所致————是为了处理用户交互
+        //以及操作DOM而诞生的。我们对某个DOM元素进行添加和删除，不能同时进行。应该先进行添加之后在进行删除     
+
+        //为了解决这个问题，利用CPU的多核计算能力，html5提供 Web Worker 标准，允许JavaScript脚本创建多个线程，。
+        //于是js中出现了 同步&异步。 两大类     
+        
+        //同步————按顺序进行   
+        //异步————利用多线程，同时进行   
+        
+        console.log(1);
+        setTimeout(function(){
+            console.log(3);
+        },0);
+        console.log(2);   //结果123   
+
+        //同步任务&异步任务    
+        //同步任务都放到了主线程序上执行，形成了一个执行线    
+        //回调函数不属于主线任务，属于异步任务    
+
+        //JS的异步任务是通过回调函数实现的   
+        //一般而言，异步任务有以下三类：  
+        //1、不同事件，click、resize等等   
+        //2、资源加载，load、error等等  
+        //3、定时器，setTimeout、setInterval等等   
+
+
+        //------【JS执行机制】------   
+        //1、先执行执行栈中的同步任务   
+        //2、异步任务（回调函数）放到任务队列中。   
+        //3、一旦执行栈中的所有同步任务执行完毕，系统就会按次序读取任务队列中的异步任务，于是被读取的异步任务结束等待状态，进入执行栈，开始执行。   
+
+        console.log(4);
+        document.onclick = function(){
+            console.log('click');
+        }
+        console.log(5);
+        setTimeout(function(){
+            console.log(6);
+        },3000);      //结果 
+
+        //时间循环event loop 由于主线不断地重复获取任务、执行任务、在获取任务、再执行，所以这种机制被称为 事件循环。   
+         
+
+
+        
+
+
+
+
+    </script>
+</body>
+</html>
