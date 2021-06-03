@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>history对象</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <button>前进</button>
+    
+
+    <script>
+        //window对象给我们提供了一个history对象，与浏览器历史记录进行交互。该对象包含用户（在浏览器窗口中）访问过的url.   
+        //history对象方法：  
+        // back()       可以后退功能   
+        // forward()    前进功能   
+        // go(参数)     前进后退功能 参数如果是1前进1个页面 如果是-1后退1个页面    
+
+
+        var btn = document.querySelector('button');  
+        btn.addEventListener('click', function(){
+            history.forward();   //前进  
+            /*
+            history.back();    //后退   
+            history.go(1);    //1前进-1后退  
+            */
+        })
+
+        //history对象一般在实际开发中比较少用，但是会在一些OA办公系统中见到。    
+        
+        
+    </script>
+</body>
+</html>

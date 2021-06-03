@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>navigation对象</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    
+
+    <script>
+        //场景用手机浏览器和pc浏览器页面不同，就是用的BOM对象中的navigation对象    
+        //navigation对象包含有关浏览器的信息，他有很多属性，我们最常见的是userAgent，该属性可以返回由客户发送服务器的user-agent头部的值。   
+
+        //案例：前端代码可以判断用户那个终端打开页面，实现跳转。   
+        if((navigator.userAgent.match(/(phone|pad|iphone|iPad|ios|iPad|Andriod|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|browserNG|WebOS|Symbian|Windows Phone)/i))){
+            window.location.href = "";    //手机   
+        } else {
+            window.location.href = "";     //电脑   
+        };   
+        
+
+        
+    </script>
+</body>
+</html>

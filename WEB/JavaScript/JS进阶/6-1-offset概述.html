@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>offset概述</title>
+    <style>
+        *{
+            margin: 0;  
+            padding: 0;
+        }
+
+        .father{
+            width: 200px; height: 200px; 
+            background-color: pink;  
+            margin: 150px;  
+        }
+        .son{
+            width: 50px; height: 50px;  
+            background-color: purple;   
+            margin: 0px 45px;
+        }
+        .w{
+            width: 200px; height: 200px;  
+            background-color: skyblue;   
+            margin: 0 auto 200px;  
+            padding: 10px;  
+            border: 15px solid gold;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <div class="w" style="width: 200px;"></div>
+
+
+    <script>
+        //offset翻译过来就是偏移量，我们使用offset系列相关属性可以动态的得到该元素的位置（偏移）、大小等等。   
+        //1、获得元素距离带有定位父元素的位置   
+        //2、获得元素自身的大小（宽度高度）   
+        //注意：返回的参数都是不带单位的。   
+        //
+        // element.offsetParent     返回所有该元素带有定位的父级元素，如果父级都没有定位则返回body   
+        // element.offsetTop        返回元素相对带有定位父元素上方的偏移   
+        // element.offsetLeft       返回元素相对带有定位父元素左边框的偏移   
+        // element.offsetWidth      返回自身包括padding、边框、内容区的宽度,返回数值不带单位    
+        // element.offsetHeight     返回自身包括padding、边框、内容区的高度，返回数值不带单位    
+
+        var father = document.querySelector('.father');   
+        var son = document.querySelector('.son');  
+        var w = document.querySelector('.w');   
+
+
+        //1、可以得到元素的偏移，位置，返回的不带单位的数值   
+        console.log(father.offsetTop);
+        console.log(father.offsetLeft);  
+        //它以带有定位的父亲为准，如果没有父亲或者父亲没有定位 则以body为准   
+        console.log(son.offsetLeft);  
+
+        //2、可以得到元素的大小、宽度和高度，是包含padding + border + width 
+        console.log(w.offsetWidth);  
+        console.log(w.offsetHeight);  
+        //3、返回带有position定位的父亲  否则返回的是body     
+        console.log(son.offsetParent);    //body对象 
+        //另外节点操作也可以返回   
+        console.log(son.parentNode);     //father对象  是最近一级的父亲 亲爸爸 不考虑父亲有没有定位       
+
+        
+
+        //--------【offset & style 区别】--------                 
+        //
+        //offset：  
+        //1、offset可以得到任意样式表中的样式值   
+        //2、offset系列获得的数量是没有单位的   
+        //3、offsetWidth包含padding+border+width   
+        //4、offsetWidth等属性是只读属性，只能获得不能赋值   
+        //5、所以，我们就要获取元素大小位置，用offset更合适。     
+        //
+        //style：  
+        //1、style只能得到行内样式表中的样式值   
+        //2、style.width获得的是带有单位的字符串    
+        //3、style.width获得不包含padding和border的值    
+        //4、style.width是可读写属性，可以获取也可以赋值    
+        //5、所以，我们想要给元素更改值，则需要用style改变。    
+
+        //用style.width获取w的值   
+        console.log(w.style.width);   //空白 只能获取内嵌样式   <div class="w" style="width: 200px;"></div>  
+        //这里offset得到的是不带单位的 数字型值 而style得到的是带有单位的 字符串型值    
+        //而且style不包含padding、border， 不能动态变化     
+        //但是offset不能设置，style可以设置属性值        
+        
+    </script>
+</body>
+</html>

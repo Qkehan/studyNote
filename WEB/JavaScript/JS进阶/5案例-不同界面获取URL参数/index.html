@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div></div>
+    
+
+    <script>
+        //案例分析：  不同页面获取URL数据   
+        //1、第一个登录页面，里面提交表单，action提交到index.html页面   
+        //2、第二个页面，可以使用第一个页面的参数，这样实现了一个数据不同页面之间的传递效果   
+        //3、第二个页面之所以可以使用第一个页面的数据，是利用了URL里面的locatio.search参数    
+        //4、在第二个页面中，需要吧这个参数提取   
+        //5、第一不去掉？利用substr    
+        //6、第二部利用=号分割 和 值   split（‘=’）   
+
+
+
+        console.log(location.search);    //？uname=andy  
+        //1、先去掉？  substr（‘起始的位置’，截取几个字符）  
+        var params = location.search.substr(1);   //从第1的位置截取location.search  => uname=andy   
+        console.log(params);  
+
+        //2、利用=  分割字符串为 数组  
+        var arr = params.split('=');    //新建数组   
+        console.log(arr);
+
+        var div = document.querySelector('div');    
+        //3、把数据写入div中   
+        div.innerHTML = arr[1] + ' 欢迎您！';  
+
+
+    </script>
+</body>
+</html>
