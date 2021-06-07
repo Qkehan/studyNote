@@ -3,23 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>获取鼠标在盒子内的坐标</title>
+    <title>获取鼠标在盒子内的坐标</title>  
+    <script src=""></script>
+
+
     <style>
         *{
             margin: 0;  
             padding: 0;  
         }
         .box{
+            position: relative;
             width: 200px; 
             height: 200px;  
-            background-color: pink;  
+            border: 1px solid rgb(230, 230, 230);
+            background: url(img/tubk.jpg) no-repeat;   
+            background-position-x: center;   
+            background-position-y: center;
+            background-size: auto 200px;  /*宽自动 高200px*/     
+
             margin: 200px;
+        }   
+
+        .mask{
+            display: none;
+            position: absolute;
+            width: 100px;  
+            height: 100px;  
+            background: #fede4f;  
+            border: 1px solid #ccc;
+            opacity: 0.45; 
+
+            cursor: move;  /*鼠标移动触发*/
+
+            z-index: 999;
+        }  
+
+        .big{ 
+            display: none;  
+            position: absolute;   
+            left: 210px;  
+            top: 0;  /*右移*/
+
+            width: 300px;  
+            height: 300px;  
+            background: pink;  
+            border: 1px solid #ccc;  
+            overflow: hidden;
+            
         }
+
+        .big img{
+            position: absolute;  
+            left: 0;
+            top: 0;
+        }
+
+
 
     </style>
 </head>
 <body>
-    <div class="box"></div>
+    <div class="box">
+        <div class="mask"></div>  
+        <div class="big">
+            <img src="img/tubk.jpg" alt="" class="bigImg">
+        </div>
+    </div>
     
 
     <script>
@@ -31,8 +81,12 @@
         //5、如果想要移动一下坐标，就要获取最新的坐标，使用鼠标移动事件 mousemove      
 
         var box = document.querySelector('.box');   
-        //mousemove鼠标移动触发    
-        box.addEventListener('mousemove', function(e){   
+
+        var mask = document.querySelector('.mask');  
+        var big = document.querySelector('.big');   
+
+        //mouseover鼠标在上触发    
+        box.addEventListener('mouseover', function(e){   
             //页面坐标   
             console.log(e.pageX);     
             console.log(e.pageY);  
@@ -43,9 +97,66 @@
             var x = e.pageX - this.offsetLeft;  
             var y = e.pageY - this.offsetTop;  
 
+            /* 在屏幕上打印，盒内鼠标坐标  
             this.innerHTML = 'x坐标是：' + x + '<br>y坐标是：' + y;
+            */  
 
-        })
+            // 显示mask和big  
+            mask.style.display = 'block';  
+            big.style.display = 'block';  
+
+        }) 
+
+
+        // 鼠标移开隐藏   
+        box.addEventListener('mouseout', function(e){
+            mask.style.display = 'none';  
+            big.style.display = 'none'; 
+        });  
+
+        // 移动  
+        box.addEventListener('mousemove', function(e){
+            var x = e.pageX - this.offsetLeft;  
+            var y = e.pageY - this.offsetTop;   
+            
+            var maskX = x - mask.offsetWidth /2;    
+            var maskY = y - mask.offsetHeight /2;  
+
+            var maskMaxX = this.offsetWidth - mask.offsetWidth;  /*遮挡层的最大移动距离*/ 
+            var maskMaxY = this.offsetHeight - mask.offsetHeight; 
+
+            if(maskX <= 0){
+                maskX = 0;  
+            } else if (maskX >= maskMaxX){
+                maskX = maskMaxX;  
+            }
+            if(maskY <= 0){
+                maskY = 0;
+            } else if (maskY >= maskMaxY){
+                maskY = maskMaxY;  
+            };
+
+            mask.style.left = maskX + 'px';  
+            mask.style.top = maskY + 'px';    
+
+
+
+
+            //大图片移动距离 = maskmove * 大图片最大移动距离  / maskMax遮挡层最大移动距离 ；  
+            var bigImg = document.querySelector('.bigImg');   
+            // 大图片的可移动距离   （大big - bigImg的距离 = 空隙 ）
+            var bigMaxX = big.offsetWidth - bigImg.offsetWidth;   
+            var bigMaxY = big.offsetHeight - bigImg.offsetHeight;    
+
+            //大图片的移动距离，比例  X Y   正方形 
+            var bigMoveX = maskX * bigMaxX / maskMaxX;  
+            var bigMoveY = maskY * bigMaxY / maskMaxY;   
+
+
+            bigImg.style.left = bigMoveX + 'px';  
+            bigImg.style.top = bigMoveY + 'px';       
+
+        });  
 
         
         
