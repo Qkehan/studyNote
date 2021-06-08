@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素可视区client概述</title>
+    <style>
+        div{
+            width: 200px;    
+            height: 200px;  
+            background-color: pink;  
+            border: 10px solid skyblue;
+            padding: 10px;
+        }
+
+    </style>
+
+    <script>
+        //-------------------【案例】----------------------     
+
+        (function flexible(window, document){
+            //获取HTML根元素   
+            var docEl = document.documentElement;  
+            //dpr 物理像素比，默认为1，移动端为2      
+            var dpr = window.devicePixelRatio || 1;   
+
+            //adjust body font size 如果页面中有body这个元素，就设置body的字体大小，
+            //例如，js引入src写在上面，没有load函数，页面没有加载完毕，所以else           
+            function setBodyFontSize(){
+                if(document.body){
+                    document.body.style.fonSize = (12 * dpr) + 'px';   //根据物理像素比，设置字体大小  
+                } else {
+                    //DOMContentLoaded事件，是dom事件流加载完毕后，执行函数，就是页面如果没有body元素就等页面加载完毕后，   
+                    document.addEventListener('DOMContentLoaded', setBodyFontSize);   
+                }
+            }     
+            setBodyFontSize();   
+
+            //set 1rem = viewWidth / 10    
+            //rem布局，主要是跟HTML文字大小有关系，所以rem只要是设置HTML文字大小     
+            function setRemUnit(){
+                var rem = docEl.clientWidth / 10;  //document宽度的10分之1 来设置字体    
+                docEl.style.fontSize = rem + 'px';  
+            }
+            setRemUnit();  
+
+            //reset rem unit on page resize 当我们页面尺寸发生变化的时候，要重新设置rem的大小   
+            window.addEventListener('resize', setRemUnit);   //resize是当尺寸发生变化的时候，就调用上面的函数来设置大小      
+            window.addEventListener('pageshow', function(e){    //pagashow 就是页面重新加载触发的事件  
+                //e.persisted 返回的是true 就是说这个页面是从缓存过来的页面，也需要重新计算以下rem的大小。    
+                if(e.persisted){  //判断是否缓存    
+                    setRemUnit();   
+                }
+            });  
+
+            //detect 0.5px supports  其他移动端的浏览器不支持0.5像素的写法     
+            if(dpr >= 2){
+                var fakeBody = document.createElement('body');  
+                var testElement = document.createElement('div');   
+                testElement.style.border = '0.5px solid transparent';   
+                fakeBody.appendChild(testElement);    
+                docEl.appendChild(fakeBody);   
+                if(testElement.offsetHeight === 1){
+                    docEl.classList.add('hairlines');   
+                }
+                docEl.removeChild(fakeBody);   
+            }
+        }(window, document));  
+
+        
+    </script>
+
+</head>
+<body>
+    <div></div>
+
+    
+
+    <script>
+        //client就是客户端的意思，我们使用client系列的相关属性来获取元素可视轻区域的相关信息，   
+        //用过client系列的相关属性，可以动态的得到该元素的边框大小、元素大小等等。   
+        //
+        // element.clientTop        返回元素上边框的大小   
+        // element.clientLeft       返回元素左边框的大小   
+        // element.clientWidth      返回自身包括padding、内容区的宽度，不包含边框，返回数值不带单位   
+        // element.clientHeight     返回自身包括padding、内容区的高度，不包含边框，返回数值不带单位    
+        //
+        //1、立即执行函数 (function(){})()  ：不需要调用，立马能够自己执行的函数        
+        //主要作用： 创建一个独立的作用域。     
+        //
+        //2、写法, 也可以传递参数进来      
+        (function(){})();     
+        (function(){}());    
+        //
+        //所有变量都是一个局部变量   
+        //方法一   
+        (function(a,b){
+            console.log(a+b);
+            var num = 88;   //局部变量，在不同的作用域里面   
+        })(1,2);    //第二个小括号可以看做是调用函数  
+        //
+        //方法二  
+        (function sum(a,b){
+            console.log(a*b);  
+            var num = 99;     //局部变量   
+        }(2,3));    
+        //3、立即执行函数最大的作用就是，独立创建了一个作用域，里面所有的变量都是局部变量，不会有命名冲突的情况        
+
+
+
+
+
+
+        // client 宽度 和我们offsetWidth 最大的区别就是，不包含边框    
+        var div = document.querySelector('div');    
+        console.log(div.clientWidth);   
+        console.log(div.clientTop);  
+        console.log(div.clientLeft); 
+        console.log('--------------');   
+
+        console.log(window.devicePixelRatio);   
+
+        //---------------------【flexible.js源码解析】------------------   
+        //以下三种情况都会刷新页面都会触发load事件   
+        //1、a标签的超链接   
+        //2、F5或者刷新按钮（强制刷新）   
+        //3、前进后退按钮    
+        //但是火狐中，有个特点，有个”往返缓存“，这个缓存中不仅保存这页面数据，还保存着DOM和JavaScript的状态；实际上是将整个页面都保存在了内存当中。   
+        //所以此时后退页面不能刷新页面。   
+        //此时可以使用pageshow事件来触发。这个事件在页面显示时触发，无论页面是否来自缓存。
+        //再重新加载页面中，pageshow会在load事件触发后触发；
+        //根据事件对象中的persisted来判断是否是缓存中的页面触发的pageshow事件，注意这个事件给window添加。   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>淘宝固定侧边栏</title>
+    <style>
+        *{
+            margin: 0;  
+            padding: 0;  
+            text-decoration: none;
+        }
+        body{
+            text-align: center;   
+            display: flex;   /*弹性布局*/
+            flex-flow: column;
+            /*justify-content: center;  */
+            align-items: center;
+            height: 5000px;
+        }
+        .w{
+            width: 1000px;
+        }
+        
+        .header,.banner,.main{
+            height: 600px;  
+        }
+        .header{
+            background-color: purple;
+        }
+        .banner{
+            background-color: royalblue;
+        }
+        .main{
+            background-color: greenyellow;  
+        }
+
+        .slider-bar{  
+            position: absolute;  
+            display: flex;  
+            width: 40px;
+            height: 120px;
+            background-color: pink;  
+            left: 50%;   
+            top: 50%;  
+            transform: translate(500px,-50%);  
+            text-align: center;   
+            
+
+        }
+
+        span{
+            display: none;  
+            position: absolute;   
+            bottom: 0;  
+        }
+
+    </style>
+</head>
+<body>
+    <div class="slider-bar">
+        <span class="goback"><a href="#top">返回顶部</a></span>
+    </div>
+    <div class="header w">头部区域</div>
+    <div class="banner w">banner区域区域</div>  
+    <div class="main w">主体部分</div>
+
+
+    
+
+    <script>
+        //固定侧边栏   
+        //1、原先侧边栏是绝对定位   
+        //2、当页面滚动到一定位置，侧边栏改为固定定位   
+        //3、页面继续滚动，会让返回顶部显示出来   
+        //案例分析：  
+        //1、需要用到页面滚动事件scroll因为是页面滚动，所以事件源是document   
+        //2、滚动到某个位置，就是判断页面被卷去的上部的值。  
+        //3、页面被卷去的头部：可以通过window.pageYOffset获取，如果被卷去的是左侧window.pageXOffset     
+        //4、注意，元素被卷去的头部是element.scollTop，如果是页面被卷去的头部则是window.pageYOffset   
+        //
+        //--------------【页面被卷去的头部兼容性解决方案】----------------   
+        //注意：页面被卷去的头部，有兼容性问题，因此被卷去的头部通常有如下几种写法：   
+        //1、声明了DTD，使用 document.documentElement.scrollTop   
+        //2、未声明DTD，使用 document.body.scrollTop   
+        //3、新方法 window.pageYOffset & window.pageXOffset , IE9开始使用     
+        /*
+        function getScroll(){
+            return{
+                left: window.pageXOffset || document.documentElement.dcrollLeft || document.body.scrollLeft || 0,
+                top: window.pageYOffset || document.documentElement.dcrollTop || document.body.scrollTop || 0  
+            };  
+        }   
+        */   
+       //使用的时候 getScroll().left    
+
+
+        
+
+
+
+
+
+
+
+
+
+        //1、获取元素  
+        var sliderbar = document.querySelector('.slider-bar');   
+        var banner = document.querySelector('.banner');  
+        /*var bannerTop = banner.offsetTop;   */ //位置固定的设置     
+        var bannerTop = 350;  
+
+        var main = document.querySelector('.main');   
+        var goback = document.querySelector('.goback');  
+
+        var mainTop = main.offsetTop;  
+        //2、页面滚动事件  
+        document.addEventListener('scroll', function(){
+            console.log('pageY:' + window.pageYOffset);  
+            console.log('bannerTop:' + bannerTop); 
+            console.log('mainTop高：' + mainTop);
+            console.log('window高：' + window.pageYOffset);
+            //3、当我们的页面被卷去的头部大于 topY 固定，此时我们的向上就要显示   
+            if(window.pageYOffset >= bannerTop){
+                sliderbar.style.marginTop = window.pageYOffset - bannerTop + 'px';    
+            }
+
+            if(window.pageYOffset >= mainTop){
+                goback.style.display = 'block';   
+                //点击返回   
+                  
+            } else {
+                goback.style.display = 'none';  
+            }
+            
+        });   
+        
+
+
+
+
+
+        
+    </script>
+</body>
+</html>

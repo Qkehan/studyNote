@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素滚动scroll概述</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            border: 10px solid skyblue;  
+            padding: 10px;  
+            overflow: auto;  
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+
+
+    </div>
+
+
+    <script>
+        //scroll就是滚动的，我们使用scroll系列的相关属性可以动态得到该元素的大小、滚动距离等等。    
+        //
+        // element.scrollTop        返回被卷去的上侧距离，返回数值不带单位。   
+        // element.scrollLeft       返回被卷的左侧距离，返回数值不带单位。   
+        // element.scrollWidth      返回自身实际宽度，不含边框，返回数值不带单位。  
+        // element.scrollHeight     返回自身实际高度，不含边框，返回数值不带单位。   
+
+
+
+        //scroll系列 和 client最大的区别是，scroll直接反映了内容的大小        
+        var div = document.querySelector('div'); 
+        console.log(div.scrollHeight);   //220   283
+        console.log(div.clientHeight);  //220  
+        console.log(div.scrollTop);  //0  
+        
+        //页面被卷去的头部   
+        //如果浏览器的高度（宽度）不足以显示整个页面时，会自动显示滚动条。
+        //当滚动条向下滚动时，页面上面被隐藏掉的高度，我们就称为页面被卷去的头部。滚动条滚动时会触发onscroll事件。   
+        //scroll滚动事件,当我们滚动条发生变化时会触发的事件      
+        div.addEventListener('scroll',function(){
+            console.log(div.scrollTop);
+        });   
+
+
+
+
+
+
+    </script>
+</body>
+</html>
