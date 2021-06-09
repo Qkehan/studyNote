@@ -76,6 +76,14 @@
         //1、让盒子每次的移动距离慢慢变小，速度就慢慢落下来。   
         //2、核心算法：（目标值-现在的位置）/10  作为每次移动距离的步长   
         //3、停止的条件是：让当前盒子位置等于目标位置就停止计时器   
+        //
+        //
+        //------------【动画函数添加回调函数】---------------    
+        //
+        //回调函数：函数可以作为一个参数。将这个函数作为参数传到另一个函数里，当那个函数执行完之后，在执行传进去的这个函数，这个过程叫做回调。    
+        //调用的时候 callback()    
+        //回调函数写的位置：定时器结束的位置。  
+        //
 
 
 
@@ -108,13 +116,15 @@
                     i++; 
                     if(obj.offsetLeft >= target){
                         on = 1;
+                        obj.style.backgroundColor = 'purple';
                     }
                 } else if(on != 0){ //减法运算
                     obj.style.left = obj.offsetLeft - stepDown + 'px';  
                     obj.innerHTML = obj.offsetLeft; 
                     i--;
                     if(obj.offsetLeft <= 0){
-                        on = 0;
+                        on = 0;  
+                        obj.style = 'none'; 
                     }
                     
                 }
