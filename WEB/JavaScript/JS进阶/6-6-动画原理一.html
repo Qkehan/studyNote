@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画原理一</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            display: flex;  
+            justify-content: center;
+            
+        }
+
+        div{
+            position: absolute;  
+            left: 0;  
+            width: 100px;  
+            height: 100px;  
+            background-color: pink;  
+            z-index: 10;
+        }
+        span{
+            position: absolute;
+            display: block;
+            left: 0; 
+            top: 100px;
+            width: 150px;
+            height: 150px;  
+            background-color: purple;
+        }
+
+    </style>
+</head>
+<body>
+    <button class="btn1">div300触发</button>
+    <button class="btn2">div800触发</button>
+    <button class="btn3">span700触发</button>  
+    <div></div>
+    <span></span>
+    
+
+    <script>
+        //-----【动画实现原理】-----      
+        //核心原理：通过定时器setInterval()不断移动盒子位置    
+        //实现步骤：
+        //1、获取盒子当前位置  
+        //2、让盒子在当前位置加上1个移动距离   
+        //3、利用定时器不断重复这个操作    
+        //4、加一个结束定时器的条件  
+        //5、注意此元素需要添加定位，才能使用element.style.left    
+        //
+        //------【动画函数的封装】------      
+        //注意函数需要传递两个参数，动画对象 & 移动到的距离  
+        //
+        //-----------【动画函数给不同的元素记录不同的定时器】-----------    
+        //如果多个元素使用这个动画函数，每次都要var声明定时器。
+        //我们给不同元素使用不同的定时器（自己专门用自己的）   
+        //
+        //核心原理：利用js是一门动态语言，可以很方便的给当前对象添加属性。   
+        //讲定时器声明，改为新建对象属性   obj.timer = setInterval  
+        //var obj = {}   
+        //obj.name = 'andy';   
+        //简单动画函数封装obj目标对象target目标位置   
+        //给不同元素制定了不同的定时器   
+        //
+        //有个bug，当我们不断地点击按钮，这个元素的速度会越来越快。因为开启了太多的定时器。   
+        //解决方案就是让我们元素只有一个定时器执行就可以了。  
+        //先清除以前的定时器，只保留当前的一个定时器     
+        //
+        //
+        //----------【缓动动画原理】-----------
+        //思路：   
+        //1、让盒子每次的移动距离慢慢变小，速度就慢慢落下来。   
+        //2、核心算法：（目标值-现在的位置）/10  作为每次移动距离的步长   
+        //3、停止的条件是：让当前盒子位置等于目标位置就停止计时器   
+
+
+        
+
+
+
+        var div = document.querySelector('div');   
+        var span = document.querySelector('span');  
+        var btn1 = document.querySelector('.btn1');  
+        var btn2 = document.querySelector('.btn2');  
+        var btn3 = document.querySelector('.btn3');  
+
+        
+        
+        //简单的动画封装 ,传递两个参数 obj目标对象 target目标位置      
+        function animate(obj, target){
+            //清除多余定时器   
+            clearInterval(obj.moveDiv);  
+             
+            obj.moveDiv = setInterval(function(){
+                //缓动动画步长值   
+                var step = (target - obj.offsetLeft) / 10;   
+                //把步长值改为整数，不要出现小数的问题  
+                //up运动时，五入取整，down运动时，四舍取整，往小取      
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);  
+                if(obj.offsetLeft == target){
+                    clearInterval(obj.moveDiv);  
+                }
+                obj.style.left = obj.offsetLeft + step + 'px';   
+                
+                
+                obj.innerHTML = obj.offsetLeft;  
+            },30);  
+
+            
+        };  
+        //试一下调用  
+        btn1.addEventListener('click', function(){
+            animate(div, 300); 
+        });
+        btn2.addEventListener('click', function(){
+            animate(div, 800); 
+        });
+        btn3.addEventListener('click', function(){
+            animate(span, 700); 
+        });
+
+        
+        
+
+        
+
+
+
+    </script>
+</body>
+</html>
