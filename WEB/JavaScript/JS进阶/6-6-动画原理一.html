@@ -13,9 +13,11 @@
             display: flex;  
             justify-content: center;
             
+            /* 隐藏多与内容 */
+            overflow: hidden;  
         }
 
-        div{
+        .div{
             position: absolute;  
             left: 0;  
             width: 100px;  
@@ -23,7 +25,7 @@
             background-color: pink;  
             z-index: 10;
         }
-        span{
+        .span{
             position: absolute;
             display: block;
             left: 0; 
@@ -33,14 +35,69 @@
             background-color: purple;
         }
 
+        .sliderbar{
+            width: 40px;  
+            height: 40px;  
+            
+            
+            position: absolute;
+            right: 0px;  
+            top: 400px;  /*侧栏上下的位置*/
+
+
+        }
+        
+        .point{
+            
+            width: 40px; 
+            height: 40px; 
+            background-color: pink;  
+            border-radius: 5px 0 0 5px;
+            float: left;
+
+            text-align: center;
+            line-height: 40px;  
+            font-size: 40px; 
+            font-weight: bold; 
+            color: purple;
+            z-index: 22;
+
+            
+            
+        }  
+        .con{
+            /* display: none;  用body隐藏了*/ 
+
+            position: absolute;
+            width: 160px;
+            height: 40px;
+            background-color: purple;
+            border-radius: 5px 0 0 5px;
+
+            line-height: 40px;
+            padding-left: 20px;
+            color: pink;  
+            font-weight: bold;
+
+            float: top;
+            z-index: -1;  
+
+            
+        }
+
     </style>
 </head>
 <body>
     <button class="btn1">div300触发</button>
     <button class="btn2">div800触发</button>
     <button class="btn3">span700触发</button>  
-    <div></div>
-    <span></span>
+    <div class="div"></div>
+    <span class="span"></span> 
+
+    <div class="sliderbar">
+        <span class="point"> <· </span>
+        <div class="con">问题反馈</div>
+    </div>
     
 
     <script>
@@ -57,7 +114,7 @@
         //注意函数需要传递两个参数，动画对象 & 移动到的距离  
         //
         //-----------【动画函数给不同的元素记录不同的定时器】-----------    
-        //如果多个元素使用这个动画函数，每次都要var声明定时器。
+        //如果多个元素使用这animate(con, -120); 个动画函数，每次都要var声明定时器。
         //我们给不同元素使用不同的定时器（自己专门用自己的）   
         //
         //核心原理：利用js是一门动态语言，可以很方便的给当前对象添加属性。   
@@ -84,14 +141,20 @@
         //调用的时候 callback()    
         //回调函数写的位置：定时器结束的位置。  
         //
+        //
+        //------------【动画函数的使用】-----------------
+        //动画函数封装到单独js文件里面   
+        //因为经常使用这个动画函数，可以单独封装到一个js文件里面，使用的时候引用这个JS文件即可。   
+        //1、单独新建一个JS文件   
+        //2、
 
 
         
 
 
 
-        var div = document.querySelector('div');   
-        var span = document.querySelector('span');  
+        var div = document.querySelector('.div');   
+        var span = document.querySelector('.span');  
         var btn1 = document.querySelector('.btn1');  
         var btn2 = document.querySelector('.btn2');  
         var btn3 = document.querySelector('.btn3');  
@@ -119,7 +182,7 @@
                 }
                 obj.style.left = obj.offsetLeft + step + 'px';   
                 
-                obj.innerHTML = obj.offsetLeft;  
+                // obj.innerHTML = obj.offsetLeft;  //显示位置像素  
             },30);  
 
             
@@ -137,6 +200,30 @@
                 span.style.backgroundColor = 'skyblue';
             }); 
         });
+
+
+        //动画函数使用  
+        var sliderbar = document.querySelector('.sliderbar');    
+        var point = document.querySelector('.point');  
+        var con = document.querySelector('.con');    
+
+        sliderbar.addEventListener('mouseenter', function(){
+            animate(con, -120, function(){ //回调  
+                 point.style.color = 'pink'; 
+                 point.style.backgroundColor = 'purple'; 
+            }); 
+            point.innerHTML = '·>'; 
+            con.style.display = 'block';  //隐藏   
+        });   
+        sliderbar.addEventListener('mouseleave', function(){
+            animate(con, 0, function(){  //回调
+                point.style.backgroundColor = 'pink';  
+                point.style.color = 'purple';  
+                con.style.display = 'none';  //回调函数，目的是，让恢复动画完毕后，再执行隐藏。  
+            }); 
+            point.innerHTML = '<·'; 
+        }); 
+
 
         
         
