@@ -59,7 +59,7 @@
 </head>
 <body>
     <div class="slider-bar">
-        <span class="goback"><a href="#top">返回顶部</a></span>
+        <span class="goback">返回顶部</span>
     </div>
     <div class="header w">头部区域</div>
     <div class="banner w">banner区域区域</div>  
@@ -92,17 +92,17 @@
             };  
         }   
         */   
-       //使用的时候 getScroll().left    
+        //使用的时候 getScroll().left      
+        //
+        //---------------【返回顶部的缓动动画】---------------     
+        //滚动窗口至文档的特定位置     
+        // window.scroll(x,y);          
+        //缓动动画的话，可以继续使用我们封装的动画函数   
+        //
+
 
 
         
-
-
-
-
-
-
-
 
 
         //1、获取元素  
@@ -129,12 +129,52 @@
             if(window.pageYOffset >= mainTop){
                 goback.style.display = 'block';   
                 //点击返回   
-                  
+                
             } else {
                 goback.style.display = 'none';  
             }
             
         });   
+
+        //4、当我们点击了返回顶部模块，就让窗口滚动到页面的最上方     
+        goback.addEventListener('click', function(){
+            //x & y 不需要单位   
+            animate(window, 0);    //调用函数  
+
+        });    
+
+
+        //上下缓动动画函数      
+        function animate(obj, target, callback){
+            //清除多余定时器   
+            clearInterval(obj.moveDiv);  
+            
+            obj.moveDiv = setInterval(function(){
+                //缓动动画步长值   
+                var step = (target - window.pageYOffset) / 10;   
+                //把步长值改为整数，不要出现小数的问题  
+                //up运动时，五入取整，down运动时，四舍取整，往小取      
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);  
+
+                if(window.pageYOffset == target){
+                    clearInterval(obj.moveDiv);  
+                    //回调函数   
+                    /*   
+                    if(callback){
+                        //是否有callbac传进来，有的话调用函数   
+                        callback();   
+                    };
+                    */   
+                callback && callback();   //回调函数的  优化写法   
+                };
+                // obj.style.top = window.pageYOffset + step + 'px';   
+                moveY = window.pageYOffset + step;   
+                window.scroll(0, moveY);    
+                
+                // obj.innerHTML = obj.offsetLeft;  //显示位置像素  
+            },20);
+        };    
+
         
 
 

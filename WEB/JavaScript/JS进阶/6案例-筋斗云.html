@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>筋斗云</title>
+    <style>
+        *{
+            margin: 0;  
+            padding: 0;  
+            list-style: none;
+            text-decoration: none;  
+        }
+        body{
+            text-align: center;
+            background-color: midnightblue;
+        }
+
+        
+        .c_nav{
+            position: relative;
+            width: 800px;
+            height: 40px;  
+            margin: 100px auto;  
+            background-color: pink;
+
+        }   
+        .cloud{
+            position: absolute;
+            width: 100px;
+            height: 40px;  
+            background-color: yellowgreen;
+            left: 0;
+
+            z-index: 99;
+        }  
+
+        .c_nav ul{
+            position: absolute;
+            width: 100%;  
+            height: 100%;  
+
+            display: flex;  
+            justify-content: space-evenly;
+        } 
+        .c_nav ul li{
+            line-height: 40px; 
+            float: left;
+            
+            background-color: skyblue;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="c_nav" class="c_nav">
+        <span class="cloud"></span>
+        <ul>
+            <li class="current"><a href="#">首页新闻</a></li>
+            <li><a href="#">师资力量</a></li>
+            <li><a href="#">活动策划</a></li>
+            <li><a href="#">企业文化</a></li>
+            <li><a href="#">招聘信息</a></li>
+            <li><a href="#">公司简介</a></li>
+            <li><a href="#">你是个啥</a></li>
+            <li><a href="#">啥是个你</a></li>
+        </ul>
+    </div>
+    
+    
+
+    <script>
+        //案例：筋斗云   
+        //鼠标经过某个li，筋斗云跟着到当前小li的位置  
+        //鼠标离开这个小li，鼠标复原到原来的位置   
+        //鼠标点击某个小li，筋斗云就会留在点击这个小li的位置    
+        //
+        //
+        //案例分析：   
+        //1、利用动画函数做动画效果   
+        //2、原先筋斗云的起始位置为0    
+        //3、当鼠标经过某个li的时候，把前li的offsetLeft 位置，作为目标值即可    
+        //4、鼠标离开某个li的时候，就把目标值设为0    
+        //5、
+        //
+        //
+
+
+        //1、获取元素   
+        var cloud = document.querySelector('.cloud');   
+        var c_nav = document.querySelector('.c_nav');   
+        var lis = c_nav.querySelectorAll('li');    
+        //2、给所有的小li绑定事件   
+        for(var i = 0; i < lis.length; i++){
+            lis[i].addEventListener('mouseenter', function(){
+                animateX(obj,target,callback);  
+            });   
+        };   
+
+        
+
+        //左右缓动动画函数      
+        function animateX(obj, target, callback){
+            //清除多余定时器   
+            clearInterval(obj.moveDiv);  
+            
+            obj.moveDiv = setInterval(function(){
+                //缓动动画步长值   
+                var step = (target - obj.offsetLeft) / 10;   
+                //把步长值改为整数，不要出现小数的问题  
+                //up运动时，五入取整，down运动时，四舍取整，往小取      
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);  
+
+                if(obj.offsetLeft == target){
+                    clearInterval(obj.moveDiv);  
+                    //回调函数   
+                    /*   
+                    if(callback){
+                        //是否有callbac传进来，有的话调用函数   
+                        callback();   
+                    };
+                    */   
+                    callback && callback();   //回调函数的  优化写法   
+                };
+                obj.style.left = obj.offsetLeft + step + 'px';   //移动距离的值会一次次递减，形成减速   
+                
+                // obj.innerHTML = obj.offsetLeft;  //显示位置像素  
+            },20);
+        };    
+
+
+
+
+    </script>
+</body>
+</html>
