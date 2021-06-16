@@ -2,16 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>移动端基础</title>
     <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+        }
 
     </style>
 </head>
 <body>
+    啦啦啦啦啦啦啦
+    <div></div>
+
     
 
     <script>
+        //移动端调试方法   
+        //chrome DevTools（谷歌浏览器）的模拟手机调试   
+        //搭建本地web服务器，手机和服务器一个局域网内，通过手机访问服务器  
+        //使用外网服务器，直接ip或域名访问   
+        //
+        //---------【视口布局】---------    
+        //视口 viewport 就是浏览器显示页面内容页面的屏幕区域。视口可以分为 布局视口、视觉视口 & 理想视口        
+
+        //布局视口 layout viewport   手机980px的视口分辨率，元素看上去会很小   
+        //视觉视口 visual viewport   是用户正在看到的“网站的区域”。就是手机屏幕的可视区域。 
+        //       
+        //理想视口 ideal viewport    
+        //为了在手机上理想的阅读而设计的。   
+        //需要手动添加meta视口标签通知浏览器操作   
+        //meta视口标签的主要目的：布局视口宽度应该与理想视口宽度一致，简单理解就是，设备有多宽，我们布局的视口就多宽。   
+
+        //-----------【meta视口标签】------------   
+        /*
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" >
+        */     
+        //属性解释说明：    
+        // width            宽度设置的是viewport宽度，可以设置device-width特殊值   
+        // initial-scale    初始缩放比，大于0的数字    
+        // maxmum-scale     最大缩放比，大于0的数字   
+        // minimum-scale    最小缩放比，大于0的数字   
+        // user-scalable    用户是否可以缩放，yes或no（1或0）   
+        //
+        //------【标准的viewport设置】-------     
+        //视口宽度和设备保持一直  
+        //视口缩放比例1.0  
+        //不允许用户自行缩放   
+        //最大允许的缩放比例1.0   
+        //最小允许的缩放比例1.0   
+        //
+        //
+        //----------【二倍图】----------     
+        //物理像素 & 物理像素比：     
+        //物理像素点指的是屏幕显示的最小颗粒，是物理真实存在的。市场上在出厂时就设置好的，例如苹果6/7/8 是 750*1334    
+        //我们开发的时候1px不是等于1个物理像素的    
+        //pc端页面，1px等于1个物理像素的，但是移动端不尽相同    
+        //一个px的能显示的物理像素点的个数，称为物理像素比或称屏幕像素比    
+        //
+        //1.物理像素就是我们说的分辨率，iphone8的物理像素比750    
+        //2、在iPhone里面 1px开发像素 = 2个物理像素   
+
+        //
         
     </script>
 </body>
