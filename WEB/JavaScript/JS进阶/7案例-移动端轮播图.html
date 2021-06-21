@@ -8,33 +8,48 @@
         *{
             margin: 0; 
             padding: 0;  
-            list-style: none;  
             text-decoration: none;  
+            text-align: center;
+        }
+        body{
+            max-width: 540px;   
+            min-width: 320px;  
+            margin: 0 auto;
+        }
+
+        .search-index{
+            margin: 0 auto;
+            
         }
 
         /* focus */
         .fucus{
             position: relative;
+            width: 100%;
             
             padding-top: 44px;  
-            
+            overflow: hidden;
+        }
+        .focus img{
+            width: 100%;  
         }
         
 
         
         .focus ul{
-            overflow: hidden; 
-            width: 500%;
+            overflow: hidden;  /* 将多余图片隐藏到，ul实现滑动 */
+            width: 500%;   /*可以横向存放5个图片*/
+
+            margin-left: -100%;  /* 让ul左侧走一个屏幕宽度，调整默认显示图片*/
         }
         .focus ul li{
-            width: 20%;   /* ul的5分之一 */
-            float: left;
+            float: left;   
+            width: 20%;   /* ul的5分之一,让ul为5倍大小，就可以实现存放 */
         }
 
         .focus ol{
             position: absolute;
-            bottom: 5px;  
-            right: 5px; 
+            right: 0;
         }
         .focus ol li{
             display: inline-block;
@@ -42,6 +57,9 @@
             height: 5px; 
             background-color: red;  
             border-radius: 2px;
+            list-style: none; 
+
+            transition: all 0.3s;  
         }
         .focus ul li img{
             width: 100%;
@@ -52,14 +70,24 @@
             width: 15px;  
         }
 
+        .local-nav{
+            display: block;
+        }
+
+        .bg{
+            background-color: darkslateblue;
+        }
+
     </style>
 </head>
+
 <body>
     <!-- 顶部搜索 -->
     <div class="search-index">
         <div class="search">搜索：目的地/酒店/景点/航班号</div>
         <a href="#" class="user">我 的</a>
     </div>
+
     <!-- 焦点图模块 -->
     <div class="focus">
         <ul>
@@ -71,11 +99,12 @@
         </ul>
         <!-- 小圆点 -->  
         <ol>
-            <li class="current"></li>s
+            <li class="current"></li>  
             <li></li>
             <li></li>
         </ol>
     </div>
+
     <!-- 局部导航栏 -->
     <ul class="local-nav">
         <li>
@@ -109,6 +138,8 @@
             </a>
         </li>
     </ul>
+
+    <button>切换</button>
     
 
     <script>
@@ -117,7 +148,135 @@
         //2、手指可以拖动播放轮播图   
 
 
+        //案例分析：   
+        //1、自动播放  
+        //2、开启定时器  
+        //3、移动端移动，可以使用translate移动    
+        //4、想要图片优雅的移动，请添加过渡效果   
+        //1、自动播放功能--无缝滚动    
+        //2、注意，我们判断条件是要等图片滚动完毕再去判断，就是过度完成后判断    
+        //3、此时就需要添加检测过度完成事件 transitionend  
+        //4、判断条件：如果索引号等于3 说明走到了最后一张图片，此时索引号要复原为0    
+        //5、此时图片，去掉过渡效果，然后移动    
+        //6、如果索引号小于0，说明是倒这走的，跳转索引号等于2   
+        //
+        //------------【classList属性】-----------     
+        //classList属性是HTML5新增的一个属性，返回元素的类名。但是只有ie10以上版本支持。    
+        //该属性用于在元素中添加，移除及切换css类，有以下方法    
+        //
+        //添加类：是在后面追加类名不会覆盖以前的类名，注意类名不用添加标点         
+        // element.classList.add('类名');    
+        //
+        //移除类:   
+        // element.classList.remove('类名');   
+        //
+        //切换类：  
+        // element.classList.toggle('类名');   
+        //
+        //-------【小圆点变化】------   
+        //1、小圆点跟随变化效果  
+        //2、把ol里面li带有current类名的选出来去掉类名 remove   
+        //3、让当前索引号的小li加上current  add  
+        //但是，是等着过度结束之后变化，所以这个写到transitionend 事件里面    
+        //
+        //-------【手指滑动轮播图】--------     
+        //1、就是图片ul随手指移动，就是移动端拖动元素      
+        //2、触摸元素 touchstart： 获得手指初始坐标   
+        //3、移动手指 touchmove： 计算手指的滑动距离，并且移动盒子   
+        //4、离开手指 touchend： 根据滑动的距离分不同的情况    
         
+
+        
+
+
+
+        window.addEventListener('load', function(){
+            
+
+            // 1、获取元素  
+            var focus = document.querySelector('.focus');   
+            var ul = focus.children[0];      
+            var ol = focus.children[1];   
+            var li = ol.children;  /* 小圆点的li */         
+            // 获得focus的宽度   
+            var focusWidth = focus.offsetWidth;  
+            console.log(focusWidth); //375   
+            //2、利用定时器自动轮播图片  
+            var index = 0;    
+            var timer = setInterval(function(){
+                index++;  
+                var translateX = -index * focusWidth;  
+                /*css3这一个过度方法，可以让动画过度*/
+                ul.style.transition = 'all.3s';  
+                ul.style.transform = "translateX(" + translateX + "px)";    
+                
+            },2000);  
+
+            //等着我们过度完成之后，再去判断，监听过度完成事件 transitionend   
+            ul.addEventListener('transitionend', function(){
+                //无缝滚动   
+                console.log('加载完毕');   
+                if(index >= 3){   //ul.length == 掐头去尾
+                    //索引号复原为0     
+                    index = 0;  
+                    //去掉过渡效果，让我们的ul快速跳到目标位置   
+                    ul.style.transition = 'none';  
+                    //利用最新的索引号乘以宽度，去滚动图片，这个滚动的过程就是还原的过程      
+                    var translateX = -index * focusWidth; 
+                    ul.style.transform = "translateX(" + translateX + "px)";   
+                    
+                } else if(index < 0 ){
+                    index = 2;  
+                    //去掉过渡效果，让我们的ul快速跳到目标位置   
+                    ul.style.transition = 'none';  
+                    //利用最新的索引号乘以宽度，去滚动图片，这个滚动的过程就是还原的过程      
+                    var translateX = -index * focusWidth; 
+                    ul.style.transform = "translateX(" + translateX + "px)";   
+                    
+                }
+
+                //小圆点跟随变化  
+                //2、把ol里面li带有current类名的选出来去掉类名 remove     
+                ol.querySelector('li.current').classList.remove('current');  
+                //3、让当前索引号的小li加上current  add  
+                ol.children[index].classList.add('current');  
+                //但是，是等着过度结束之后变化，所以这个写到transitionend 事件里面   
+
+            });  
+
+            //手指滑动轮播图   
+            // 触摸元素 touchstart： 获得手指初始坐标   
+            var startX = 0;  /* 左右滑动不需要Y */  
+            var moveX = 0;  /*后面我们会使出这个移动距离所以要定义一个全局变量*/
+            ul.addEventListener('touchstart', function(e){
+                startX = e.targetTouches[0].pageX;  
+                /*手指触摸的时候就停止定时器*/
+                clearInterval(timer);  
+            });
+            // 移动手指 touchmove： 计算手指的滑动距离，并且移动盒子
+            ul.addEventListener('touchmove', function(e){
+                //计算移动距离   
+                moveX = e.targetTouches[0].pageX - startX;    
+                //移动盒子：盒子原来的位置 + 手指移动的距离    
+                var translateX = -index * focusWidth + moveX;  
+                // 手指拖动的时候，不需要动画效果，所以要取消过渡效果   
+                ul.style.transition = 'none';  
+                ul.style.transform = "translateX(" + translateX + "px)";   
+            });
+
+
+            // 切换类，改变背景   
+            var btn = document.querySelector('button');  
+            btn.addEventListener('click', function(){
+                document.body.classList.toggle('bg');   
+            });
+            
+            //
+            
+            
+            
+        })
+
     </script>
 </body>
 </html>
