@@ -9,7 +9,9 @@
             margin: 0;
             padding: 0;
         }
-        div:nth-child(1){
+
+
+        body div:nth-child(1){
             /* 传统盒子模型= Width + border + padding */
             /*这个盒子会因为，border + padding 的变化改变大小*/
             width: 187.5px;
@@ -19,7 +21,7 @@
             background: url(img/375x375.jpeg) no-repeat;  
             background-size: 187.5px ;
         }
-        div:nth-child(2){
+        body div:nth-child(2){
             /* 有了这句话，就让赫兹变成CSS3盒子模型 */
             box-sizing: border-box;  
             /* 这个会让盒子的大小固定，不会受到 padding + border 的影响，并计算在内 */
@@ -32,23 +34,35 @@
             background-size: 187.5px ;
         }
 
-
         img{
             /*原始图片100*100px*/
             width: 375px;
             height: 375px;
         }
+
+        a{
+            /* 这样就清除了，iPhone端的链接高亮 */
+            -webkit-tap-highlight-color: transparent;  
+        }
+        input{
+            -webkit--webkit-appearance: none;  
+        }
+
+
+
     </style>
 </head>
 <body>
     啦啦啦啦啦啦啦
     <div></div>
     <div></div>
+
     <img src="img/375.gif" alt="">
     <!-- 2倍图 -->
     <img src="img/750x750.jpeg" alt="">
     
-
+    <a href="#">Qkehan</a>
+    <input type="button" value="按钮">
     
 
     <script>
@@ -142,7 +156,7 @@
         // 在移动端浏览器默认的外观在iOS上加上这个属性，才能给按钮和输入框自定义样式    
         // -webkit-appearance: none;    
         //
-        // 禁用长按页面时的弹出菜单     
+        // 禁用长按页面时的弹出菜单,比如链接或图片       
         // img,a {-webkit-touch-callout: none;}    
         //
 
