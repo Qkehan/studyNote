@@ -9,14 +9,30 @@
             margin: 0;
             padding: 0;
         }
-        div{
+        div:nth-child(1){
+            /* 传统盒子模型= Width + border + padding */
+            /*这个盒子会因为，border + padding 的变化改变大小*/
             width: 187.5px;
             height: 187.5px;
-            border: 2px solid red;
+            border: 20px solid red;
             background-color: pink;
             background: url(img/375x375.jpeg) no-repeat;  
             background-size: 187.5px ;
         }
+        div:nth-child(2){
+            /* 有了这句话，就让赫兹变成CSS3盒子模型 */
+            box-sizing: border-box;  
+            /* 这个会让盒子的大小固定，不会受到 padding + border 的影响，并计算在内 */
+
+            width: 187.5px;
+            height: 187.5px;
+            border: 20px solid purple;
+            background-color: pink;
+            background: url(img/375x375.jpeg) no-repeat;  
+            background-size: 187.5px ;
+        }
+
+
         img{
             /*原始图片100*100px*/
             width: 375px;
@@ -26,6 +42,7 @@
 </head>
 <body>
     啦啦啦啦啦啦啦
+    <div></div>
     <div></div>
     <img src="img/375.gif" alt="">
     <!-- 2倍图 -->
@@ -113,6 +130,21 @@
         // css盒子模型： 盒子的宽度 = css中设置的宽度Width里面包含了border和padding 也就是说，我们的css3中的盒子模型，padding和border不会撑大盒子了     
         //   box-sizing: border-box;   css3盒子模型
         //   box-sizing: content-box;    传统盒子模型  
+        //
+        //-----------【特殊样式】----------
+        // css3盒子模型:  
+        // box-sizing: border-box;   
+        // -webkit-box-sizing: border-box;  
+        //
+        // 点击高亮我们需要清除，设置为 transparent 完全透明     
+        // -webkit-tap-highlight-color: transparent;   
+        //
+        // 在移动端浏览器默认的外观在iOS上加上这个属性，才能给按钮和输入框自定义样式    
+        // -webkit-appearance: none;    
+        //
+        // 禁用长按页面时的弹出菜单     
+        // img,a {-webkit-touch-callout: none;}    
+        //
 
 
 
