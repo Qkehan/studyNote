@@ -10,16 +10,27 @@
             padding: 0;
         }
         div{
-            width: 300px;
-            height: 300px;
+            width: 187.5px;
+            height: 187.5px;
+            border: 2px solid red;
             background-color: pink;
+            background: url(img/375x375.jpeg) no-repeat;  
+            background-size: 187.5px ;
         }
-
+        img{
+            /*原始图片100*100px*/
+            width: 375px;
+            height: 375px;
+        }
     </style>
 </head>
 <body>
     啦啦啦啦啦啦啦
     <div></div>
+    <img src="img/375.gif" alt="">
+    <!-- 2倍图 -->
+    <img src="img/750x750.jpeg" alt="">
+    
 
     
 
@@ -69,7 +80,49 @@
         //1.物理像素就是我们说的分辨率，iphone8的物理像素比750    
         //2、在iPhone里面 1px开发像素 = 2个物理像素   
 
+        //-----------【多倍图】-------------
+        //对于一张50px*50px的图片，在手机retina屏中打开，按照刚才的物理像素比会放大倍数，这样会造成图片模糊  
+        //在标准viewport设置中，使用倍图来提高图片质量，解决在高清设备中的模糊问题   
+        //通常使用二倍图，因为iPhone6/7/8的影响，但是现在还存在3倍图4倍图的情况，这个看实际开发需请求   
+        //背景图注意缩放问题    
         //
+        //我们需要一个50*50像素（css像素）的图片，直接放到我们的iPhone8 里面会放大2倍 100*100 就会模糊    
+        //我们采取的是，放一个100*100图片，然后手动的把二个图片，缩小为50*50（css像素）    
+        //我们准备的图片，比我们实际需要的大小，大两倍，这种方式就是 2倍图   
+
+        //背景缩放 background-size   
+        //background-size属性规定背景图像的尺寸   
+        //background-size: width height;  
+        //1、单位：长度 | 百分比 | cover | contain     
+        //2、cover把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。   
+        //3、contain把图像扩展至最大尺寸，，以使其宽度完全适应内容区域。      
+        //
+        //
+
+        //---------【移动端技术解决方案】----------   
+        //1、css初始化 normalize.css   
+        // 移动端css初始化推荐使用normalize.css    
+        // Normalize.css:保护了有价值的默认值   
+        // Normalize.css:修复了浏览器的bug   
+        // Normalize.css:是模块化的   
+        // Normalize.css:拥有详细的文档   
+        // 官方地址：http://necolas.github.io/normalize.css/     
+        //
+        //2、css3盒子模型box-sizing   
+        // 传统模式宽度计算：盒子的宽度 = css中设置的Width + border + padding    
+        // css盒子模型： 盒子的宽度 = css中设置的宽度Width里面包含了border和padding 也就是说，我们的css3中的盒子模型，padding和border不会撑大盒子了     
+        //   box-sizing: border-box;   css3盒子模型
+        //   box-sizing: content-box;    传统盒子模型  
+
+
+
+
+
+
+
+
+
+
         
     </script>
 </body>
