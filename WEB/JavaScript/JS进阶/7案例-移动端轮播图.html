@@ -12,9 +12,8 @@
             text-align: center;
         }
         body{
-            max-width: 540px;   
-            min-width: 320px;  
-            margin: 0 auto;
+            margin: 0 auto;  
+            position: fixed;  /* 让页面的其他组件固定布局 */
         }
 
         .search-index{
@@ -183,7 +182,10 @@
         //1、就是图片ul随手指移动，就是移动端拖动元素      
         //2、触摸元素 touchstart： 获得手指初始坐标   
         //3、移动手指 touchmove： 计算手指的滑动距离，并且移动盒子   
-        //4、离开手指 touchend： 根据滑动的距离分不同的情况    
+        //4、离开手指 touchend： 根据滑动的距离分不同的情况回弹      
+        //5、如果移动距离小于某个像素，就回弹原来的位置。    
+        //6、如果移动距离大于某个像素，就上一张下一张滑动。   
+        //7、 
         
 
         
@@ -201,16 +203,29 @@
             // 获得focus的宽度   
             var focusWidth = focus.offsetWidth;  
             console.log(focusWidth); //375   
+
             //2、利用定时器自动轮播图片  
-            var index = 0;    
+            var index = 0;   
+
+            /*一个可以全局调用的定时器*/
+            var stop = 0;  
             var timer = setInterval(function(){
                 index++;  
-                var translateX = -index * focusWidth;  
-                /*css3这一个过度方法，可以让动画过度*/
-                ul.style.transition = 'all.3s';  
-                ul.style.transform = "translateX(" + translateX + "px)";    
+                if(stop == 0){
+                    var translateX = -index * focusWidth;  
+                    /*css3这一个过度方法，可以让动画过度*/
+                    ul.style.transition = 'all.3s';  
+                    ul.style.transform = "translateX(" + translateX + "px)";    
+                    console.log('一'); 
+                } else {
+                    console.log('stop != 0');  /*测试按下的时候，暂停定时器*/
+                }; 
                 
-            },2000);  
+            },2000); 
+            
+            
+            
+
 
             //等着我们过度完成之后，再去判断，监听过度完成事件 transitionend   
             ul.addEventListener('transitionend', function(){
@@ -234,7 +249,6 @@
                     ul.style.transform = "translateX(" + translateX + "px)";   
                     
                 }
-
                 //小圆点跟随变化  
                 //2、把ol里面li带有current类名的选出来去掉类名 remove     
                 ol.querySelector('li.current').classList.remove('current');  
@@ -244,17 +258,18 @@
 
             });  
 
-            //手指滑动轮播图   
+            //-----------【手指滑动轮播图】-------------       
             // 触摸元素 touchstart： 获得手指初始坐标   
             var startX = 0;  /* 左右滑动不需要Y */  
-            var moveX = 0;  /*后面我们会使出这个移动距离所以要定义一个全局变量*/
+            var moveX = 0;  /*后面我们会使用这个移动距离所以要定义一个全局变量*/   
+            var flag = false;   /*如果没有滑动，时使用*/    
             ul.addEventListener('touchstart', function(e){
                 startX = e.targetTouches[0].pageX;  
                 /*手指触摸的时候就停止定时器*/
-                clearInterval(timer);  
+                stop = 1;  /*大于0的数字，暂停*/
             });
             // 移动手指 touchmove： 计算手指的滑动距离，并且移动盒子
-            ul.addEventListener('touchmove', function(e){
+            ul.addEventListener('touchmove', function(e){ 
                 //计算移动距离   
                 moveX = e.targetTouches[0].pageX - startX;    
                 //移动盒子：盒子原来的位置 + 手指移动的距离    
@@ -262,7 +277,42 @@
                 // 手指拖动的时候，不需要动画效果，所以要取消过渡效果   
                 ul.style.transition = 'none';  
                 ul.style.transform = "translateX(" + translateX + "px)";   
+                flag = true;  /* 如果用户手指移动过我们再去判断否则不做判断 */   
+                e.preventDefault();  //阻止滚动屏幕的行为    
             });
+
+            //----------【手指离开，根据移动距离去判断是回弹还是播放上一张下一张】------------         
+            ul.addEventListener('touchend', function(){
+
+
+                if(flag == true){  /* 如果真的移动了，flag == true 那在进行计算 */
+
+                    //1、如果移动距离大于50像素，我们就播放上一张下一张   
+                    if(Math.abs(moveX) > 50){  /*如果滑动阀值大于50*/
+                        //如果是右滑就是，播放上一张 moveX 是正值    
+                        if(moveX > 0){
+                            index--;    
+                        } else {
+                            index++;  
+                        };  
+                        //如果是左滑就是，播放下一张 moveX 是负值
+                        var translateX = -index * focusWidth;  
+                        ul.style.transition = 'all 0.3s';   
+                        ul.style.transform = "translateX(" + translateX + "px)";   
+                    } else {  
+                        //2、如果移动距离小于50像素，就回弹   
+                        var translateX = -index * focusWidth;   
+                        ul.style.transition = 'all 0.1s';  
+                        ul.style.transform = "translateX(" + translateX + "px)";  
+                    };  
+                    console.log(2);
+                }; 
+                
+                //手指离开的时候，重新开启定时器。  
+                /*还原stop为0，使得定时器继续。*/
+
+                stop = 0;  
+            });   
 
 
             // 切换类，改变背景   
@@ -271,11 +321,8 @@
                 document.body.classList.toggle('bg');   
             });
             
-            //
             
-            
-            
-        })
+        });  
 
     </script>
 </body>
