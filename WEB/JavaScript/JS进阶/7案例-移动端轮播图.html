@@ -13,7 +13,30 @@
         }
         body{
             margin: 0 auto;  
-            position: fixed;  /* 让页面的其他组件固定布局 */
+            height: 200%;    
+            overflow-x: hidden;  /*横向隐藏*/
+        } 
+        .page{
+            height: 3000px;  
+            background-color: gray;
+        }
+        .goBack{
+            display: none;  
+            position: fixed;  
+            width: 35px;  
+            height: 35px;  
+            background-color: rgba(255, 255, 255, 0.493);
+            border: 1px solid gray;  
+            border-radius: 50%;
+
+            text-align: center;
+            line-height: 35px;
+            font-size: 35px;  
+            color: gray;  
+            
+            right: 10px;
+            bottom: 50px;  
+            
         }
 
         .search-index{
@@ -23,7 +46,7 @@
 
         /* focus */
         .fucus{
-            position: relative;
+            position: relative;   
             width: 100%;
             
             padding-top: 44px;  
@@ -81,6 +104,8 @@
 </head>
 
 <body>
+    <!-- 返回顶部模块 -->
+    <div class="goBack">↑</div>  
     <!-- 顶部搜索 -->
     <div class="search-index">
         <div class="search">搜索：目的地/酒店/景点/航班号</div>
@@ -139,6 +164,7 @@
     </ul>
 
     <button>切换</button>
+    <div class="page"></div>
     
 
     <script>
@@ -185,8 +211,61 @@
         //4、离开手指 touchend： 根据滑动的距离分不同的情况回弹      
         //5、如果移动距离小于某个像素，就回弹原来的位置。    
         //6、如果移动距离大于某个像素，就上一张下一张滑动。   
-        //7、 
-        
+        //7、回弹，如果滑动距离小于50px，就回弹。   
+        //
+        //------------【返回顶部】----------------    
+        //当页面滚动到某个位置，就显示隐藏 -- 返回顶部   
+        //滚动到某个地方 
+        //1、事件：scroll 页面滚动事件   
+        //2、如果被卷的头部 window.pageOffsetTop 大于某个数值    
+        //3、点击 window.scroll(0,0) 返回顶部    
+        //
+        //-----------【移动端 click 300ms 延迟问题】---------------   
+        //click 延迟问题解决方案   
+        //移动端click事件会延迟，原因是移动端屏幕双击会缩放（double tap to zoom）页面。     
+        //它是在等待你有没有，双击这个缩放操作。   
+        //解决方案：  
+        //1、禁用缩放，浏览器禁用默认的缩放行为并且去掉300ms的点击延迟。   
+        // <meta name="viewport" content="user-scalable=no">   //移动端常用，但是不能缩放了   
+        //2、利用touch事件自己封装这个事件解决300ms延迟。 //但是一次只能给一个元素，解决问题，     
+        //  原理就是：  
+        //  *1、当我们收手指触摸屏幕，记录当前触摸时间    
+        //  *2、当我们手指离开屏幕的时候，用离开的时间减去触摸的时间。   
+        //  *3、如果时间小于150ms，并且没有滑动过屏幕，那么我么就定义为点击。    
+        //  *4、但是一次只能给一个元素，解决问题，   
+        //
+        /*
+        //封装tap，解决click延迟  
+        function tap(obj, callback){
+            var isMove = false;  
+            var startTime = 0;  //记录触摸时的时间变量  
+            obj.addEventListener('touchstart', function(e){
+                startTime = Date.now();  //记录触摸时间   
+            });  
+            obj.addEventListener('touchmove', function(e){
+                isMove = true;  //看看是否滑动，由滑动就算拖拽，不算点击   
+            });  
+            obj.addEventListener('touchend', function(e){
+                if(!isMove && (Date.now() - startTime) < 150){   //如果手指触摸和离开时间小于150ms算点击    
+                    callback && callback();   //执行回调函数   
+                }；
+                isMove = false;   //取反 重置   
+                startTime = 0;    
+            });
+        };   
+        //调用  
+        tap(div, function(){ 执行代码 });     
+        */  
+        //
+        //3、使用插件：fastclick插件解决300ms延迟。   
+        //------【什么是插件】------
+        //JS插件是js文件，他遵循一定规范编写，方便程序展示效果，拥有特定功能且方便调用。如轮播图和瀑布流插件。   
+        //特点：它一般是为了解决某个问题专门存在的，其功能单一，并且比较小。   
+        //我们之前写的animate.js也算一个简单的插件   
+        //fastclick插件解决延迟，使用延迟。
+        //GitHub官网地址：https://github.com/ftlabs/fastclick   
+        //
+
 
         
 
@@ -278,7 +357,7 @@
                 ul.style.transition = 'none';  
                 ul.style.transform = "translateX(" + translateX + "px)";   
                 flag = true;  /* 如果用户手指移动过我们再去判断否则不做判断 */   
-                e.preventDefault();  //阻止滚动屏幕的行为    
+                e.preventDefault();  //阻止滚动屏幕的行为，防止横向滑动。       
             });
 
             //----------【手指离开，根据移动距离去判断是回弹还是播放上一张下一张】------------         
@@ -321,6 +400,19 @@
                 document.body.classList.toggle('bg');   
             });
             
+            //--------【返回顶部】---------   
+            var goBack = document.querySelector('.goBack');     
+            window.addEventListener('scroll', function(){
+                if(window.pageYOffset >= 200){
+                    goBack.style.display = 'block'; 
+                    goBack.addEventListener('click', function(){
+                        window.scroll(0,0);   
+                        console.log('top');
+                    });
+                } else {
+                    goBack.style.display = 'none'; 
+                };
+            });   
             
         });  
 
