@@ -3,4 +3,5 @@
     
     echo '欢迎您！！';
     echo date("Y-m-d H:i:s");  
+    echo '【常量和变量】'."<br>";
 ?>
