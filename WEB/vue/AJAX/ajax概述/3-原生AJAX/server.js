@@ -11,6 +11,8 @@ const app = express();
 app.get('/server', (request, response)=>{   //(函数形参， 函数形参)
     //设置响应头 设置允许跨域  
     response.setHeader('Access-Control-Allow-Origin','*');   
+    //设置特殊响应头、并将POST改为all。       
+    response.setHeader('Access-Control-Allow-Headers','*');  
     //设置简单响应  
     response.send('hello AJAX!');  
 });  
@@ -24,6 +26,23 @@ app.all('/server', (request, response)=>{   //(函数形参， 函数形参)
     //设置简单响应  
     response.send('hello AJAX POST!');  
 });  
+
+// all可以接受任意类型的请求   
+app.all('/json-server', (request, response)=>{   //(函数形参， 函数形参)
+    //设置响应头 设置允许跨域  
+    response.setHeader('Access-Control-Allow-Origin','*');   //星号*表示所有类型的头信息，都能接受。  
+    //设置特殊响应头、并将POST改为all。       
+    response.setHeader('Access-Control-Allow-Headers','*');  
+    //响应一个数据  
+    const date = {
+        name: 'atguigu'
+    }
+    //对对象进行转换 字符串 
+    let str = JSON.stringify(date);   
+    //设置简单响应  因为send()方法里面只能接受“字符串”和“八分”。  
+    // response.send('hello AJAX JSON! ' + str);  
+    response.send(str); 
+}); 
 
 //4、监听端口启动服务   
 app.listen(8000, ()=>{
