@@ -2,6 +2,8 @@
     header("Content-type:text/html;charset=utf-8");
 
     echo '你好世界！！';   
+    echo '【1-输出符】'."<br>";   
+    echo "当前文件的路径为：".__FILE__.'<br>';    //获取当前文件路径  
 ?>
 
 //print & echo   
