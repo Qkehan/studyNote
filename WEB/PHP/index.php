@@ -15,37 +15,56 @@
         在PHP中{
             简单的字符串处理用的就是字符串函数  
             复杂的处理用正则表达式 
-        }， 
+        };   
     2、字符串的特点{  
         *1、其他类型数据在字符串处理函数里面会自动转换为字符串来处理    
         *2、可以将字符串视为数组[]，也可以当做字符集合来看待{}推荐，就是说明显不是数组，但是可以视为数组。简单的用下标访问出来。          
-    }，   
+    };      
     3、强大的字符串处理函数【重点】{   
         【不是在源字符串上修改，而是返回一个格式化的新字符串。】   
         *1、输出函数{  
             echo()      --可以看做是系统指令，不用加括号，直接写参数。    
             print()     --有返回值，效率不高  
-            print_r()   --
             printf()    --格式化输出，不改变原数据， %d整数 %f浮点 %.2f保留两位小数 %c字符 %s字符串 $x十六进制 %o八进制 %b二进制   
             sprintf()   --返回格式化的字符串，并改变原来的数据值。     
             die()       --exit()函数的别名，退出前输出。  
-            var_dump()  --
         },  
         *2、字符串格式化函数{  
-            *1、去除空白函数(空白含有ASCLL为0--null,9--制表符,10--*-,13--回车,32--空格，等等){
-                **1、trim()  去除两端空白
-                **2、ltrim() 去除左空白
-                **3、rtrim() 去除右空白
+            **1、去除空白函数(空白含有ASCLL为0--null,9--制表符,10--*-,13--回车,32--空格，等等){
+                ***1、trim()  去除两端空白
+                ***2、ltrim() 去除左空白
+                ***3、rtrim() 去除右空白
             }, 
-            *2、字符串填补函数{
+            **2、字符串填补函数{
                 **1、str_pad()   str_pad(被处理变量，填补后长度，填补符号，*左右填补);  四个参数，不会改变原数据。      
             },   
         },   
-        *3、大小写转换{
-            *1、ucfirst()   --字符串中首字符转换大写。
-            *2、ucwords()   --字符串中每个单词的首字符大写。   
-        }        
+        *3、大小写转换函数{
+            **1、ucfirst()   --字符串中首字符转换大写。
+            **2、ucwords()   --字符串中每个单词的首字符大写。 
+            
+            **3、strtolower()   --strtolower("Hello WORLD.");  //hello world.    
+            **4、strtoupper()   --strtoupper("Hello WORLD.");   //HELLO WORLD.  
+        },        
+        *4、其他字符串处理函数{
+            **1、strrev()           --字符串反转  
+            **2、md5()              --加密函数 
+            **3、md5_file()         --对文件加密   
+            **4、number_format()    --统一标准货币格式   number_format(被处理变量,2保留几位小数并四舍五入，小数点替换符号，千分位替换符号)；  四个参数  
+        },    
+        *5、课后练习函数{
+            **1、strstr()       --strstr("I love Shanghai!","Shanghai");  //Shanghai!    
+            **2、strtolower()   --strtolower("Hello WORLD.");  //hello world.    
+            **3、strtoupper()   --strtoupper("Hello WORLD.");   //HELLO WORLD.   
+        }
     };       
+    4、与HTML相关的字符函数{   
+        *1、nl2br()     --在字符串中的每个新行\n之前插入HTML的<br>   
+        *2、htmlapecialchars()  --把特殊字符转换为HTML实体
+        *3、stripslashes()      --
+        *4、strip_tags()        --
+        *5、
+    };
     */
     //----------3-1输入输出函数------------
     echo substr("abcdefghi",2,4)."<br>";   
@@ -106,12 +125,44 @@
     //3.2.2、字符串填补函数 str_pad() 不会改变原数据    
     $str2="lamp";   
     echo str_pad($str2,10,"*", STR_PAD_BOTH )."<br>";   //***lamp***   
-    echo $str2."<br>";  //lamp   
+    echo $str2."<br>-------大小写转换函数---------<br>";  //lamp   
     //
-    //3.3、大小写转换    
+    //3.3、大小写转换函数      
     $str3="hello word in my way";   
-    echo ucfirst($str3)."<br>";   
-    echo ucwords($str3)."<br>";  
+    echo ucfirst($str3)."<br>";      //Hello word in my way   
+    echo ucwords($str3)."<br>------strrev()字符串反转-----<br>";    //Hello Word In My Way  
+    //
+    //3.4.1、其他字符串函数--字符串反转函数  
+    $str4="www.baidu.com";   
+    echo strrev($str4).'<br>---------md5加密函数----------<br>';    
+    //3.4.2、其他字符串函数--md5加密函数    
+    echo md5($str4).'<br>';     //dab19e82e1f9a681ee73346d3e7a575e    
+    echo strlen(md5($str4)).'<br>------统一货币函数-------<br>';     //32   
+    //
+    //3.4.4、其他字符串函数--同一标准货币函数    
+    $price=123456789.123456789;   
+    echo number_format($price,10)."<br>";   //123,456,789.1235     
+    echo number_format($price,4,".","`")."<br>";    
+    //
+    //
+    //------------4、与HTML相关的字符函数------------------
+    //
+    $str="abc\n cde\n efg\n hij\n ww\n ww";   
+    echo $str."<br>";   
+    echo nl2br($str)."<br>";    
+    //
+    //
+    ?>
+        <form action="">
+            请输出：
+            <input type="text" name="str" size="100">
+            <input type="submit" value="提交服务器">
+        </form>
+    <?php
+    echo $_GET['str'].'<br>';  
+    //以上代码不经处理用于服务器，会产生input漏洞，那就需要进行预处理。htmlspecialchars()       
+    echo htmlspecialchars($_GET['str']).'<br>';    
+    //
     //
     //
     //****************【二、常用的字符串函数】*************
