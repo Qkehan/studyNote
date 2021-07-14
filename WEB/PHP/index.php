@@ -4,7 +4,7 @@
     echo '欢迎您！！';
     date_default_timezone_set('PRC');  
     echo date("Y-m-d H:i:s")."<br>";  
-    echo '【5-字符串函数】'."<br>"; 
+    echo '【5-字符串函数 & 正则表达式】'."<br>"; 
     echo "当前文件的路径为：".__FILE__.'<br><hr>';    //获取当前文件路径  
     //
     //*******************【一、字符串处理方式】*************
@@ -61,14 +61,22 @@
     4、与HTML相关的字符函数{   
         *1、nl2br()     --在字符串中的每个新行\n之前插入HTML的<br>   
         *2、htmlapecialchars()  --把特殊字符转换为HTML实体
-        *3、stripslashes()      --
-        *4、strip_tags()        --
-        *5、
+        *3、stripslashes()      --删除反斜杠\       
+        *4、strip_tags()        --保留部分标签   
+        *5、str_replace()       --替换函数   
+        *6、substr_count()      --标红并计算次数    
     };
     */
     //----------3-1输入输出函数------------
+    echo "-----------substr()函数---------<br>";   
     echo substr("abcdefghi",2,4)."<br>";   
-    echo substr(123456789,2,4)."<br>";   
+    echo substr(123456789,2,4)."<br>";    
+    // $b=mb_substr($b,0,4,'utf-8');   
+    //中文字符在GB2312编码时为2个字节，utf-8编码时为3个字节     
+    $b=substr('截取论坛标题abcdefghigklmn',0,22);    //截取论坛标题abcd   
+    echo $b.'<br>-----------mb_substr()函数------------<br>'; 
+    $c=mb_substr('截取论坛标题abcdefghigklmn',0,10);   //截取论坛标题abcd  
+    echo $c.'<br>-----------------------<br>'; 
     $str="02988888888";    
     echo $str{0}.$str{1}.$str{2}."<br>";    //029  
     // die("#######EXIT######");  
@@ -146,12 +154,12 @@
     //
     //
     //------------4、与HTML相关的字符函数------------------
-    //
+    //4.1、nl2br()     --在字符串中的每个新行\n之前插入HTML的<br>    
     $str="abc\n cde\n efg\n hij\n ww\n ww";   
     echo $str."<br>";   
     echo nl2br($str)."<br>";    
     //
-    //
+    //4.2、htmlapecialchars()  --把特殊字符转换为HTML实体    
     ?>
         <form action="">
             请输出：
@@ -161,7 +169,19 @@
     <?php
     echo $_GET['str'].'<br>';  
     //以上代码不经处理用于服务器，会产生input漏洞，那就需要进行预处理。htmlspecialchars()       
-    echo htmlspecialchars($_GET['str']).'<br>';    
+    echo htmlspecialchars($_GET['str']).'<br>';    //把特殊字符转换为HTML实体    
+    //
+    //4.3、stripslashes()      --删除反斜杠    
+    echo htmlspecialchars(stripslashes($_GET['str'])).'<br>----------4.4、strip_tags()---------<br>';    
+    //
+    //4.4、strip_tags()        --保留部分标签      
+    $string="<font color='#ff0000' size='7'>LAMP</font><h1>wwwww</h1><b>php</b>";   
+    echo strip_tags($string).'<br>';   //删除去不标签    
+    echo strip_tags($string,"<font>").'<br>';    //保留标签<font>   
+    echo strip_tags($string,"<font><b>").'<br>';   //保留标签<font><b>      
+    //
+    //
+    //
     //
     //
     //
@@ -240,9 +260,68 @@
     echo implode("==#",$arr);    
     //
     //
+    //
+    //例题：用explode()判对文件后缀   
+    ?>
+        <form action="" method="post">
+            关键字<input type="file" name="text" > 
+            <input type="submit" name="sub" value="上传">
+        </form>
+    <?php
+    if($_POST['sub']){
+        $a=$_POST['text'];  
+        $b=explode('.',$a);  
+        $c=$b[1];  
+        echo "文件后缀为：.$c";  
+    }
+    //
+    //例题：去除字符     
+    $str5="(:@_@ 你好！PHP范例 @_@:)";    
+    echo "<br>去除前字符：$str5<br>";     
+    echo "去除字符后：".trim($str5,"():@_ ")."<br>";  
+    //
+    //
+    //例题：搜索文本标红替换函数 str_replace()    
+    echo "<a style='font-size: 20px;color:#000000;'>被搜索的文本：</a>";     
+    $str6="PHP（PHP: Hypertext Preprocessor）即“超文本预处理器”，是在服务器端执行的脚本语言，尤其适用于Web开发并可嵌入HTML中。PHP语法学习了C语言，吸纳Java和Perl多个语言的特色发展出自己的特色语法，并根据它们的长项持续改进提升自己，例如java的面向对象编程，该语言当初创建的主要目标是让开发人员快速编写出优质的web网站。 [1-2]  PHP同时支持面向对象和面向过程的开发，使用上非常灵活。";       
+    echo $str6;  
+    ?>
+        <form action="" method="post">
+            搜索关键字:<input type="text" name="text" > 
+            <input type="submit" name="sub" value="搜索">
+            <br>
+            标红关键字:<input type="text" name="text1" > 
+            <input type="submit" name="sub1" value="标红">
+        </form>
+    <?php
+    if($_POST['sub']){ 
+        // 搜索
+        $a=$_POST['text'];    
+        $b="<b style='color:red;font-size:20px;'>".$a."</b>";   
+        //
+        $c=str_replace($a,$b,$str6,$count);  //第4个参数计算替换次数   
+        echo "搜索关键字：".$b."出现了".$count."次<br>".$c;     
+    }
+    // substr_count()      --标红并计算次数  
+    if($_POST['sub1']){ 
+        // 搜索
+        $a=$_POST['text1'];    
+        $b="<b style='color:red;font-size:20px;'>".$a."</b>";   
+        //
+        $c=substr_count($str6,$a);  
+        echo str_replace($a,$b,$str6);  
+        echo "<br>关键字 $b 出现的次数：".$c."次<br>";     
+    }
+    echo "<br><hr><br>";   
+    //
+    //  
+    //
     //******************【三、正则表达式】***************
+    //正则表达式    
+    //"/\<img\s*src=\".*?\"\/\>/iu"  双引号表示他是一个字符串 
     //
-    //
+    //1、正则表达式是描述字符串排列模式的一种自定义语法规则   
+    //2、
     //
     //
 
