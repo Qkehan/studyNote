@@ -242,16 +242,8 @@
     //
     //*********************【文件的上传和下载】***************************
     //文件上传的过程实质上就是文件复制的过程。首先需要在浏览器端通过HTTP协议将文件上传到服务器端的文件夹，然后再将其移动到指定的目录，从而完成文件的上传。    
-    //在文件上传的过程中，会涉及到客户端表单设置和服务器端文件操作，接下来针对这两部分的操作分别进行讲解。    
-    //
-    //1、文件上传表单   
-    //  --在实现文件上传时，首先需要设置文件上传表单，这个表单的提交方式必须为POST。   
-    //  --另外，还需要添加上传的属性enctype=”multipart/form-data”，该属性说明浏览器可以提供文件上传功能，服务器端提交的数据中包含文件的数据。     
-    //  --通过上述表单可以完成文件的上传操作，该表单与普通表单有一些不同之处，具体如下：{
-    //          --表单的提交方式为POST，并且有一个enctype属性提示表单中有二进制文件数据。   
-    //          --第1个input标签的type属性为hidden表示隐藏，通过value值指定允许上传文件的最大尺寸。    
-    //          --第2个input标签的type属性为file显示一个文件输入框，并提供“浏览”按钮用于选择文件。   
-    //  };    
+    //在文件上传的过程中，会涉及到客户端表单设置和服务器端文件操作，接下来针对这两部分的操作分别进行讲解。  
+    //  
     //
     //2、PHP处理上传文件  
     //  --当用户通过上传表单选择一个文件并提交后，PHP会自动生成一个$_FILES二维数组，该数组保存了上传文件的信息。    
@@ -283,6 +275,7 @@
             <input type="hidden" name="max_file_size" value="30000">
             选择文件：<input type="file" name="userfile" >
             <input type="submit" name="button" id="button" value="文件上传"> 
+            <br>
         </form>
         <!-- 一般是分成两个文件 --> 
     <?php
@@ -318,6 +311,52 @@
     //---------------【文件下载】------------------  
     //与文件上传相比，文件下载要简单得多。在实现文件下载时，需要在HTTP消息中设置两个响应消息头，这两个响应消息头用于告诉浏览器不要直接在浏览器中解析该文件，而是将文件以下载的方式打开。   
     //
+    //
+    //提供下载的方式可以使用HTML中的a标签：<a href="不联网路径">点击下载</a>  
+    //  缺陷：{
+    //      1、a标签能够提供的让浏览器自动下载的内容有限：浏览器无法解析才会下载。 
+    //      2、a标签下载的文件存储路径会需要通过href属性写出来，这样会暴露服务器存储数据的位置（不安全）。   
+    //  };
+    //
+    //PHP下载：读取文件内容，以文件流的形式传递给浏览器:在相应中告知浏览器不要解析，激活下载框实现下载。  
+    //
+    //1、文件上传表单   
+    //  --在实现文件上传时，首先需要设置文件上传表单，这个表单的提交方式必须为POST。   
+    //  --另外，还需要添加上传的属性enctype=”multipart/form-data”，该属性说明浏览器可以提供文件上传功能，服务器端提交的数据中包含文件的数据。     
+    //  --通过上述表单可以完成文件的上传操作，该表单与普通表单有一些不同之处，具体如下：{
+    //          --表单的提交方式为POST，并且有一个enctype属性提示表单中有二进制文件数据。   
+    //          --第1个input标签的type属性为hidden表示隐藏，通过value值指定允许上传文件的最大尺寸。    
+    //          --第2个input标签的type属性为file显示一个文件输入框，并提供“浏览”按钮用于选择文件。   
+    //  };  
+    //1、指定浏览器解析字符集  
+    // header('Content-type:text/html;charset=utf-8');  
+    //2、设定响应头
+    //  *a、设定文件返回类型：image/jpg || application/octet-stream  
+    //  *b、设定返回文件计算方式：Accept-ranges:bytes   
+    //  *c、设定下载提示：Content-Disposition: attachment; filename="文件名字"   
+    //  *d、设定文件大小：Accept-length: 文件大小文件大小（字节）  
+    //3、读取文件  
+    //4、输出文件  
+    //
+    //如果文件的名称是从服务器读取来的，而且存在中文，那么如果直接使用名称会乱码。
+    //这种情况需要进行字符集转码：从GBK转成UTF-8：$file = iconv('当前见字符集','指定字符集',$读取的文件); 然后赋值给变量使用          
+    //
+    //方案1：如果文件较小，可以使用PHP5的文件函数操作：file_get_contents()    
+    //方案2：如果文件比较大（网络不好）：可以使用PHP4的文件操作方式：一次读一点：$f = @fopen($file,'r') or die();     
+    /*
+    $fp = @fopen($file,'r') or die()； //以只读方式打开 
+    *读取写法一：直接读然后输出，用得比较多 
+    while($row = fread($fp,1024)){
+        echo $row;  
+    }
+    *读取写法二：判定是否可读，然后再读   
+    while(!feof($fp)){   //feof()判断指针是否到达最后，！如果没有到达最后继续执行    
+        echo fread($fp,1024);  
+    }
+    */
+    //
+    //
+    //
     // 下面给出一个简单的示例，以下载图片girl.jpg为例，示例代码如下：    
     /*
     header("Content-type: image/jpeg"); //指定文件MIME类型  
@@ -327,15 +366,18 @@
     “Content-Disposition”用于文件描述，其中attachment表明这是一个附件，“filename=girl.jpg”则指定了下载后的文件名。   
     */
     //
-    define('ROOT_PATH',dirname(__FILE__));  
+    define('ROOT_PATH',dirname(__FILE__));  //定义常量，目录文件名字  
     // 定义一个下载函数   
     function downfile($file_path){
         // 判断文件是否存在
         // 可能会出现中文名进行转码  
-        $file_path = iconv("utf-8","gb2312",$file_path);  //可能会出现中文进行转码    
-        if(!file_exists($file_path)){
-            exit('文件不存在！');  
-        }
+        // $file_path = iconv("utf-8","gb2312",$file_path);  //可能会出现中文进行转码    
+        if(file_exists($file_path)){   //file_exists 检查文件目录是否存在  
+            echo '<br>文件存在！';  
+        } else {
+            echo dirname(__FILE__);  
+            exit('<br>文件不存在');  
+        };
         // 获取文件名称  
         $file_name = basename($file_path);    
         // 获取文件大小  
@@ -343,20 +385,31 @@
         // 以只读方式打开文件  
         $fp = fopen($file_path,'r');  
         // 这两句是告诉浏览器，不要在浏览器里解读文件，这里面有一个下载的东西。  
-        header("Content-type: application/octet-stream");   //文件以二进制流形式执行  
+        header("Content-type: application/octet-stream");   //文件以二进制流形式传输给浏览器  
+        header('Accept-ranges: bytes');  //以字节形式计算     
         header("Content-Disposition: attachment; filename={$file_name}");   
-        $buffer=1024;  
+        
+        $buffer=1024;  //定义字节数 
         $file_count = 0;  
+        //直接读
+        /*
+        while($row = fread($fp,$buffer)){
+            echo $row;  
+        }
+        */
         // 判断文件是否结束  
         while(!feof($fp) && ($file_size - $file_count > 0)){
-            $file_data = fread($fp, $buffer);   
+            $file_data = fread($fp, $buffer);   //每次只读一个字节  
             $file_count += $buffer;   
             echo $file_data;  
         }
-        fclose($fp);   //关闭文件  
+        //关闭资源 
+        fclose($fp);      
+        
+        // echo file_get_contents($file_path);  //小文件的PHP文件获取函数，有反应可以下载     
     }
     // 调用示例  
-    downfile(ROOT_PATH."./uploads/index.php");  
+    downfile('ROOT_PATH',"/uploads/123.txt");    
     //
     //
     //
