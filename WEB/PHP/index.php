@@ -372,44 +372,57 @@
         // 判断文件是否存在
         // 可能会出现中文名进行转码  
         // $file_path = iconv("utf-8","gb2312",$file_path);  //可能会出现中文进行转码    
+        /*
         if(file_exists($file_path)){   //file_exists 检查文件目录是否存在  
             echo '<br>文件存在！';  
         } else {
             echo dirname(__FILE__);  
             exit('<br>文件不存在');  
         };
-        // 获取文件名称  
-        $file_name = basename($file_path);    
-        // 获取文件大小  
-        $file_size = filesize($file_path);  
-        // 以只读方式打开文件  
-        $fp = fopen($file_path,'r');  
-        // 这两句是告诉浏览器，不要在浏览器里解读文件，这里面有一个下载的东西。  
-        header("Content-type: application/octet-stream");   //文件以二进制流形式传输给浏览器  
-        header('Accept-ranges: bytes');  //以字节形式计算     
-        header("Content-Disposition: attachment; filename={$file_name}");   
-        
-        $buffer=1024;  //定义字节数 
-        $file_count = 0;  
-        //直接读
-        /*
-        while($row = fread($fp,$buffer)){
-            echo $row;  
-        }
         */
-        // 判断文件是否结束  
-        while(!feof($fp) && ($file_size - $file_count > 0)){
-            $file_data = fread($fp, $buffer);   //每次只读一个字节  
-            $file_count += $buffer;   
-            echo $file_data;  
-        }
-        //关闭资源 
-        fclose($fp);      
+
         
-        // echo file_get_contents($file_path);  //小文件的PHP文件获取函数，有反应可以下载     
+        if($_SERVER[$file_path]){   //file_exists 检查文件目录是否存在  
+            echo "<br>文件存在！";  
+
+            // 获取文件名称  
+            $file_name = basename($file_path);    
+            // 获取文件大小  
+            $file_size = filesize($file_path);  
+            // 以只读方式打开文件  
+            $fp = fopen($file_path,'r');  
+            // 这两句是告诉浏览器，不要在浏览器里解读文件，这里面有一个下载的东西。  
+            header("Content-type: application/octet-stream");   //文件以二进制流形式传输给浏览器  
+            header('Accept-ranges: bytes');  //以字节形式计算     
+            header("Content-Disposition: attachment; filename={$file_name}");   
+            
+            $buffer=1024;  //定义字节数 
+            $file_count = 0;  
+            //直接读
+            /*
+            while($row = fread($fp,$buffer)){
+                echo $row;  
+            }
+            */
+            // 判断文件是否结束  
+            while(!feof($fp) && ($file_size - $file_count > 0)){
+                $file_data = fread($fp, $buffer);   //每次只读一个字节  
+                $file_count += $buffer;   
+                echo $file_data;  
+            }
+            //关闭资源 
+            fclose($fp);      
+            echo "处理成功";  
+            
+            // echo file_get_contents($file_path);  //小文件的PHP文件获取函数，有反应可以下载   
+        } else {
+            echo $file_path;  
+            exit("<br>文件不存在");  
+        };
+
     }
     // 调用示例  
-    downfile('ROOT_PATH',"/uploads/123.txt");    
+    downfile("/uploads/123.txt");    
     //
     //
     //
