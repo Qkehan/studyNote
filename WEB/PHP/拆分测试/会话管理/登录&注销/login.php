@@ -13,7 +13,7 @@
         密码: 
         <input type="password" name="password"><br>
 
-        <input type="checkbox" name="days" >
+        <input type="checkbox" name="remember" value="yes">
         7天自动登录<br>
         <input type="submit" value="登录" name="login">
     </form>
