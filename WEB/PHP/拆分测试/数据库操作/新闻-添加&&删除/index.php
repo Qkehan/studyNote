@@ -29,13 +29,14 @@
         
         //命令  
         ?>
-        <form action="index_ok.php" method="post" name='form' id="form">  
+
+        <form action="index_ok.php" method="POST" >  
 
         <table border='0px' align='center'>
             <tr align='center'>
                 <td>新闻标题</td>
                 <td>新闻内容</td>
-                <td>删除</td>
+                <td>编辑/删除</td>
             </tr>
         <?php
         $query = mysqli_query($conn,"select * from news");  
@@ -53,12 +54,16 @@
                     <span class="STYLE3">&nbsp;</span>
                 </td>
                 <!-- 删除按钮 -->
-                <td>
+                <td width='150'>
                     <label>
                         <!-- 提取数据库[数组]的id键 -->
                         <p><?php echo $id=$arr['id']; ?></p>
                         <!-- 重点:如果想要顺利的将ID value POST就必须用 echo输出一下:如下 -->
-                        <input type="hidden" name="htmlID" value="<?php echo $id; ?>"> 
+
+                        <input type="hidden" name="htmlID" value="<?php echo $id=$arr['id']; ?>"> 
+                        <div align="center">
+                            <input type="submit" name="Submit2" class="STYLE3" value="编辑" onclick="func_edit();"> 
+                        </div>
                         <div align="center">
                             <input type="submit" name="Submit" class="STYLE3" value="删除">
                         </div>
@@ -77,8 +82,16 @@
     <br><hr><br>
     <button><a href="add.php">添加新闻</a></button><br><hr><br>
 
-
+    <!-- js的编辑按钮跳转 -->
+    <!-- <script>
+        function func_edit(){
+            var form = document.querySelector('form');      
+            form.action = "edit.php";  
+            // element.submit(); 
+        };
+    </script> -->
 
 </body>
+    
 </html>
 

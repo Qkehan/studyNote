@@ -1,5 +1,5 @@
 <?php
-    header("Content-type:text/html;charset=utf-8");  
+
 
     $conn = mysqli_connect("localhost","root","");     
     mysqli_select_db($conn, "qkehan");   

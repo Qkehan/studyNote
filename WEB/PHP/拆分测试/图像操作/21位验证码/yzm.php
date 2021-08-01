@@ -9,8 +9,8 @@
         // $color = "";  
         
         
-        $str = 21;  
-        $wNum = 0;
+        $str = 21;  //总数量  
+        $wNum = 0;  //白字数量   
         $corNum = 0;
         for($i=0;$i<=$str;$i++){  
             $num = rand(0,1);  

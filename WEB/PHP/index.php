@@ -48,6 +48,8 @@
     //$SQL参数是一个标准的sql齿距车就是说大致分为两类, 一是查询结果的比如select语句, 二是没有查询结果返回的比如update, insert, delete语句.    
     //对于有结果产生的sql语句如果执行成功则返回该结果,如果不成功则返回FALSE.   
     //对于没有结果返回的语句,执行成功则返回TRUE不成功则返回FALSE.   
+    //  mysqli_query($conn,"命令");   //php7的操作方法   
+    //
     //
     //  mysql_fetch_array()     
     //从result结果集当中取得一个数组每执行一次记录集指针就会自动向下移动   
@@ -101,12 +103,20 @@
     // $conn = mysqli_connect("localhost","root","","qke"); 
     // mysqli_select_db($conn, "qke");  
     // mysqli_query($conn, "set_names_utf8"); 
+    /*
+    //操作数据库的初始化     
+    $conn = mysqli_connect("localhost","root","");     
+    mysqli_select_db($conn, "qkehan");   
+    mysqli_query($conn, "set names utf8"); 
+    */  
+    //
     //
     //二用mysqli_query来写执行的对应的SQL命令  
     // $query = mysqli_query($conn, "select * from B1");  //浏览 因为是select所以返回的是一个,结果集      
     //$res = mysqli_fetch_array($query)   //因为是结果集,所以用mysql_fetch_array转换为数组   
     //
     //
+    
 
     /*
         php 中两种获得数据库中 数据条数的方法  
