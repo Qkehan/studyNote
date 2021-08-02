@@ -30,7 +30,8 @@
         //命令  
         ?>
 
-        <form action="index_ok.php" method="POST" >  
+        <!-- POST   -->
+        <form action="index_ok.php" method="POST" id="from">  
 
         <table border='0px' align='center'>
             <tr align='center'>
@@ -56,24 +57,25 @@
                 <!-- 删除按钮 -->
                 <td width='150'>
                     <label>
-                        <!-- 提取数据库[数组]的id键 -->
-                        <p><?php echo $id=$arr['id']; ?></p>
                         <!-- 重点:如果想要顺利的将ID value POST就必须用 echo输出一下:如下 -->
+                        
+                        <input type="hidden" name="id" value="<?php echo $arr['id']; ?>"> 
 
-                        <input type="hidden" name="htmlID" value="<?php echo $id=$arr['id']; ?>"> 
-                        <div align="center">
-                            <input type="submit" name="Submit2" class="STYLE3" value="编辑" onclick="func_edit();"> 
-                        </div>
-                        <div align="center">
-                            <input type="submit" name="Submit" class="STYLE3" value="删除">
-                        </div>
+                        <input type="submit" name="Submit" class="STYLE3" value="删除" >
+                        <button align="center"><a href="edit.php?id=<?php echo $arr['id']; ?>"  style="text-decoration:none;">编辑</a></button>
+                        
                     </label>
                 </td>
             </tr>
             <br>
+
+            
+            
+
         <?php            
-        }
+        };  
         echo "</table></form>";    //表单域  
+
         $res=mysqli_query($conn,"select * from news");
         $num=mysqli_num_rows($res); 
         echo "数据表中条目数为:".$num;  
@@ -82,16 +84,12 @@
     <br><hr><br>
     <button><a href="add.php">添加新闻</a></button><br><hr><br>
 
-    <!-- js的编辑按钮跳转 -->
-    <!-- <script>
-        function func_edit(){
-            var form = document.querySelector('form');      
-            form.action = "edit.php";  
-            // element.submit(); 
-        };
-    </script> -->
 
 </body>
     
 </html>
 
+
+            
+
+        

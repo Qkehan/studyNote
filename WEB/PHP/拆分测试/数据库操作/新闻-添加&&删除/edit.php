@@ -3,12 +3,12 @@
     include("conn.php");  
 
 
-    $pid = $_POST['htmlID'];   
+    $getid = $_GET['id'];   
     echo "<script>
-            alert(' ".$pid." ');
+            alert(' ".$getid." ');
         </script>";  
-        
-    $query = mysqli_query($conn,"select * from news where news.id='$pid' ");  
+
+    $query = mysqli_query($conn,"select * from news where news.id='$getid' ");  
     while($arr = mysqli_fetch_array($query)){  
     
 ?>
@@ -42,9 +42,9 @@
             <tr>
                 <td colspan="2" align="center">
                     <label>
-                        <input type="submit" name="Submit" value="提交">
-                    </label>
-                    <label>
+                        <input type="hidden" name="id" value="<?php echo $arr['id']; ?>">
+                        <input type="submit" name="Submit" value="修改">
+                    
                         <input type="reset" name="Submit2" value="取消">
                     </label>
                 </td>
