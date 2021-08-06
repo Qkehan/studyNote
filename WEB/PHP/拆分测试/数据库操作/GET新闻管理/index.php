@@ -12,23 +12,21 @@
 
 
 <?php
-    $link = mysqli_connect("localhost","root","");   
+    $link = mysqli_connect("localhost","root","");     //连接服务器   
     mysqli_set_charset($link,'utf8');    
-    mysqli_query($link, "use qkehan");   
-    $query = mysqli_query($link, "select * from news");  
+    mysqli_query($link, "use qkehan");     //选择数据库   
+
+    $query = mysqli_query($link, "select * from news");    //对表做操作   
+    //将结果集,变成数组   
     while($arr = mysqli_fetch_array($query)){
 
-
-    
 ?>
         <tr>
             <td>
-            <?php echo $arr["id"] ?>
-                &nbsp;
+            <?php echo $arr["id"] ?>&nbsp;    //数组的KEY值, 就是数据库表的字段名   
             </td>
             <td height='25'>
-                <?php echo $arr["name"] ?>
-                &nbsp;
+                <?php echo $arr["name"] ?>&nbsp;
             </td>
             <td height='25'>
                 <?php echo $arr["news"] ?>
@@ -40,8 +38,8 @@
                     <!-- 重点:如果想要顺利的将ID value POST就必须用 echo输出一下:如下 -->
                     
                     <input type="hidden" name="id" value="<?php echo $arr['id']; ?>"> 
+                    <button align="center"><a href="index_ok.php?id=<?php echo $arr['id']; ?>"  style="text-decoration:none;">删除</a></button>
 
-                    <input type="submit" name="Submit" class="STYLE3" value="删除" >
                     <button align="center"><a href="edit.php?id=<?php echo $arr['id']; ?>"  style="text-decoration:none;">编辑</a></button>
                     
                 </label>
