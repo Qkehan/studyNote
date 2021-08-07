@@ -23,7 +23,8 @@
 ?>
         <tr>
             <td>
-            <?php echo $arr["id"] ?>&nbsp;    //数组的KEY值, 就是数据库表的字段名   
+            <!-- 数组的KEY值, 就是数据库表的字段名   -->
+            <?php echo $arr["id"] ?>&nbsp;     
             </td>
             <td height='25'>
                 <?php echo $arr["name"] ?>&nbsp;
