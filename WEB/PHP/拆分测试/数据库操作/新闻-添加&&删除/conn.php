@@ -1,9 +1,8 @@
 <?php
-    header("Content-type:text/html;charset=utf-8");
 
 
-    $conn = mysqli_connect("localhost","root","","qkehan");     
-    // mysqli_select_db($conn, "qkehan");   
-    mysqli_query($conn, "set names utf8"); 
+    $link = mysqli_connect("localhost","root","");     //连接服务器   
+    mysqli_set_charset($link,'utf8');    
+    mysqli_query($link, "use qkehan");     //选择数据库   
     
 ?>

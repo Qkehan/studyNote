@@ -41,7 +41,7 @@
                     <input type="hidden" name="id" value="<?php echo $arr['id']; ?>"> 
                     <button align="center"><a href="index_ok.php?id=<?php echo $arr['id']; ?>"  style="text-decoration:none;">删除</a></button>
 
-                    <button align="center"><a href="edit.php?id=<?php echo $arr['id']; ?>"  style="text-decoration:none;">编辑</a></button>
+                    <button align="center"><a href="edit.php?eID=<?php echo $arr['id']; ?>"  style="text-decoration:none;">编辑</a></button>
                     
                 </label>
             </td>

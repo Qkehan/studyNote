@@ -6,13 +6,15 @@
     mysqli_query($link, "use qkehan");     //选择数据库    
 
 
-    $getid = $_GET['id'];   
+    $eID = $_GET['eID'];   
     echo "<script>
-            alert(' ".$getid." ');
+            alert(' ".$eID." ');
         </script>";  
 
-    $query = mysqli_query($link,"select * from news where news.id='$getid' ");  
-    while($arr = mysqli_fetch_array($query)){  
+    // $query = mysqli_query($link,"select * from news where news.id='$getid' ");   //这两句效果一样   
+    $query = mysqli_query($link,"select * from news where id='$eID' ");  
+    //因为数组只有一条信息,所以不需要遍历    
+    $arr = mysqli_fetch_array($query);    
     
 ?>
 <!DOCTYPE html>
@@ -46,9 +48,9 @@
                 <td colspan="2" align="center">
                     <label>
                         <input type="hidden" name="id" value="<?php echo $arr['id']; ?>">
-                        <input type="submit" name="Submit" value="修改">
+                        <input type="submit" name="update" value="修改">
                     
-                        <input type="reset" name="Submit2" value="取消">
+                        <button><a href="index.php" style="text-decoration:none;">取消</a></button>
                     </label>
                 </td>
             </tr>
@@ -57,6 +59,3 @@
 
 </body>
 </html>
-<?php
-    };
-?>
