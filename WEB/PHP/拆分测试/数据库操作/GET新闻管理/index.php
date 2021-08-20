@@ -54,3 +54,6 @@
     };   
     echo "</table></form>";    
 ?>
+        <hr> 
+        <button><a href="add.php">添加新闻</a></button>
+        <hr>

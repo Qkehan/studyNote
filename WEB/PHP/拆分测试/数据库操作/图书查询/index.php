@@ -14,6 +14,12 @@
         }
         .two{
             color: #ff0000;
+            border: 1px solid gray;
+            border-radius: 5px;  
+        }
+        table{
+            width: 375px;  
+            height: 350px;  
         }
     </style>
 </head>
@@ -29,8 +35,8 @@
                     <tr>
                         <td align="center">
                             <form action="index.php" method="POST">
-                                <input type="text" class="two" name="text1" value="输入最低价格" onfocus="this.value='' ">
-                                <input type="text" class="two" name="text" value="输入最高价格" onfocus="this.value='' ">
+                                <input type="text" class="two" name="text1" value="输入最低价格" onfocus="this.value='' "><br><br>
+                                <input type="text" class="two" name="text" value="输入最高价格" onfocus="this.value='' "><br><br>
                                 <input type="submit" class="one" name="sub" value="查看&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
                                 <font color="#999999" size="-1">格式:XX.X</font>
                             </form>
